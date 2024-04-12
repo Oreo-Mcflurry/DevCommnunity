@@ -6,3 +6,17 @@
 //
 
 import Foundation
+import TextFieldEffects
+
+final class SignUpTextField: HoshiTextField {
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		self.borderInactiveColor = .gray
+		self.borderActiveColor = .systemBlue
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError()
+	}
+}

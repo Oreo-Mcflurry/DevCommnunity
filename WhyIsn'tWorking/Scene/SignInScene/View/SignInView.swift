@@ -5,4 +5,9 @@
 //  Created by A_Mcflurry on 4/11/24.
 //
 
-import Foundation
+import UIKit
+import SnapKit
+
+final class SignInView: BaseUIView {
+	
+}
