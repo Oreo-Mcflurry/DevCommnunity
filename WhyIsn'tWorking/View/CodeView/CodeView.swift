@@ -11,12 +11,13 @@ import Splash
 
 struct CodeView: View {
 	@Environment(\.colorScheme) private var colorScheme
-	let inputText = ""
+	let languageType: String
+	let inputText: String
 	var body: some View {
 		VStack {
 			Markdown {
 		#"""
- ```swift
+ ```\#(languageType)
  \#(inputText)
  ```
  """#
