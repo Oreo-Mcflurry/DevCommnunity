@@ -33,6 +33,10 @@
 		0B019DC42BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019DC32BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift */; };
 		0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019DC52BC6CCED00E89BB4 /* UserDefaults+Extension.swift */; };
 		0B019DC82BC6CD0000E89BB4 /* KeyChain+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019DC72BC6CD0000E89BB4 /* KeyChain+Extension.swift */; };
+		0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */; };
+		0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */; };
+		0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */; };
+		0BCFF0612BCA455000CDC6E5 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF0602BCA455000CDC6E5 /* CheckBoxView.swift */; };
 		0BDE9FDD2BC76EF100289075 /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE9FDC2BC76EF100289075 /* CodeView.swift */; };
 		0BDE9FE22BC811D600289075 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE9FE12BC811D600289075 /* SignInViewController.swift */; };
 		0BDE9FE82BC8120E00289075 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE9FE32BC8120D00289075 /* BaseCollectionViewCell.swift */; };
@@ -67,6 +71,10 @@
 		0B019DC32BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DeleteBackButton+Extension.swift"; sourceTree = "<group>"; };
 		0B019DC52BC6CCED00E89BB4 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		0B019DC72BC6CD0000E89BB4 /* KeyChain+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+Extension.swift"; sourceTree = "<group>"; };
+		0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewController.swift; sourceTree = "<group>"; };
+		0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetView.swift; sourceTree = "<group>"; };
+		0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewModel.swift; sourceTree = "<group>"; };
+		0BCFF0602BCA455000CDC6E5 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		0BDE9FDC2BC76EF100289075 /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
 		0BDE9FE12BC811D600289075 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0BDE9FE32BC8120D00289075 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -140,6 +148,7 @@
 		0B019DA72BC6BC9E00E89BB4 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0BCFF0552BCA42F500CDC6E5 /* SignUpBottomSheet */,
 				0BDE9FE72BC8120D00289075 /* Base */,
 				0B019DAF2BC6BD0800E89BB4 /* SignUpScene */,
 				0B019DAE2BC6BCEB00E89BB4 /* SignInScene */,
@@ -205,6 +214,48 @@
 				0B019DC12BC6CC9200E89BB4 /* APIKeyPublic.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		0BCFF0552BCA42F500CDC6E5 /* SignUpBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				0BCFF05A2BCA442100CDC6E5 /* VIewModel */,
+				0BCFF0592BCA441D00CDC6E5 /* ViewController */,
+				0BCFF0582BCA441B00CDC6E5 /* View */,
+			);
+			path = SignUpBottomSheet;
+			sourceTree = "<group>";
+		};
+		0BCFF0582BCA441B00CDC6E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0BCFF0592BCA441D00CDC6E5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0BCFF05A2BCA442100CDC6E5 /* VIewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */,
+			);
+			path = VIewModel;
+			sourceTree = "<group>";
+		};
+		0BCFF0622BCA455300CDC6E5 /* CheckBoxView */ = {
+			isa = PBXGroup;
+			children = (
+				0BCFF0602BCA455000CDC6E5 /* CheckBoxView.swift */,
+			);
+			path = CheckBoxView;
 			sourceTree = "<group>";
 		};
 		0BDE9FDB2BC76EE100289075 /* CodeView */ = {
@@ -277,18 +328,19 @@
 		0BDE9FFD2BC8296300289075 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0BDEA0002BC8299300289075 /* SignUpTextField */,
+				0BCFF0622BCA455300CDC6E5 /* CheckBoxView */,
+				0BDEA0002BC8299300289075 /* SignUpTextFieldView */,
 				0BDE9FDB2BC76EE100289075 /* CodeView */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		0BDEA0002BC8299300289075 /* SignUpTextField */ = {
+		0BDEA0002BC8299300289075 /* SignUpTextFieldView */ = {
 			isa = PBXGroup;
 			children = (
 				0BDE9FFE2BC8298000289075 /* SignUpTextField.swift */,
 			);
-			path = SignUpTextField;
+			path = SignUpTextFieldView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,7 +447,9 @@
 				0BDE9FF42BC826AD00289075 /* SignUpViewController.swift in Sources */,
 				0B019D782BC6BB8600E89BB4 /* AppDelegate.swift in Sources */,
 				0B019DBD2BC6CC3300E89BB4 /* ReusableID.swift in Sources */,
+				0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */,
 				0BDE9FEF2BC812AB00289075 /* SignInViewModel.swift in Sources */,
+				0BCFF0612BCA455000CDC6E5 /* CheckBoxView.swift in Sources */,
 				0B019D7A2BC6BB8600E89BB4 /* SceneDelegate.swift in Sources */,
 				0BDE9FE82BC8120E00289075 /* BaseCollectionViewCell.swift in Sources */,
 				0B019DBB2BC6CC0300E89BB4 /* Router.swift in Sources */,
@@ -405,11 +459,13 @@
 				0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */,
 				0BDE9FED2BC8126D00289075 /* SignInView.swift in Sources */,
 				0B019DB92BC6CC0300E89BB4 /* LoginQuery.swift in Sources */,
+				0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */,
 				0BDE9FE22BC811D600289075 /* SignInViewController.swift in Sources */,
 				0BDE9FFF2BC8298000289075 /* SignUpTextField.swift in Sources */,
 				0B019DAC2BC6BCBA00E89BB4 /* InputOutputViewModelProtocol.swift in Sources */,
 				0BDE9FF92BC826C300289075 /* SignUpViewModel.swift in Sources */,
 				0B019DB72BC6CC0300E89BB4 /* APIKey.swift in Sources */,
+				0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */,
 				0B019DC82BC6CD0000E89BB4 /* KeyChain+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

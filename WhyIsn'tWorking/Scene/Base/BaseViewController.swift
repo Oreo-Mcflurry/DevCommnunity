@@ -15,7 +15,10 @@ class BaseViewController: UIViewController {
 		view.backgroundColor = .systemBackground
 		configureBinding()
 	}
-
+	
+	func configureHierarchy() { }
+	func configureLayout() { }
+	func configureView() { }
 	func configureBinding() { }
 
 	enum ToastKind: String {

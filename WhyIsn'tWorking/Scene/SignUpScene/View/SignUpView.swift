@@ -13,11 +13,11 @@ final class SignUpView: BaseUIView {
 	private let scrollView = UIScrollView()
 	private let contentView = UIView()
 
-	private let mainLabel = UILabel()
-	private let subLabel = UILabel()
+	let mainLabel = UILabel()
+	let subLabel = UILabel()
 	private let signUpStackView = UIStackView()
 
-	private let textFields = [SignUpTextField(), SignUpTextField(), SignUpTextField(), SignUpTextField(), SignUpTextField()]
+	let textFields = [SignUpTextField(), SignUpTextField(), SignUpTextField(), SignUpTextField()]
 
 	override func configureHierarchy() {
 		[scrollView].forEach { addSubview($0) }
@@ -57,13 +57,13 @@ final class SignUpView: BaseUIView {
 		subLabel.numberOfLines = 2
 		subLabel.textColor = .gray
 
-		textFields[1].isSecureTextEntry = true
+
+		textFields[2].isSecureTextEntry = true
 
 		textFields[0].placeholder = "전화번호를 입력해주세요"
 		textFields[1].placeholder = "사용하실 닉네임을 입력해주세요"
-		textFields[2].placeholder = "비밀번호 확인"
-		textFields[3].placeholder = "비밀번호를 입력해주세요"
-		textFields[4].placeholder = "이메일을 입력해주세요"
+		textFields[2].placeholder = "비밀번호를 입력해주세요"
+		textFields[3].placeholder = "이메일을 입력해주세요"
 
 		signUpStackView.axis = .vertical
 		signUpStackView.spacing = 20
@@ -71,26 +71,18 @@ final class SignUpView: BaseUIView {
 
 		for item in textFields {
 			signUpStackView.addArrangedSubview(item)
-			item.snp.makeConstraints {
-				$0.height.equalTo(60)
-			}
 
+			item.snp.makeConstraints { $0.height.equalTo(60) }
 			item.isHidden = true
 		}
-		mainLabel.text = "이메일을 \n입력해주세요"
-		subLabel.text = "이메일은 로그인 할때 사용될 예정이에요"
 	}
 
 
-	var testIndex = 4
-	func test() {
-		for item in textFields {
-			item.borderActiveColor = .gray
-		}
+	func next(_ nextIndex: Int) {
+		for item in textFields { item.borderActiveColor = .gray }
 		UIView.animate(withDuration: 0.2) {
-			self.textFields[self.testIndex].isHidden = false
-			self.textFields[self.testIndex].becomeFirstResponder()
+			self.textFields[nextIndex].isHidden = false
+			self.textFields[nextIndex].becomeFirstResponder()
 		}
-		testIndex -= 1
 	}
 }

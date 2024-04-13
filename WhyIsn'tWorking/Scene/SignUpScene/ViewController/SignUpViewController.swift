@@ -13,18 +13,80 @@ final class SignUpViewController: BaseViewController {
 
 	private let viewModel = SignUpViewModel()
 	private let signUpView = SignUpView()
+	private let disposeBag = DisposeBag()
 
 	override func loadView() {
 		self.view = signUpView
-		let rightButton = UIBarButtonItem(title: "Test", style: .plain, target: self, action: #selector(test))
-		navigationItem.rightBarButtonItem = rightButton
-	}
-
-	@objc func test() {
-		signUpView.test()
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		signUpView.next(3)
+		let vc = SignUpBottomSheetViewController()
+		vc.modalPresentationStyle = .overFullScreen
+		present(SignUpBottomSheetViewController(), animated: true)
+	}
+
+	override func configureBinding() {
+
+		let inputDidBegin = PublishRelay<Int>()
+		let inputDidEndOnExit = PublishRelay<(String?, Int)>()
+		let inputDidEnd = PublishRelay<Int>()
+
+		signUpView.textFields.enumerated().forEach { (index, item) in
+			item.rx.controlEvent(.editingDidBegin)
+				.map { index }
+				.bind(to: inputDidBegin)
+				.disposed(by: disposeBag)
+
+			item.rx.controlEvent(.editingDidEndOnExit)
+				.map { (item.text, index) }
+				.bind(to: inputDidEndOnExit)
+				.disposed(by: disposeBag)
+
+			item.rx.controlEvent(.editingDidEnd)
+				.map { index }
+				.bind(to: inputDidEnd)
+				.disposed(by: disposeBag)
+		}
+
+		let input = SignUpViewModel.Input(inputDidBegin: inputDidBegin,
+													 inputDidEnd: inputDidEnd,
+													 inputDidEndOnExit: inputDidEndOnExit)
+
+		let output = viewModel.transform(input: input)
+
+		output.outputDidBegin
+			.drive(with: self) { owner, value in
+				owner.signUpView.textFields[value].borderActiveColor = .systemBlue
+			}.disposed(by: disposeBag)
+
+		output.outputDidEnd
+			.drive(with: self) { owner, value in
+				owner.signUpView.textFields[value].borderActiveColor = .gray
+			}.disposed(by: disposeBag)
+
+		output.outputDidEndOnExit
+			.drive(with: self) { owner, value in
+				if value.0 && value.1 == -1 {
+					let vc = SignUpBottomSheetViewController()
+					vc.modalPresentationStyle = .overFullScreen
+					owner.present(SignUpBottomSheetViewController(), animated: true)
+				} else if value.0 {
+					owner.signUpView.next(value.1)
+				}
+			}.disposed(by: disposeBag)
+
+		output.outputMainLabelText
+			.drive(signUpView.mainLabel.rx.text)
+			.disposed(by: disposeBag)
+
+		output.outputSubLabelText
+			.drive(signUpView.subLabel.rx.text)
+			.disposed(by: disposeBag)
 	}
 }

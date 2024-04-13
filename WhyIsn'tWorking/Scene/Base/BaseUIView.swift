@@ -9,11 +9,6 @@ import UIKit
 
 class BaseUIView: UIView {
 
-	let textFieldSize: CGFloat = 50
-	let verticalPadding: CGFloat = 40
-	let betweenPadding: CGFloat = 10
-	let defaultPadding: CGFloat = 20
-
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		configureHierarchy()
