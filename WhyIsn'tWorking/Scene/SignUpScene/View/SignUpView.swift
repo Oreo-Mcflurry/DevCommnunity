@@ -78,7 +78,7 @@ final class SignUpView: BaseUIView {
 	}
 
 
-	func next(_ nextIndex: Int) {
+	func nextTextField(_ nextIndex: Int) {
 		for item in textFields { item.borderActiveColor = .gray }
 		UIView.animate(withDuration: 0.2) {
 			self.textFields[nextIndex].isHidden = false

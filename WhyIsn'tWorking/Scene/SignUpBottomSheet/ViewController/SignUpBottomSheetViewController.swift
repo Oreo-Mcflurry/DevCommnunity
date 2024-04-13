@@ -13,6 +13,7 @@ final class SignUpBottomSheetViewController: BaseViewController {
 	private let viewModel = SignUpBottomSheetViewModel()
 	private let signUpBottomSheet = SignUpBottomSheetView()
 	private let disposeBag = DisposeBag()
+	var inputNextButton = PublishRelay<Void>()
 
 	override func loadView() {
 		self.view = signUpBottomSheet
@@ -63,7 +64,9 @@ final class SignUpBottomSheetViewController: BaseViewController {
 
 		output.outputTapNextButton
 			.drive(with: self) { owner, _ in
-				print("Next")
+				owner.dismiss(animated: true)
+					owner.inputNextButton.accept(Void())
+//
 			}.disposed(by: disposeBag)
 	}
 }

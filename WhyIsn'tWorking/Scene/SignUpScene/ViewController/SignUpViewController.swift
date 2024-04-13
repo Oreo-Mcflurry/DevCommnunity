@@ -14,6 +14,7 @@ final class SignUpViewController: BaseViewController {
 	private let viewModel = SignUpViewModel()
 	private let signUpView = SignUpView()
 	private let disposeBag = DisposeBag()
+	private let inputNextButton = PublishRelay<Void>()
 
 	override func loadView() {
 		self.view = signUpView
@@ -25,10 +26,7 @@ final class SignUpViewController: BaseViewController {
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		signUpView.next(3)
-		let vc = SignUpBottomSheetViewController()
-		vc.modalPresentationStyle = .overFullScreen
-		present(SignUpBottomSheetViewController(), animated: true)
+		signUpView.nextTextField(3)
 	}
 
 	override func configureBinding() {
@@ -56,7 +54,8 @@ final class SignUpViewController: BaseViewController {
 
 		let input = SignUpViewModel.Input(inputDidBegin: inputDidBegin,
 													 inputDidEnd: inputDidEnd,
-													 inputDidEndOnExit: inputDidEndOnExit)
+													 inputDidEndOnExit: inputDidEndOnExit,
+													 inputNextButton: inputNextButton)
 
 		let output = viewModel.transform(input: input)
 
@@ -74,10 +73,10 @@ final class SignUpViewController: BaseViewController {
 			.drive(with: self) { owner, value in
 				if value.0 && value.1 == -1 {
 					let vc = SignUpBottomSheetViewController()
-					vc.modalPresentationStyle = .overFullScreen
-					owner.present(SignUpBottomSheetViewController(), animated: true)
+					vc.inputNextButton = owner.inputNextButton
+					owner.present(vc, animated: true)
 				} else if value.0 {
-					owner.signUpView.next(value.1)
+					owner.signUpView.nextTextField(value.1)
 				}
 			}.disposed(by: disposeBag)
 
@@ -88,5 +87,10 @@ final class SignUpViewController: BaseViewController {
 		output.outputSubLabelText
 			.drive(signUpView.subLabel.rx.text)
 			.disposed(by: disposeBag)
+
+		output.outputNextButton
+			.drive(with: self) { owner, _ in
+				owner.navigationController?.pushViewController(SignInViewController(), animated: true)
+			}.disposed(by: disposeBag)
 	}
 }

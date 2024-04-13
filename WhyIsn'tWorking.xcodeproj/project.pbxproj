@@ -148,6 +148,7 @@
 		0B019DA72BC6BC9E00E89BB4 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0BCFF0632BCAA57100CDC6E5 /* ProfileSettingScene */,
 				0BCFF0552BCA42F500CDC6E5 /* SignUpBottomSheet */,
 				0BDE9FE72BC8120D00289075 /* Base */,
 				0B019DAF2BC6BD0800E89BB4 /* SignUpScene */,
@@ -256,6 +257,37 @@
 				0BCFF0602BCA455000CDC6E5 /* CheckBoxView.swift */,
 			);
 			path = CheckBoxView;
+			sourceTree = "<group>";
+		};
+		0BCFF0632BCAA57100CDC6E5 /* ProfileSettingScene */ = {
+			isa = PBXGroup;
+			children = (
+				0BCFF0662BCAA58500CDC6E5 /* ViewModel */,
+				0BCFF0652BCAA58000CDC6E5 /* ViewController */,
+				0BCFF0642BCAA57F00CDC6E5 /* View */,
+			);
+			path = ProfileSettingScene;
+			sourceTree = "<group>";
+		};
+		0BCFF0642BCAA57F00CDC6E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0BCFF0652BCAA58000CDC6E5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0BCFF0662BCAA58500CDC6E5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0BDE9FDB2BC76EE100289075 /* CodeView */ = {
