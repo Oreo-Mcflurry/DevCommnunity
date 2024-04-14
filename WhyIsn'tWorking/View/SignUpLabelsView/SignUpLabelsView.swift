@@ -25,6 +25,7 @@ final class SignUpLabelsView: BaseUIView {
 		subLabel.snp.makeConstraints {
 			$0.top.equalTo(mainLabel.snp.bottom).offset(20)
 			$0.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+			$0.bottom.equalTo(self)
 		}
 	}
 

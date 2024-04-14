@@ -26,16 +26,17 @@ final class SignUpView: BaseUIView {
 
 	override func configureLayout() {
 		scrollView.snp.makeConstraints {
-			$0.edges.equalTo(self.safeAreaLayoutGuide)
+			$0.edges.equalTo(self)
 		}
 
 		contentView.snp.makeConstraints {
-			$0.verticalEdges.equalTo(scrollView).inset(20)
+			$0.verticalEdges.equalTo(scrollView)
 			$0.width.equalTo(scrollView)
 		}
 
 		signUpLabelsView.snp.makeConstraints {
-			$0.top.horizontalEdges.equalTo(contentView).inset(20)
+			$0.top.equalTo(contentView)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
 		}
 
 		signUpStackView.snp.makeConstraints {
