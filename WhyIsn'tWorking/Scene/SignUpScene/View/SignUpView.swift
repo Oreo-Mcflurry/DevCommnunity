@@ -13,8 +13,7 @@ final class SignUpView: BaseUIView {
 	private let scrollView = UIScrollView()
 	private let contentView = UIView()
 
-	let mainLabel = UILabel()
-	let subLabel = UILabel()
+	let signUpLabelsView = SignUpLabelsView()
 	private let signUpStackView = UIStackView()
 
 	let textFields = [SignUpTextField(), SignUpTextField(), SignUpTextField(), SignUpTextField()]
@@ -22,7 +21,7 @@ final class SignUpView: BaseUIView {
 	override func configureHierarchy() {
 		[scrollView].forEach { addSubview($0) }
 		[contentView].forEach { scrollView.addSubview($0) }
-		[mainLabel, subLabel, signUpStackView].forEach { contentView.addSubview($0) }
+		[signUpLabelsView, signUpStackView].forEach { contentView.addSubview($0) }
 	}
 
 	override func configureLayout() {
@@ -35,29 +34,17 @@ final class SignUpView: BaseUIView {
 			$0.width.equalTo(scrollView)
 		}
 
-		mainLabel.snp.makeConstraints {
+		signUpLabelsView.snp.makeConstraints {
 			$0.top.horizontalEdges.equalTo(contentView).inset(20)
 		}
 
-		subLabel.snp.makeConstraints {
-			$0.top.equalTo(mainLabel.snp.bottom).offset(20)
-			$0.horizontalEdges.equalTo(contentView).inset(20)
-		}
-
 		signUpStackView.snp.makeConstraints {
-			$0.top.equalTo(subLabel.snp.bottom).offset(20)
+			$0.top.equalTo(signUpLabelsView.snp.bottom).offset(20)
 			$0.horizontalEdges.bottom.equalTo(contentView).inset(20)
 		}
 	}
 
 	override func configureView() {
-		mainLabel.numberOfLines = 2
-		mainLabel.font = .boldSystemFont(ofSize: 30)
-
-		subLabel.numberOfLines = 2
-		subLabel.textColor = .gray
-
-
 		textFields[2].isSecureTextEntry = true
 
 		textFields[0].placeholder = "전화번호를 입력해주세요"

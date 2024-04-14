@@ -9,12 +9,15 @@ import Foundation
 
 extension UserDefaults {
 	enum UserDefaultsBoolKeys: String {
-		case isFirstRun
+		case emailId
+		case password
+		case accessToken
+		case refreshToken
 	}
 
-	subscript(item: UserDefaultsBoolKeys) -> Bool {
+	subscript(_ item: UserDefaultsBoolKeys) -> String {
 		get {
-			return UserDefaults.standard.bool(forKey: item.rawValue)
+			return UserDefaults.standard.string(forKey: item.rawValue) ?? ""
 		} set {
 			UserDefaults.standard.setValue(newValue, forKey: item.rawValue)
 		}

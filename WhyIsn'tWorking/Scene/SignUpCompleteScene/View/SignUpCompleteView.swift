@@ -1,15 +1,17 @@
 //
-//  SignInView.swift
+//  SignUpCompleteView.swift
 //  WhyIsn'tWorking
 //
-//  Created by A_Mcflurry on 4/11/24.
+//  Created by A_Mcflurry on 4/13/24.
 //
 
 import UIKit
 import SnapKit
+import SwiftUI
 
-final class SignInView: BaseUIView {
+final class SignUpCompleteView: BaseUIView {
 	private let signUpLabelsView = SignUpLabelsView()
+	private var progressView = UIView()
 
 	override func configureHierarchy() {
 		[signUpLabelsView].forEach { addSubview($0) }
@@ -23,7 +25,7 @@ final class SignInView: BaseUIView {
 	}
 
 	override func configureView() {
-		signUpLabelsView.mainLabel.text = "품격있는 개발자들의\n커뮤니티"
-		signUpLabelsView.subLabel.text = "로그인 또는 회원가입을 해주세요."
+		signUpLabelsView.mainLabel.text = "회원가입 중 입니다."
+		signUpLabelsView.subLabel.text = "조금만 기다려주세요."
 	}
 }

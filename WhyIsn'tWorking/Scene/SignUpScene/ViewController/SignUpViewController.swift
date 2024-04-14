@@ -81,16 +81,16 @@ final class SignUpViewController: BaseViewController {
 			}.disposed(by: disposeBag)
 
 		output.outputMainLabelText
-			.drive(signUpView.mainLabel.rx.text)
+			.drive(signUpView.signUpLabelsView.mainLabel.rx.text)
 			.disposed(by: disposeBag)
 
 		output.outputSubLabelText
-			.drive(signUpView.subLabel.rx.text)
+			.drive(signUpView.signUpLabelsView.subLabel.rx.text)
 			.disposed(by: disposeBag)
 
 		output.outputNextButton
 			.drive(with: self) { owner, _ in
-				owner.navigationController?.pushViewController(SignInViewController(), animated: true)
+				owner.navigationController?.pushViewController(SignUpViewCompleteViewController(), animated: true)
 			}.disposed(by: disposeBag)
 	}
 }
