@@ -56,6 +56,8 @@ final class SignInView: BaseUIView {
 		emailTextField.placeholder = "이메일"
 		passwordTextField.placeholder = "비밀번호"
 
+		passwordTextField.isSecureTextEntry = true
+
 		loginButton.isEnabled = false
 		loginButton.setTitle("로그인", for: .normal)
 		loginButton.setTitleColor(.white, for: .normal)

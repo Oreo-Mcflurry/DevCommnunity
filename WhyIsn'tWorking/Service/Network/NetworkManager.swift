@@ -14,25 +14,7 @@ class RequestManager {
 
 	private let disposeBag = DisposeBag()
 
-	func requestLogin(_ data: LoginRequestModel) -> PublishSubject<LoginResultModel> {
-		let resultSubject = PublishSubject<LoginResultModel>()
-
-		callRequest(.login(query: data), type: LoginResultModel.self)
-			.subscribe(with: self) { owner, result in
-				resultSubject.onNext(result)
-			} onFailure: { owner, _ in
-				owner.refreshAccessToken {
-					owner.requestLogin(data)
-						.bind { value in
-							resultSubject.onNext(value)
-						}.disposed(by: owner.disposeBag)
-				}
-			}.disposed(by: disposeBag)
-
-		return resultSubject
-	}
-
-	private func callRequest<T: Decodable>(_ api: Router, type: T.Type) -> Single<T> {
+	func callRequest<T: Decodable>(_ api: Router, type: T.Type) -> Single<T> {
 		return Single<T>.create { single in
 			do {
 				let urlRequest = try api.asURLRequest()
@@ -55,8 +37,23 @@ class RequestManager {
 		}
 	}
 
-	private func refreshAccessToken(_ completionHandler: @escaping ()->Void) {
+	func refreshAccessToken(_ completionHandler: @escaping ()->Void) {
+		do {
+			let urlRequest = try Router.access.asURLRequest()
 
+			AF.request(urlRequest)
+				.responseDecodable(of: AccessTokenRefresh.self) { response in
+					switch response.result {
+					case .success(let result):
+						UserDefaults.standard[.accessToken] = result.accessToken
+						completionHandler()
+					case .failure(_):
+						break
+					}
+				}
+		} catch {
+
+		}
 	}
 
 //	 static func createLogin(query: LoginQuery) -> Single<LoginModel> {

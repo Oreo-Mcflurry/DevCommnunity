@@ -55,7 +55,8 @@ final class SignUpViewController: BaseViewController {
 		let input = SignUpViewModel.Input(inputDidBegin: inputDidBegin,
 													 inputDidEnd: inputDidEnd,
 													 inputDidEndOnExit: inputDidEndOnExit,
-													 inputNextButton: inputNextButton)
+													 inputNextButton: inputNextButton,
+													 inputPhoneText: signUpView.textFields[0].rx.text)
 
 		let output = viewModel.transform(input: input)
 
@@ -74,6 +75,7 @@ final class SignUpViewController: BaseViewController {
 				if value.0 && value.1 == -1 {
 					let vc = SignUpBottomSheetViewController()
 					vc.inputNextButton = owner.inputNextButton
+					owner.view.endEditing(true)
 					owner.present(vc, animated: true)
 				} else if value.0 {
 					owner.signUpView.nextTextField(value.1)

@@ -24,18 +24,24 @@ final class SignInViewController: BaseViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-//		let loginModel = LoginRequestModel(email: "yuiop10239@naver.com", password: "123124")
-//		RequestManager().requestLogin(loginModel)
-//			.bind(with: self) { owner, value in
-//				print(value)
-//			}.disposed(by: disposeBag)
 	}
 
 	override func configureBinding() {
+
+		let inputTapLoginButton = PublishSubject<(String?, String?)>()
+
+		signInView.loginButton.rx.tap
+			.withLatestFrom(signInView.emailTextField.rx.text)
+			.withLatestFrom(signInView.passwordTextField.rx.text) { ($0, $1)}
+			.bind(to: inputTapLoginButton)
+			.disposed(by: disposeBag)
+
+			
+
+
 		let input = SignInViewModel.Input(inputEmailText: signInView.emailTextField.rx.text,
 													 inputPasswordText: signInView.passwordTextField.rx.text,
-													 inputTapLoginButton: signInView.loginButton.rx.tap,
+													 inputTapLoginButton: inputTapLoginButton,
 													 inputTapSignupButton: signInView.signUpButton.rx.tap)
 
 		let output = signInViewModel.transform(input: input)
@@ -54,8 +60,13 @@ final class SignInViewController: BaseViewController {
 			}.disposed(by: disposeBag)
 
 		output.outputTapLoginButton
-			.drive(with: self) { owner, _ in
-				print("123123123")
+			.drive(with: self) { owner, value in
+				owner.view.endEditing(true)
+				if value {
+					owner.navigationController?.pushViewController(HomeViewController(), animated: true)
+				} else {
+					owner.showToast(.loginError)
+				}
 			}.disposed(by: disposeBag)
 	}
 }

@@ -22,7 +22,9 @@ class BaseViewController: UIViewController {
 	func configureBinding() { }
 
 	enum ToastKind: String {
-		case searchError = "검색결과가 없습니다."
+		case loginError = "로그인 정보가 없습니다."
+		case loginSuccess = "로그인 성공!"
+		case signUp = "회원가입 성공!"
 	}
 
 	func showToast(_ message: ToastKind) {

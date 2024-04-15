@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import TextFieldEffects
 
 final class SignUpView: BaseUIView {
 	private let scrollView = UIScrollView()
@@ -40,7 +39,7 @@ final class SignUpView: BaseUIView {
 		}
 
 		signUpStackView.snp.makeConstraints {
-			$0.top.equalTo(signUpLabelsView.snp.bottom).offset(20)
+			$0.top.equalTo(signUpLabelsView.snp.bottom).offset(50)
 			$0.horizontalEdges.bottom.equalTo(contentView).inset(20)
 		}
 	}
@@ -52,6 +51,8 @@ final class SignUpView: BaseUIView {
 		textFields[1].placeholder = "사용하실 닉네임을 입력해주세요"
 		textFields[2].placeholder = "비밀번호를 입력해주세요"
 		textFields[3].placeholder = "이메일을 입력해주세요"
+
+		textFields[0].keyboardType = .numberPad
 
 		signUpStackView.axis = .vertical
 		signUpStackView.spacing = 20

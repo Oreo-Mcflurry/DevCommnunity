@@ -14,14 +14,14 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 	struct Input {
 		let inputEmailText: ControlProperty<String?>
 		let inputPasswordText: ControlProperty<String?>
-		let inputTapLoginButton: ControlEvent<Void>
+		let inputTapLoginButton: PublishSubject<(String?, String?)>
 		let inputTapSignupButton: ControlEvent<Void>
 	}
 
 	struct Output {
 		let outputIsEnabled: Driver<Bool>
 		let outputBackButton: Driver<UIColor>
-		let outputTapLoginButton: Driver<Void>
+		let outputTapLoginButton: Driver<Bool>
 		let outputTapSignupButton: Driver<Void>
 	}
 
@@ -30,6 +30,7 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 	func transform(input: Input) -> Output {
 		let outputIsEnabled = BehaviorRelay(value: false)
 		let outputBackButton = BehaviorRelay(value: UIColor.lightGray)
+		let outputTapLoginButton = BehaviorRelay(value: false)
 
 		let validation = Observable.combineLatest(input.inputEmailText.orEmpty, input.inputPasswordText.orEmpty)
 			.map { $0.0.contains("@") && $0.1.count > 8 }
@@ -44,9 +45,35 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 			.bind(to: outputBackButton)
 			.disposed(by: disposeBag)
 
+		input.inputTapLoginButton
+			.map { LoginRequestModel(email: $0.0 ?? "", password: $0.1 ?? "") }
+			.flatMap {
+				self.requestLogin($0)
+					.catchAndReturn(false)
+			}.subscribe { result in
+				outputTapLoginButton.accept(result)
+			}.disposed(by: disposeBag)
+
+
 		return Output(outputIsEnabled: outputIsEnabled.asDriver(),
 						  outputBackButton: outputBackButton.asDriver(),
-						  outputTapLoginButton: input.inputTapLoginButton.asDriver(),
+						  outputTapLoginButton: outputTapLoginButton.asDriver(),
 						  outputTapSignupButton: input.inputTapSignupButton.asDriver())
+	}
+
+	private func requestLogin(_ request: LoginRequestModel) -> Single<Bool> {
+		return Single<Bool>.create { single in
+			RequestManager().callRequest(.login(query: request), type: LoginModel.self)
+				.subscribe(with: self) { _, data in
+					UserDefaults.standard[.emailId] = data.email
+					UserDefaults.standard[.password] = request.password
+					UserDefaults.standard[.accessToken] = data.accessToken
+					UserDefaults.standard[.refreshToken] = data.refreshToken
+					UserDefaults.standard[.userId] = data.user_id
+					single(.success(true))
+				} onFailure: { _, error in
+					single(.failure(error))
+				}
+		}
 	}
 }

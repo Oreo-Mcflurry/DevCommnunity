@@ -29,6 +29,7 @@ final class SignUpViewModel: InputOutputViewModelProtocol {
 		let inputDidEnd: PublishRelay<Int>
 		let inputDidEndOnExit: PublishRelay<(String?, Int)>
 		let inputNextButton: PublishRelay<Void>
+		let inputPhoneText: ControlProperty<String?>
 	}
 
 	struct Output {
@@ -64,12 +65,18 @@ final class SignUpViewModel: InputOutputViewModelProtocol {
 			.bind(to: outputDidEndOnExit)
 			.disposed(by: disposeBag)
 
+		input.inputPhoneText
+			.map { self.isValid(($0, 0)) }
+			.map { ($0, -1) }
+			.bind(to: outputDidEndOnExit)
+			.disposed(by: disposeBag)
+
 		return Output(outputDidBegin: input.inputDidBegin.asDriver(onErrorJustReturn: 0),
 						  outputDidEnd: input.inputDidEnd.asDriver(onErrorJustReturn: 0),
 						  outputDidEndOnExit: outputDidEndOnExit.asDriver(),
 						  outputMainLabelText: outputMainLabelText.asDriver(),
 						  outputSubLabelText: outputSubLabelText.asDriver(), 
-						  outputNextButton: input.inputNextButton.asDriver(onErrorJustReturn: Void()).debug())
+						  outputNextButton: input.inputNextButton.asDriver(onErrorJustReturn: Void()))
 	}
 
 	private func isValid(_ data: (String?, Int)) -> Bool {
