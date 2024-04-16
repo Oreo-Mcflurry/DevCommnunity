@@ -48,11 +48,17 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 		input.inputTapLoginButton
 			.map { LoginRequestModel(email: $0.0 ?? "", password: $0.1 ?? "") }
 			.flatMap {
-				self.requestLogin($0)
-					.catchAndReturn(false)
-			}.subscribe { result in
-				outputTapLoginButton.accept(result)
-			}.disposed(by: disposeBag)
+				RequestManager().createLogin(query: $0)
+			}.subscribe(with: self, onNext: { _, data in
+				UserDefaults.standard[.userNickname] = data.nick
+				UserDefaults.standard[.emailId] = data.email
+				UserDefaults.standard[.accessToken] = data.accessToken
+				UserDefaults.standard[.refreshToken] = data.refreshToken
+				UserDefaults.standard[.userId] = data.user_id
+				outputTapLoginButton.accept(true)
+			}, onError: { _, _ in
+				outputTapLoginButton.accept(false)
+			}).disposed(by: disposeBag)
 
 
 		return Output(outputIsEnabled: outputIsEnabled.asDriver(),
@@ -61,19 +67,19 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 						  outputTapSignupButton: input.inputTapSignupButton.asDriver())
 	}
 
-	private func requestLogin(_ request: LoginRequestModel) -> Single<Bool> {
-		return Single<Bool>.create { single in
-			RequestManager().callRequest(.login(query: request), type: LoginModel.self)
-				.subscribe(with: self) { _, data in
-					UserDefaults.standard[.emailId] = data.email
-					UserDefaults.standard[.password] = request.password
-					UserDefaults.standard[.accessToken] = data.accessToken
-					UserDefaults.standard[.refreshToken] = data.refreshToken
-					UserDefaults.standard[.userId] = data.user_id
-					single(.success(true))
-				} onFailure: { _, error in
-					single(.failure(error))
-				}
-		}
-	}
+//	private func requestLogin(_ request: LoginRequestModel) -> Single<Bool> {
+//		return Single<Bool>.create { single in
+//			RequestManager().callRequest(.login(query: request), type: LoginResultModel.self)
+//				.subscribe(with: self) { _, data in
+//					UserDefaults.standard[.emailId] = data.email
+//					UserDefaults.standard[.password] = request.password
+//					UserDefaults.standard[.accessToken] = data.accessToken
+//					UserDefaults.standard[.refreshToken] = data.refreshToken
+//					UserDefaults.standard[.userId] = data.user_id
+//					single(.success(true))
+//				} onFailure: { _, error in
+//					single(.failure(error))
+//				}
+//		}
+//	}
 }

@@ -11,7 +11,8 @@ import Alamofire
 enum Router {
 	case access
 	case login(query: LoginRequestModel)
-//	case withdrawal
+	case getPost
+	case signUp(data: SignUpRequetModel)
 }
 
 extension Router: TargetType {
@@ -35,6 +36,10 @@ extension Router: TargetType {
 			return .get
 		case .login:
 			return .post
+		case .getPost:
+			return .get
+		case .signUp:
+			return .post
 		}
 	}
 
@@ -46,9 +51,14 @@ extension Router: TargetType {
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue,
 				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken]
 			]
-		case .login:
+		case .login, .signUp:
 			return [
 				HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
+				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue
+			]
+		case .getPost:
+			return [
+				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken],
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue
 			]
 		}
@@ -60,6 +70,10 @@ extension Router: TargetType {
 			return "v1/auth/refresh"
 		case .login:
 			return "v1/users/login"
+		case .getPost:
+			return "v1/posts"
+		case .signUp:
+			return "v1/users/join"
 		}
 	}
 
@@ -79,6 +93,12 @@ extension Router: TargetType {
 			let encoder = JSONEncoder()
 			encoder.keyEncodingStrategy = .convertToSnakeCase
 			return try? encoder.encode(query)
+		case .getPost:
+			return nil
+		case .signUp(let data):
+			let encoder = JSONEncoder()
+			encoder.keyEncodingStrategy = .convertToSnakeCase
+			return try? encoder.encode(data)
 		}
 	}
 }

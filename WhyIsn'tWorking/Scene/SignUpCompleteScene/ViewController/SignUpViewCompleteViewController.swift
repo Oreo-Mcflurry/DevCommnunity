@@ -11,7 +11,8 @@ import RxCocoa
 
 final class SignUpViewCompleteViewController: BaseViewController {
 	private let signUpCompleteView = SignUpCompleteView()
-	private let viewModel = SignUpViewCompleteViewModel()
+	var viewModel = SignUpViewCompleteViewModel()
+	private let disposeBag = DisposeBag()
 
 	override func loadView() {
 		self.view = signUpCompleteView
@@ -19,5 +20,35 @@ final class SignUpViewCompleteViewController: BaseViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+	}
+
+	override func configureBinding() {
+		let inputDidAppear = self.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
+			.map { _ in }
+
+		let input = SignUpViewCompleteViewModel.Input(inputDidAppear: inputDidAppear,
+																	 inputTapNextButton: signUpCompleteView.nextButton.rx.tap)
+
+		let output = viewModel.transform(input: input)
+
+		output.signUpComplte
+			.drive(with: self) { owner, _ in
+				owner.signUpCompleteView.configureUI()
+			}.disposed(by: disposeBag)
+
+		output.outputError
+			.drive(with: self) { owner, error in
+				owner.signUpCompleteView.configureUI(error)
+			}.disposed(by: disposeBag)
+
+		output.outputTapNextButton
+			.drive(with: self) { owner, value in
+				guard let value else { return }
+				if value {
+					owner.view.window?.rootViewController = TabbarViewController()
+				} else {
+					owner.navigationController?.popToRootViewController(animated: true)
+				}
+			}.disposed(by: disposeBag)
 	}
 }

@@ -37,16 +37,19 @@ final class SignUpViewController: BaseViewController {
 
 		signUpView.textFields.enumerated().forEach { (index, item) in
 			item.rx.controlEvent(.editingDidBegin)
+				.observe(on:MainScheduler.asyncInstance)
 				.map { index }
 				.bind(to: inputDidBegin)
 				.disposed(by: disposeBag)
 
 			item.rx.controlEvent(.editingDidEndOnExit)
+				.observe(on:MainScheduler.asyncInstance)
 				.map { (item.text, index) }
 				.bind(to: inputDidEndOnExit)
 				.disposed(by: disposeBag)
 
 			item.rx.controlEvent(.editingDidEnd)
+				.observe(on:MainScheduler.asyncInstance)
 				.map { index }
 				.bind(to: inputDidEnd)
 				.disposed(by: disposeBag)
@@ -92,7 +95,14 @@ final class SignUpViewController: BaseViewController {
 
 		output.outputNextButton
 			.drive(with: self) { owner, _ in
-				owner.navigationController?.pushViewController(SignUpViewCompleteViewController(), animated: true)
+				let vc = SignUpViewCompleteViewController()
+				let viewModel = SignUpViewCompleteViewModel()
+				viewModel.requestModel = SignUpRequetModel(email: owner.signUpView.textFields[3].text ?? "",
+														  password: owner.signUpView.textFields[2].text ?? "",
+														  nick: owner.signUpView.textFields[1].text ?? "",
+														  phoneNum: owner.signUpView.textFields[0].text ?? "")
+				vc.viewModel = viewModel
+				owner.navigationController?.pushViewController(vc, animated: true)
 			}.disposed(by: disposeBag)
 	}
 }

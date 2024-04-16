@@ -63,7 +63,7 @@ final class SignInViewController: BaseViewController {
 			.drive(with: self) { owner, value in
 				owner.view.endEditing(true)
 				if value {
-					owner.navigationController?.pushViewController(HomeViewController(), animated: true)
+					owner.view.window?.rootViewController = TabbarViewController()
 				} else {
 					owner.showToast(.loginError)
 				}
