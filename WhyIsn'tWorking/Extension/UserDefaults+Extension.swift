@@ -14,6 +14,7 @@ extension UserDefaults {
 		case accessToken
 		case refreshToken
 		case userId
+		case userNickname
 	}
 
 	subscript(_ item: UserDefaultsBoolKeys) -> String {
