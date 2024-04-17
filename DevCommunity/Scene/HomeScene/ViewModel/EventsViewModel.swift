@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class HomeViewModel: InputOutputViewModelProtocol {
+final class EventsViewModel: InputOutputViewModelProtocol {
 	struct Input {
 
 	}

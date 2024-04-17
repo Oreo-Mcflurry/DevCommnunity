@@ -16,7 +16,7 @@ final class TabbarViewController: UITabBarController {
 	}
 
 	private func setTabbarViewControllers() {
-		let homeVC = UINavigationController(rootViewController: HomeViewController())
+		let homeVC = UINavigationController(rootViewController: EventsViewController())
 		homeVC.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
 
 

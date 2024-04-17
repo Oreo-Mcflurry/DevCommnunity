@@ -9,12 +9,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class HomeViewController: BaseViewController {
-	private let viewModel = HomeViewModel()
-	private let homeView = HomeView()
+final class EventsViewController: BaseViewController {
+	private let viewModel = EventsViewModel()
+	private let homeView = EventsView()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
 
+	override func configureBinding() {
+
+	}
 }

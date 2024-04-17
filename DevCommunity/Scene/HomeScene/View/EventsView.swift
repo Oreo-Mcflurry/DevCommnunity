@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class HomeView: BaseUIView {
+final class EventsView: BaseUIView {
 	let testLabel = UILabel()
 
 	override func configureHierarchy() {
