@@ -73,7 +73,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B019D742BC6BB8600E89BB4 /* WhyIsn'tWorking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WhyIsn'tWorking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B019D742BC6BB8600E89BB4 /* DevCommunity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevCommunity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B019D772BC6BB8600E89BB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B019D792BC6BB8600E89BB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0B019D802BC6BB8900E89BB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 		0B019D752BC6BB8600E89BB4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0B019D742BC6BB8600E89BB4 /* WhyIsn'tWorking.app */,
+				0B019D742BC6BB8600E89BB4 /* DevCommunity.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,7 +183,8 @@
 				0B019D822BC6BB8900E89BB4 /* LaunchScreen.storyboard */,
 				0B019D852BC6BB8900E89BB4 /* Info.plist */,
 			);
-			path = "WhyIsn'tWorking";
+			name = "WhyIsn'tWorking";
+			path = DevCommunity;
 			sourceTree = "<group>";
 		};
 		0B019DA72BC6BC9E00E89BB4 /* Scene */ = {
@@ -582,9 +583,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0B019D732BC6BB8600E89BB4 /* WhyIsn'tWorking */ = {
+		0B019D732BC6BB8600E89BB4 /* DevCommunity */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0B019D882BC6BB8900E89BB4 /* Build configuration list for PBXNativeTarget "WhyIsn'tWorking" */;
+			buildConfigurationList = 0B019D882BC6BB8900E89BB4 /* Build configuration list for PBXNativeTarget "DevCommunity" */;
 			buildPhases = (
 				0B019D702BC6BB8600E89BB4 /* Sources */,
 				0B019D712BC6BB8600E89BB4 /* Frameworks */,
@@ -594,7 +595,7 @@
 			);
 			dependencies = (
 			);
-			name = "WhyIsn'tWorking";
+			name = DevCommunity;
 			packageProductDependencies = (
 				0B019D8C2BC6BB9D00E89BB4 /* Splash */,
 				0B019D8F2BC6BBA400E89BB4 /* MarkdownUI */,
@@ -609,7 +610,7 @@
 				0BDE9FFB2BC8279500289075 /* TextFieldEffects */,
 			);
 			productName = "WhyIsn'tWorking";
-			productReference = 0B019D742BC6BB8600E89BB4 /* WhyIsn'tWorking.app */;
+			productReference = 0B019D742BC6BB8600E89BB4 /* DevCommunity.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -627,7 +628,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0B019D6F2BC6BB8600E89BB4 /* Build configuration list for PBXProject "WhyIsn'tWorking" */;
+			buildConfigurationList = 0B019D6F2BC6BB8600E89BB4 /* Build configuration list for PBXProject "DevCommunity" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -651,7 +652,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0B019D732BC6BB8600E89BB4 /* WhyIsn'tWorking */,
+				0B019D732BC6BB8600E89BB4 /* DevCommunity */,
 			);
 		};
 /* End PBXProject section */
@@ -868,7 +869,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y7F2ZW9QG3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "WhyIsn'tWorking/Info.plist";
+				INFOPLIST_FILE = DevCommunity/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -879,7 +880,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Yoo.WhyIsn-tWorking";
+				PRODUCT_BUNDLE_IDENTIFIER = Yoo.DevCommunity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -900,7 +901,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y7F2ZW9QG3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "WhyIsn'tWorking/Info.plist";
+				INFOPLIST_FILE = DevCommunity/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -911,7 +912,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Yoo.WhyIsn-tWorking";
+				PRODUCT_BUNDLE_IDENTIFIER = Yoo.DevCommunity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -926,7 +927,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0B019D6F2BC6BB8600E89BB4 /* Build configuration list for PBXProject "WhyIsn'tWorking" */ = {
+		0B019D6F2BC6BB8600E89BB4 /* Build configuration list for PBXProject "DevCommunity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0B019D862BC6BB8900E89BB4 /* Debug */,
@@ -935,7 +936,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0B019D882BC6BB8900E89BB4 /* Build configuration list for PBXNativeTarget "WhyIsn'tWorking" */ = {
+		0B019D882BC6BB8900E89BB4 /* Build configuration list for PBXNativeTarget "DevCommunity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0B019D892BC6BB8900E89BB4 /* Debug */,
