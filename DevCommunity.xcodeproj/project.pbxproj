@@ -197,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				0B5B4E622BCFA70F00F0F8E4 /* SettingScene */,
-				0B5B4E122BCD629D00F0F8E4 /* HomeScene */,
+				0B5B4E122BCD629D00F0F8E4 /* EventsScene */,
 				0B5B4E542BCEBA5A00F0F8E4 /* InitialScene */,
 				0B5B4E512BCEB75100F0F8E4 /* TabbarScene */,
 				0BCFF06E2BCAA5FD00CDC6E5 /* SignUpCompleteScene */,
@@ -278,14 +278,14 @@
 			path = SignUpLabelsView;
 			sourceTree = "<group>";
 		};
-		0B5B4E122BCD629D00F0F8E4 /* HomeScene */ = {
+		0B5B4E122BCD629D00F0F8E4 /* EventsScene */ = {
 			isa = PBXGroup;
 			children = (
 				0B5B4E152BCD62AE00F0F8E4 /* ViewModel */,
 				0B5B4E142BCD62A400F0F8E4 /* ViewController */,
 				0B5B4E132BCD62A200F0F8E4 /* View */,
 			);
-			path = HomeScene;
+			path = EventsScene;
 			sourceTree = "<group>";
 		};
 		0B5B4E132BCD62A200F0F8E4 /* View */ = {
