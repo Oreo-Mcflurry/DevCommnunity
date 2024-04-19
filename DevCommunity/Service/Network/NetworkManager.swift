@@ -114,9 +114,9 @@ class RequestManager {
 		}
 	}
 
-	func getPosts() -> Observable<PostsResultModel> {
+	func getPosts() -> Observable<EventPostsResultModel> {
 		return Observable.create { observer -> Disposable in
-			self.callRequest(.getPost, type: PostsResultModel.self)
+			self.callRequest(.getPost, type: EventPostsResultModel.self)
 				.subscribe { event in
 					switch event {
 					case .success(let result):
@@ -124,7 +124,7 @@ class RequestManager {
 
 					case .failure(_):
 						self.refreshAccessToken {
-							self.callRequest(.getPost, type: PostsResultModel.self)
+							self.callRequest(.getPost, type: EventPostsResultModel.self)
 								.map { $0 }
 								.subscribe(with: self) { _, result in
 									observer.onNext(result)

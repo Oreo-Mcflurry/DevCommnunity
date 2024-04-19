@@ -8,8 +8,10 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 final class EventsViewModel: InputOutputViewModelProtocol {
+
 	struct Input {
 
 	}

@@ -36,7 +36,7 @@
 		0B5B4E172BCD62B600F0F8E4 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E162BCD62B600F0F8E4 /* EventsViewController.swift */; };
 		0B5B4E192BCD62D200F0F8E4 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E182BCD62D200F0F8E4 /* EventsViewModel.swift */; };
 		0B5B4E1B2BCD631300F0F8E4 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E1A2BCD631300F0F8E4 /* EventsView.swift */; };
-		0B5B4E4C2BCE610600F0F8E4 /* PostsResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E4B2BCE610600F0F8E4 /* PostsResultModel.swift */; };
+		0B5B4E4C2BCE610600F0F8E4 /* EventPostsResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E4B2BCE610600F0F8E4 /* EventPostsResultModel.swift */; };
 		0B5B4E4E2BCE748B00F0F8E4 /* SignUpRequetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E4D2BCE748B00F0F8E4 /* SignUpRequetModel.swift */; };
 		0B5B4E502BCE799A00F0F8E4 /* SignUpResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E4F2BCE799A00F0F8E4 /* SignUpResultModel.swift */; };
 		0B5B4E532BCEB76000F0F8E4 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E522BCEB76000F0F8E4 /* TabbarController.swift */; };
@@ -46,6 +46,9 @@
 		0B5B4E672BCFA73600F0F8E4 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E662BCFA73600F0F8E4 /* SettingViewModel.swift */; };
 		0B5B4E692BCFA74D00F0F8E4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E682BCFA74D00F0F8E4 /* SettingViewController.swift */; };
 		0B5B4E6B2BCFA7EB00F0F8E4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E6A2BCFA7EB00F0F8E4 /* SettingView.swift */; };
+		0B5B4E7C2BD1675600F0F8E4 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 0B5B4E7B2BD1675600F0F8E4 /* Differentiator */; };
+		0B5B4E7E2BD1675600F0F8E4 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 0B5B4E7D2BD1675600F0F8E4 /* RxDataSources */; };
+		0B5B4E812BD1F50F00F0F8E4 /* PostsSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E802BD1F50F00F0F8E4 /* PostsSectionModel.swift */; };
 		0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */; };
 		0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */; };
 		0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */; };
@@ -97,7 +100,7 @@
 		0B5B4E162BCD62B600F0F8E4 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		0B5B4E182BCD62D200F0F8E4 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		0B5B4E1A2BCD631300F0F8E4 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
-		0B5B4E4B2BCE610600F0F8E4 /* PostsResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResultModel.swift; sourceTree = "<group>"; };
+		0B5B4E4B2BCE610600F0F8E4 /* EventPostsResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPostsResultModel.swift; sourceTree = "<group>"; };
 		0B5B4E4D2BCE748B00F0F8E4 /* SignUpRequetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequetModel.swift; sourceTree = "<group>"; };
 		0B5B4E4F2BCE799A00F0F8E4 /* SignUpResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResultModel.swift; sourceTree = "<group>"; };
 		0B5B4E522BCEB76000F0F8E4 /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 		0B5B4E662BCFA73600F0F8E4 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		0B5B4E682BCFA74D00F0F8E4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0B5B4E6A2BCFA7EB00F0F8E4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		0B5B4E802BD1F50F00F0F8E4 /* PostsSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsSectionModel.swift; sourceTree = "<group>"; };
 		0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewController.swift; sourceTree = "<group>"; };
 		0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetView.swift; sourceTree = "<group>"; };
 		0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewModel.swift; sourceTree = "<group>"; };
@@ -141,9 +145,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B019D9C2BC6BBE100E89BB4 /* RxCocoa in Frameworks */,
+				0B5B4E7E2BD1675600F0F8E4 /* RxDataSources in Frameworks */,
 				0B019D962BC6BBC700E89BB4 /* Toast in Frameworks */,
 				0B019D932BC6BBB900E89BB4 /* Alamofire in Frameworks */,
 				0B019DA32BC6BC3F00E89BB4 /* RealmSwift in Frameworks */,
+				0B5B4E7C2BD1675600F0F8E4 /* Differentiator in Frameworks */,
 				0B019D8D2BC6BB9D00E89BB4 /* Splash in Frameworks */,
 				0B019D902BC6BBA400E89BB4 /* MarkdownUI in Frameworks */,
 				0B019D992BC6BBCF00E89BB4 /* Kingfisher in Frameworks */,
@@ -388,6 +394,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		0B5B4E7F2BD1F4FC00F0F8E4 /* SectionModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B5B4E802BD1F50F00F0F8E4 /* PostsSectionModel.swift */,
+			);
+			path = SectionModel;
+			sourceTree = "<group>";
+		};
 		0BCFF0552BCA42F500CDC6E5 /* SignUpBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -509,6 +523,7 @@
 		0BCFF07D2BCAAC8900CDC6E5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B5B4E7F2BD1F4FC00F0F8E4 /* SectionModel */,
 				0BCFF07F2BCAAC9400CDC6E5 /* Decoding */,
 				0BCFF07E2BCAAC8F00CDC6E5 /* Encoding */,
 			);
@@ -529,7 +544,7 @@
 			children = (
 				0BCFF0822BCAADE300CDC6E5 /* LoginResultModel.swift */,
 				0B5B4E0E2BCD4BA700F0F8E4 /* AccessTokenRefresh.swift */,
-				0B5B4E4B2BCE610600F0F8E4 /* PostsResultModel.swift */,
+				0B5B4E4B2BCE610600F0F8E4 /* EventPostsResultModel.swift */,
 				0B5B4E4F2BCE799A00F0F8E4 /* SignUpResultModel.swift */,
 			);
 			path = Decoding;
@@ -649,6 +664,8 @@
 				0B019DA22BC6BC3F00E89BB4 /* RealmSwift */,
 				0B019DA52BC6BC5100E89BB4 /* SnapKit */,
 				0BDE9FFB2BC8279500289075 /* TextFieldEffects */,
+				0B5B4E7B2BD1675600F0F8E4 /* Differentiator */,
+				0B5B4E7D2BD1675600F0F8E4 /* RxDataSources */,
 			);
 			productName = "WhyIsn'tWorking";
 			productReference = 0B019D742BC6BB8600E89BB4 /* DevCommunity.app */;
@@ -688,6 +705,7 @@
 				0B019D9F2BC6BC3F00E89BB4 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				0B019DA42BC6BC5100E89BB4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				0BDE9FFA2BC8279500289075 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
+				0B5B4E7A2BD1675600F0F8E4 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = 0B019D752BC6BB8600E89BB4 /* Products */;
 			projectDirPath = "";
@@ -727,7 +745,7 @@
 				0BDE9FF72BC826B900289075 /* SignUpView.swift in Sources */,
 				0BCFF0752BCAA66600CDC6E5 /* SignUpViewCompleteViewModel.swift in Sources */,
 				0B5B4E5D2BCEBAC700F0F8E4 /* InitialViewModel.swift in Sources */,
-				0B5B4E4C2BCE610600F0F8E4 /* PostsResultModel.swift in Sources */,
+				0B5B4E4C2BCE610600F0F8E4 /* EventPostsResultModel.swift in Sources */,
 				0BDE9FE92BC8120E00289075 /* BaseTableViewCell.swift in Sources */,
 				0BDE9FEB2BC8120E00289075 /* BaseViewController.swift in Sources */,
 				0BDE9FF42BC826AD00289075 /* SignUpViewController.swift in Sources */,
@@ -749,6 +767,7 @@
 				0BDE9FEA2BC8120E00289075 /* BaseUIView.swift in Sources */,
 				0BCFF06D2BCAA5D000CDC6E5 /* ProfileSettingViewModel.swift in Sources */,
 				0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */,
+				0B5B4E812BD1F50F00F0F8E4 /* PostsSectionModel.swift in Sources */,
 				0BDE9FED2BC8126D00289075 /* SignInView.swift in Sources */,
 				0BCFF06B2BCAA5C100CDC6E5 /* ProfileSettingView.swift in Sources */,
 				0BCFF0812BCAAC9B00CDC6E5 /* LoginRequestModel.swift in Sources */,
@@ -1056,6 +1075,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		0B5B4E7A2BD1675600F0F8E4 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
 		0BDE9FFA2BC8279500289075 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/raulriera/TextFieldEffects.git";
@@ -1116,6 +1143,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B019DA42BC6BC5100E89BB4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		0B5B4E7B2BD1675600F0F8E4 /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B5B4E7A2BD1675600F0F8E4 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
+		};
+		0B5B4E7D2BD1675600F0F8E4 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B5B4E7A2BD1675600F0F8E4 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		0BDE9FFB2BC8279500289075 /* TextFieldEffects */ = {
 			isa = XCSwiftPackageProductDependency;

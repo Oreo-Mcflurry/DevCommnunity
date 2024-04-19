@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Differentiator
 
 struct EventPostsResultModel: Codable {
-	var data: [Datum]
+	var data: [EventPost]
 	let nextCursor: String
 
 	enum CodingKeys: String, CodingKey {
@@ -17,7 +18,7 @@ struct EventPostsResultModel: Codable {
 	}
 }
 
-struct Datum: Codable {
+struct EventPost: Codable {
 	let postID: String
 	let productID: String
 	private let content: String
@@ -80,6 +81,24 @@ struct Datum: Codable {
 		self.hashTags = try container.decodeIfPresent([String].self, forKey: .hashTags) ?? []
 		self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
 	}
+
+	init() {
+		self.postID =  ""
+		self.productID = ""
+		self.content = ""
+		self.content1 =  ""
+		self.content2 = ""
+		self.organizer = ""
+		self.url = ""
+		self.recruitProductId = ""
+		self.createdAt = ""
+		self.creator = Creator(userID: "", nick: "")
+		self.files = []
+		self.likes = []
+		self.likes2 = []
+		self.hashTags = []
+		self.title = ""
+	}
 }
 
 struct Creator: Codable {
@@ -90,4 +109,19 @@ struct Creator: Codable {
 		case userID = "user_id"
 		case nick = "nick"
 	}
+}
+
+
+extension EventPost: IdentifiableType, Equatable {
+	static func == (lhs: EventPost, rhs: EventPost) -> Bool {
+		lhs.postID == rhs.postID
+	}
+	
+	typealias Identity = String
+
+	var identity: String {
+		return postID
+	}
+
+
 }
