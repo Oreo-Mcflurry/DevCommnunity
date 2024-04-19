@@ -12,6 +12,7 @@ final class EventsView: BaseUIView {
 
 //	lazy var eventCollectionView = UICollectionView(frame: .zero, collectionViewLayout: setCollectionView())
 	let eventCollectionView = UITableView()
+	let refreshControl = UIRefreshControl()
 
 	override func configureHierarchy() {
 		[eventCollectionView].forEach { addSubview($0) }
@@ -26,6 +27,7 @@ final class EventsView: BaseUIView {
 	override func configureView() {
 //		eventCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Test")
 		eventCollectionView.register(UITableViewCell.self, forCellReuseIdentifier: "Test")
+		eventCollectionView.refreshControl = refreshControl
 
 	}
 

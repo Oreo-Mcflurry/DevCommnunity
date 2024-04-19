@@ -31,14 +31,9 @@ final class EventsViewController: BaseViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		configureDataSource()
 	}
 
 	override func configureBinding() {
-
-	}
-
-	private func configureDataSource() {
 		let dataSource = RxTableViewSectionedAnimatedDataSource<PostsSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .top, reloadAnimation: .fade, deleteAnimation: .left)) { data, tableView, indexPath, item in
 			let cell = tableView.dequeueReusableCell(withIdentifier: "Test", for: indexPath)
 			cell.textLabel?.text = "Test"
@@ -56,5 +51,10 @@ final class EventsViewController: BaseViewController {
 		self.tests
 			.bind(to: eventsView.eventCollectionView.rx.items(dataSource: dataSource))
 			.disposed(by: disposeBag)
+
+		eventsView.refreshControl.rx.controlEvent(.valueChanged)
+			.bind(with: self) { _, _ in
+				self.eventsView.refreshControl.endRefreshing()
+			}.disposed(by: disposeBag)
 	}
 }
