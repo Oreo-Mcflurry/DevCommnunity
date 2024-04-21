@@ -19,6 +19,20 @@ class RequestManager {
 		case none
 	}
 
+	enum PostsKind {
+		case event
+		case party(name: String)
+
+		var requestValue: String {
+			switch self {
+			case .event:
+				return "DevCommunity"
+			case .party(let name):
+				return "DevCommunity\(name)"
+			}
+		}
+	}
+
 	private func getErrorCase(code: Int?) -> APIError {
 		guard let code else { return .none }
 
@@ -42,7 +56,7 @@ class RequestManager {
 						switch response.result {
 						case .success(let result):
 							single(.success(result))
-						case .failure(_):
+						case .failure(let fail):
 							single(.failure(self.getErrorCase(code: response.response?.statusCode)))
 						}
 					}
@@ -114,9 +128,10 @@ class RequestManager {
 		}
 	}
 
-	func getPosts() -> Observable<EventPostsResultModel> {
+	func getPosts(query: PostsKind) -> Observable<EventPostsResultModel> {
+		let request = PostsRequestModel(next: "", product_id: query.requestValue)
 		return Observable.create { observer -> Disposable in
-			self.callRequest(.getPost, type: EventPostsResultModel.self)
+			self.callRequest(.getPost(query: request), type: EventPostsResultModel.self)
 				.subscribe { event in
 					switch event {
 					case .success(let result):
@@ -124,7 +139,7 @@ class RequestManager {
 
 					case .failure(_):
 						self.refreshAccessToken {
-							self.callRequest(.getPost, type: EventPostsResultModel.self)
+							self.callRequest(.getPost(query: request), type: EventPostsResultModel.self)
 								.map { $0 }
 								.subscribe(with: self) { _, result in
 									observer.onNext(result)
@@ -137,27 +152,3 @@ class RequestManager {
 		}
 	}
 }
-
-
-//	func callRequestResult<T: Decodable>(_ api: Router, type: T.Type) -> Single<Result<T, AFError>> {
-//		return Single<Result<T, AFError>>.create { single in
-//			do {
-//				let urlRequest = try api.asURLRequest()
-//				AF.request(urlRequest)
-//					.validate(statusCode: 200..<300)
-//					.responseDecodable(of: T.self) { response in
-//						debugPrint(response)
-//						switch response.result {
-//						case .success(let result):
-//							single(.success(.success(result)))
-//						case .failure(let error):
-//							single(.success(.failure(error)))
-//						}
-//					}
-//			} catch {
-//				single(.failure(error))
-//			}
-//
-//			return Disposables.create()
-//		}
-//	}

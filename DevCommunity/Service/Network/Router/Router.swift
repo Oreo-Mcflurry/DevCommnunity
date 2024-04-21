@@ -11,7 +11,7 @@ import Alamofire
 enum Router {
 	case access
 	case login(query: LoginRequestModel)
-	case getPost
+	case getPost(query: PostsRequestModel)
 	case signUp(data: SignUpRequetModel)
 }
 
@@ -20,6 +20,10 @@ extension Router: TargetType {
 	func asURLRequest() throws -> URLRequest {
 		let url = try baseURL.asURL()
 		var urlRequest = try URLRequest(url: url.appendingPathComponent(path), method: method)
+
+		if let queryItems = queryItems {
+			urlRequest.url?.append(queryItems: queryItems)
+		}
 		urlRequest.allHTTPHeaderFields = header
 		urlRequest.httpBody = parameters?.data(using: .utf8)
 		urlRequest.httpBody = body
@@ -82,7 +86,12 @@ extension Router: TargetType {
 	}
 	
 	var queryItems: [URLQueryItem]? {
-		return nil
+		switch self {
+		case .getPost(let query):
+			return query.queryItems
+		default:
+			return nil
+		}
 	}
 	
 	var body: Data? {

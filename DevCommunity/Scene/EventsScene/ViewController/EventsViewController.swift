@@ -15,16 +15,6 @@ final class EventsViewController: BaseViewController {
 	private let eventsView = EventsView()
 	private let disposeBag = DisposeBag()
 
-	var tests = BehaviorSubject(value: [
-		PostsSectionModel(header: "111", items: [
-			EventPost(),
-			EventPost(),
-			EventPost(),
-			EventPost(),
-		])
-
-	])
-
 	override func loadView() {
 		self.view = eventsView
 	}
@@ -33,28 +23,38 @@ final class EventsViewController: BaseViewController {
 		super.viewDidLoad()
 	}
 
+	override func configureView() {
+		self.navigationItem.title = "Events"
+	}
+
 	override func configureBinding() {
-		let dataSource = RxTableViewSectionedAnimatedDataSource<PostsSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .top, reloadAnimation: .fade, deleteAnimation: .left)) { data, tableView, indexPath, item in
-			let cell = tableView.dequeueReusableCell(withIdentifier: "Test", for: indexPath)
-			cell.textLabel?.text = "Test"
+		let dataSource = RxTableViewSectionedAnimatedDataSource<PostsSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .automatic, reloadAnimation: .fade, deleteAnimation: .left)) { data, tableView, indexPath, item in
+			guard let cell = tableView.dequeueReusableCell(withIdentifier: EventsTableViewCell.description(), for: indexPath) as? EventsTableViewCell else { fatalError("Dequeue EventsTableViewCell Error") }
+			cell.configureCell(item)
 			return cell
+		} titleForHeaderInSection: { data, index in
+			return "\(index)"
 		}
 
-		dataSource.canEditRowAtIndexPath = { dataSource, index in
-			return true
-		}
+		let inputDidAppear = self.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
+			.map { _ in	}.debug()
 
-		dataSource.canMoveRowAtIndexPath = { _, _ in
-			return true
-		}
+		let input = EventsViewModel.Input(inputRefresh: eventsView.refreshControl.rx.controlEvent(.valueChanged),
+													 inputDidAppear: inputDidAppear)
 
-		self.tests
-			.bind(to: eventsView.eventCollectionView.rx.items(dataSource: dataSource))
+		let output = viewModel.transform(input: input)
+
+		output.outputRefresh
+			.drive(eventsView.eventTableView.rx.items(dataSource: dataSource))
 			.disposed(by: disposeBag)
 
-		eventsView.refreshControl.rx.controlEvent(.valueChanged)
-			.bind(with: self) { _, _ in
-				self.eventsView.refreshControl.endRefreshing()
-			}.disposed(by: disposeBag)
+		output.outputRefresh
+			.map { _ in }
+			.drive(with: self) { owner, _ in
+				DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+					owner.eventsView.refreshControl.endRefreshing()
+				}
+			}
+			.disposed(by: disposeBag)
 	}
 }

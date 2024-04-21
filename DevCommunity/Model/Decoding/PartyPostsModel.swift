@@ -1,15 +1,15 @@
 //
-//  PostsResultModel.swift
-//  WhyIsn'tWorking
+//  PartyPostsModel.swift
+//  DevCommunity
 //
-//  Created by A_Mcflurry on 4/16/24.
+//  Created by A_Mcflurry on 4/19/24.
 //
 
 import Foundation
 import Differentiator
 
-struct EventPostsResultModel: Decodable {
-	var data: [EventPost]
+struct PartyPostsModel: Decodable {
+	var data: [PartyPost]
 	let nextCursor: String
 
 	enum CodingKeys: String, CodingKey {
@@ -18,54 +18,39 @@ struct EventPostsResultModel: Decodable {
 	}
 }
 
-struct EventPost: Decodable {
+struct PartyPost: Decodable {
 	let postID: String
 	let productID: String
 	private let content: String
 	private let content1: String
-	let time: String
-	let organizer: String
-	private let url: String
-	let recruitProductId: String
+	private let content2: String
+	private let content3: String
 	let createdAt: String
 	let creator: Creator
 	let files: [String]
 	private let likes: [String]
 	private let likes2: [String]
-	private let hashTag: [String]
+	let hashTags: [String]
 	let title: String
 
 	var dateStart: Date {
 		let formatter = DateFormatter()
-		formatter.dateFormat = "yyyy-MM-dd"
 		return formatter.date(from: content1) ?? Date()
 	}
 
-	var date: String {
+	var dateEnd: Date {
 		let formatter = DateFormatter()
-		formatter.dateFormat = "yyyy년 MM월 dd일 (EEE)"
-		formatter.locale = Locale(identifier: "ko_kr")
-		return formatter.string(from: dateStart)
+		return formatter.date(from: content2) ?? Date()
 	}
 
-	var dDay: String {
+	var dDay: Int {
 		let calendar = Calendar.current
-		let day = calendar.dateComponents([.day], from: dateStart, to: Date()).day ?? 0
-		return day == 0 ? "D-day" : "\(day)"
+		let components = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
+		return components.day ?? 0
 	}
 
-	var month: Int {
-		let calendar = Calendar.current
-		let month = calendar.dateComponents([.month], from: dateStart, to: Date()).month ?? 0
-		return month
-	}
-
-	var hashTags: String {
-		return hashTag.map{ "#\($0)" }.joined(separator: " ")
-	}
-
-	var imageURL: URL {
-		return URL(string: APIKey.baseURL.rawValue + "/v1/" + files.first!)!
+	var upToPeople: Int {
+		return Int(content3) ?? 0
 	}
 
 	enum CodingKeys: String, CodingKey {
@@ -73,16 +58,14 @@ struct EventPost: Decodable {
 		case productID = "product_id"
 		case content = "content"
 		case content1 = "content1"
-		case time = "content2"
-		case organizer = "content3"
-		case url = "content4"
-		case recruitProductId = "content5"
+		case content2 = "content2"
+		case content3 = "content3"
 		case createdAt = "createdAt"
 		case creator = "creator"
 		case files = "files"
 		case likes = "likes"
 		case likes2 = "likes2"
-		case hashTag = "hashTags"
+		case hashTags = "hashTags"
 		case title = "title"
 	}
 
@@ -92,16 +75,14 @@ struct EventPost: Decodable {
 		self.productID = try container.decodeIfPresent(String.self, forKey: .productID) ?? ""
 		self.content = try container.decodeIfPresent(String.self, forKey: .content) ?? ""
 		self.content1 = try container.decodeIfPresent(String.self, forKey: .content1) ?? ""
-		self.time = try container.decodeIfPresent(String.self, forKey: .time) ?? ""
-		self.organizer = try container.decodeIfPresent(String.self, forKey: .organizer) ?? ""
-		self.url = try container.decodeIfPresent(String.self, forKey: .url) ?? ""
-		self.recruitProductId = try container.decodeIfPresent(String.self, forKey: .recruitProductId) ?? ""
+		self.content2 = try container.decodeIfPresent(String.self, forKey: .content2) ?? ""
+		self.content3 = try container.decodeIfPresent(String.self, forKey: .content3) ?? ""
 		self.createdAt = try container.decodeIfPresent(String.self, forKey: .createdAt) ?? ""
 		self.creator = try container.decodeIfPresent(Creator.self, forKey: .creator) ?? Creator(userID: "", nick: "")
 		self.files = try container.decodeIfPresent([String].self, forKey: .files) ?? []
 		self.likes = try container.decodeIfPresent([String].self, forKey: .likes) ?? []
 		self.likes2 = try container.decodeIfPresent([String].self, forKey: .likes2) ?? []
-		self.hashTag = try container.decodeIfPresent([String].self, forKey: .hashTag) ?? []
+		self.hashTags = try container.decodeIfPresent([String].self, forKey: .hashTags) ?? []
 		self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
 	}
 
@@ -110,39 +91,27 @@ struct EventPost: Decodable {
 		self.productID = ""
 		self.content = ""
 		self.content1 =  ""
-		self.time = ""
-		self.organizer = ""
-		self.url = ""
-		self.recruitProductId = ""
+		self.content2 = ""
+		self.content3 = ""
 		self.createdAt = ""
 		self.creator = Creator(userID: "", nick: "")
 		self.files = []
 		self.likes = []
 		self.likes2 = []
-		self.hashTag = []
+		self.hashTags = []
 		self.title = ""
 	}
 }
 
-struct Creator: Codable {
-	let userID: String
-	let nick: String
-
-	enum CodingKeys: String, CodingKey {
-		case userID = "user_id"
-		case nick = "nick"
-	}
-}
-
-
-extension EventPost: IdentifiableType, Equatable {
-	static func == (lhs: EventPost, rhs: EventPost) -> Bool {
+extension PartyPost: IdentifiableType, Equatable {
+	static func == (lhs: PartyPost, rhs: PartyPost) -> Bool {
 		lhs.postID == rhs.postID
 	}
-	
+
 	typealias Identity = String
 
 	var identity: String {
 		return postID
 	}
 }
+

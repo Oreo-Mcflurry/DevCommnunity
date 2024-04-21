@@ -10,18 +10,17 @@ import RxDataSources
 
 struct PostsSectionModel {
 	var header: String
-	var items: [Item]
+	var items: [EventPost]
 }
 
 extension PostsSectionModel: AnimatableSectionModelType {
-	typealias Item = EventPost
 	typealias Identity = String
 
 	var identity: String {
 		return header
 	}
 
-	init(original: PostsSectionModel, items: [Item]) {
+	init(original: PostsSectionModel, items: [EventPost]) {
 		self = original
 		self.items = items
 	}
