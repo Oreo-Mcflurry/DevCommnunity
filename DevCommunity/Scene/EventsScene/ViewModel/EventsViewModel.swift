@@ -51,7 +51,7 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 		var groupedPosts: [Int: [EventPost]] = [:]
 
 		let sortedPost = posts.sorted { lhs, rhs in
-			lhs.dateStart > rhs.dateStart
+			lhs.month > rhs.month
 		}
 		// 월별로 이벤트 그룹화
 		for post in sortedPost {

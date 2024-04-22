@@ -56,7 +56,7 @@ struct EventPost: Decodable {
 
 	var month: Int {
 		let calendar = Calendar.current
-		let month = calendar.dateComponents([.month], from: dateStart, to: Date()).month ?? 0
+		let month = calendar.dateComponents([.month], from: dateStart).month ?? 0
 		return month
 	}
 

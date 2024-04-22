@@ -14,12 +14,11 @@ final class EventsTableViewCell: BaseTableViewCell {
 	private let organizerLabel = UILabel()
 	private let eventTitleLabel = UILabel()
 	private let dDayLabel = UILabel()
-	private let timeDiscriptionLabel = UILabel()
 	private let timeLabel = UILabel()
 	private let hashTagsLabel = UILabel()
 
 	override func configureHierarchy() {
-		[eventsImageView, organizerLabel, eventTitleLabel, dDayLabel, timeDiscriptionLabel, timeLabel, hashTagsLabel].forEach { addSubview($0) }
+		[eventsImageView, organizerLabel, eventTitleLabel, dDayLabel, timeLabel, hashTagsLabel].forEach { addSubview($0) }
 	}
 
 	override func configureLayout() {
@@ -41,25 +40,23 @@ final class EventsTableViewCell: BaseTableViewCell {
 		dDayLabel.snp.makeConstraints {
 			$0.top.bottom.equalTo(eventTitleLabel)
 			$0.leading.equalTo(eventTitleLabel.snp.trailing).offset(20)
-			$0.trailing.greaterThanOrEqualTo(self).inset(20)
-		}
-
-		timeDiscriptionLabel.snp.makeConstraints {
-			$0.top.equalTo(eventTitleLabel.snp.bottom).offset(20)
-			$0.leading.equalTo(self).offset(20)
+			$0.trailing.lessThanOrEqualTo(self).inset(20)
 		}
 
 		timeLabel.snp.makeConstraints {
-			$0.top.bottom.equalTo(timeDiscriptionLabel)
-			$0.leading.equalTo(timeDiscriptionLabel.snp.trailing).offset(20)
-			$0.trailing.equalTo(self).inset(20)
+			$0.top.equalTo(eventTitleLabel.snp.bottom).offset(20)
+			$0.horizontalEdges.equalTo(self).inset(20)
 		}
 
 		hashTagsLabel.snp.makeConstraints {
-			$0.top.equalTo(timeDiscriptionLabel.snp.bottom).offset(20)
-			$0.leading.trailing.equalTo(self).inset(20)
+			$0.top.equalTo(timeLabel.snp.bottom).offset(20)
+			$0.horizontalEdges.equalTo(self).inset(20)
 			$0.bottom.equalTo(self).inset(20)
 		}
+	}
+
+	override func configureView() {
+
 	}
 
 	func configureCell(_ data: EventPost) {
@@ -68,6 +65,7 @@ final class EventsTableViewCell: BaseTableViewCell {
 		organizerLabel.text = data.organizer
 		eventTitleLabel.text = data.title
 		dDayLabel.text = data.dDay
+		timeLabel.text = data.time
 		hashTagsLabel.text = data.hashTags
 	}
 }
