@@ -33,7 +33,7 @@ final class EventsViewController: BaseViewController {
 			cell.configureCell(item)
 			return cell
 		} titleForHeaderInSection: { data, index in
-			return "\(index)"
+			return "\(data[index].header)"
 		}
 
 		let inputDidAppear = self.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
