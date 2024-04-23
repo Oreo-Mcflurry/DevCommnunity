@@ -11,6 +11,7 @@ import RxDataSources
 struct PostsSectionModel {
 	var header: String
 	var items: [EventPost]
+	var row: Row
 }
 
 extension PostsSectionModel: AnimatableSectionModelType {
@@ -23,5 +24,10 @@ extension PostsSectionModel: AnimatableSectionModelType {
 	init(original: PostsSectionModel, items: [EventPost]) {
 		self = original
 		self.items = items
+	}
+
+	enum Row {
+		case skeleton
+		case data
 	}
 }

@@ -32,6 +32,11 @@
 		0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019DC52BC6CCED00E89BB4 /* UserDefaults+Extension.swift */; };
 		0B019DC82BC6CD0000E89BB4 /* KeyChain+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019DC72BC6CD0000E89BB4 /* KeyChain+Extension.swift */; };
 		0B469D472BD3E72000691995 /* KingFisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D462BD3E72000691995 /* KingFisher+Extension.swift */; };
+		0B469D4C2BD649E300691995 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 0B469D4B2BD649E300691995 /* SkeletonView */; };
+		0B469D522BD64CA200691995 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D512BD64CA200691995 /* DetailViewController.swift */; };
+		0B469D542BD64CB400691995 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D532BD64CB400691995 /* DetailView.swift */; };
+		0B469D572BD64CC000691995 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D562BD64CC000691995 /* DetailViewModel.swift */; };
+		0B469D592BD6828100691995 /* DdayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D582BD6828100691995 /* DdayLabel.swift */; };
 		0B5B4DF12BCBBD4E00F0F8E4 /* SignUpLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4DF02BCBBD4E00F0F8E4 /* SignUpLabelsView.swift */; };
 		0B5B4E0F2BCD4BA700F0F8E4 /* AccessTokenRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E0E2BCD4BA700F0F8E4 /* AccessTokenRefresh.swift */; };
 		0B5B4E172BCD62B600F0F8E4 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E162BCD62B600F0F8E4 /* EventsViewController.swift */; };
@@ -100,6 +105,10 @@
 		0B019DC52BC6CCED00E89BB4 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		0B019DC72BC6CD0000E89BB4 /* KeyChain+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+Extension.swift"; sourceTree = "<group>"; };
 		0B469D462BD3E72000691995 /* KingFisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KingFisher+Extension.swift"; sourceTree = "<group>"; };
+		0B469D512BD64CA200691995 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0B469D532BD64CB400691995 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		0B469D562BD64CC000691995 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		0B469D582BD6828100691995 /* DdayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DdayLabel.swift; sourceTree = "<group>"; };
 		0B5B4DF02BCBBD4E00F0F8E4 /* SignUpLabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpLabelsView.swift; sourceTree = "<group>"; };
 		0B5B4E0E2BCD4BA700F0F8E4 /* AccessTokenRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenRefresh.swift; sourceTree = "<group>"; };
 		0B5B4E162BCD62B600F0F8E4 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +169,7 @@
 				0B5B4E7C2BD1675600F0F8E4 /* Differentiator in Frameworks */,
 				0B019D8D2BC6BB9D00E89BB4 /* Splash in Frameworks */,
 				0B019D902BC6BBA400E89BB4 /* MarkdownUI in Frameworks */,
+				0B469D4C2BD649E300691995 /* SkeletonView in Frameworks */,
 				0B019D992BC6BBCF00E89BB4 /* Kingfisher in Frameworks */,
 				0BDE9FFC2BC8279500289075 /* TextFieldEffects in Frameworks */,
 				0B019DA12BC6BC3F00E89BB4 /* Realm in Frameworks */,
@@ -210,6 +220,7 @@
 		0B019DA72BC6BC9E00E89BB4 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0B469D4D2BD64C8300691995 /* DetailScene */,
 				0B5B4E622BCFA70F00F0F8E4 /* SettingScene */,
 				0B5B4E122BCD629D00F0F8E4 /* EventsScene */,
 				0B5B4E542BCEBA5A00F0F8E4 /* InitialScene */,
@@ -283,6 +294,40 @@
 				0BCFF0782BCAA9CD00CDC6E5 /* TargetType.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		0B469D4D2BD64C8300691995 /* DetailScene */ = {
+			isa = PBXGroup;
+			children = (
+				0B469D502BD64C9200691995 /* ViewModel */,
+				0B469D4F2BD64C8D00691995 /* ViewController */,
+				0B469D4E2BD64C8A00691995 /* View */,
+			);
+			path = DetailScene;
+			sourceTree = "<group>";
+		};
+		0B469D4E2BD64C8A00691995 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B469D532BD64CB400691995 /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0B469D4F2BD64C8D00691995 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B469D512BD64CA200691995 /* DetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0B469D502BD64C9200691995 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B469D562BD64CC000691995 /* DetailViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0B5B4DEF2BCBBD3E00F0F8E4 /* SignUpLabelsView */ = {
@@ -644,6 +689,7 @@
 				0BCFF0622BCA455300CDC6E5 /* CheckBoxView */,
 				0BDEA0002BC8299300289075 /* SignUpTextFieldView */,
 				0BDE9FDB2BC76EE100289075 /* CodeView */,
+				0B469D582BD6828100691995 /* DdayLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -686,6 +732,7 @@
 				0BDE9FFB2BC8279500289075 /* TextFieldEffects */,
 				0B5B4E7B2BD1675600F0F8E4 /* Differentiator */,
 				0B5B4E7D2BD1675600F0F8E4 /* RxDataSources */,
+				0B469D4B2BD649E300691995 /* SkeletonView */,
 			);
 			productName = "WhyIsn'tWorking";
 			productReference = 0B019D742BC6BB8600E89BB4 /* DevCommunity.app */;
@@ -726,6 +773,7 @@
 				0B019DA42BC6BC5100E89BB4 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				0BDE9FFA2BC8279500289075 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				0B5B4E7A2BD1675600F0F8E4 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				0B469D4A2BD649E300691995 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = 0B019D752BC6BB8600E89BB4 /* Products */;
 			projectDirPath = "";
@@ -763,6 +811,7 @@
 				0B5B4E672BCFA73600F0F8E4 /* SettingViewModel.swift in Sources */,
 				0B5B4E592BCEBA9A00F0F8E4 /* InitialViewController.swift in Sources */,
 				0BDE9FF72BC826B900289075 /* SignUpView.swift in Sources */,
+				0B469D522BD64CA200691995 /* DetailViewController.swift in Sources */,
 				0BCFF0752BCAA66600CDC6E5 /* SignUpViewCompleteViewModel.swift in Sources */,
 				0B5B4E5D2BCEBAC700F0F8E4 /* InitialViewModel.swift in Sources */,
 				0B5B4EA22BD251D400F0F8E4 /* PartyPostsModel.swift in Sources */,
@@ -787,11 +836,13 @@
 				0B019DBA2BC6CC0300E89BB4 /* NetworkManager.swift in Sources */,
 				0B019DC22BC6CC9200E89BB4 /* APIKeyPublic.swift in Sources */,
 				0BCFF0692BCAA5B400CDC6E5 /* ProfileSettingViewController.swift in Sources */,
+				0B469D592BD6828100691995 /* DdayLabel.swift in Sources */,
 				0BDE9FEA2BC8120E00289075 /* BaseUIView.swift in Sources */,
 				0BCFF06D2BCAA5D000CDC6E5 /* ProfileSettingViewModel.swift in Sources */,
 				0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */,
 				0B5B4E812BD1F50F00F0F8E4 /* PostsSectionModel.swift in Sources */,
 				0BDE9FED2BC8126D00289075 /* SignInView.swift in Sources */,
+				0B469D542BD64CB400691995 /* DetailView.swift in Sources */,
 				0BCFF06B2BCAA5C100CDC6E5 /* ProfileSettingView.swift in Sources */,
 				0BCFF0812BCAAC9B00CDC6E5 /* LoginRequestModel.swift in Sources */,
 				0BCFF07C2BCAAAA900CDC6E5 /* Router.swift in Sources */,
@@ -810,6 +861,7 @@
 				0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */,
 				0B019DC82BC6CD0000E89BB4 /* KeyChain+Extension.swift in Sources */,
 				0B5B4EA02BD24FF000F0F8E4 /* EventsTableViewCell.swift in Sources */,
+				0B469D572BD64CC000691995 /* DetailViewModel.swift in Sources */,
 				0B5B4E4E2BCE748B00F0F8E4 /* SignUpRequetModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -957,6 +1009,7 @@
 				DEVELOPMENT_TEAM = Y7F2ZW9QG3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DevCommunity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "데브커뮤니티";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -989,6 +1042,7 @@
 				DEVELOPMENT_TEAM = Y7F2ZW9QG3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DevCommunity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "데브커뮤니티";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1099,6 +1153,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		0B469D4A2BD649E300691995 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.31.0;
+			};
+		};
 		0B5B4E7A2BD1675600F0F8E4 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
@@ -1167,6 +1229,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B019DA42BC6BC5100E89BB4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		0B469D4B2BD649E300691995 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B469D4A2BD649E300691995 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 		0B5B4E7B2BD1675600F0F8E4 /* Differentiator */ = {
 			isa = XCSwiftPackageProductDependency;

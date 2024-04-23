@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import SkeletonView
 
 final class EventsViewController: BaseViewController {
 	private let viewModel = EventsViewModel()
@@ -28,19 +29,32 @@ final class EventsViewController: BaseViewController {
 	}
 
 	override func configureBinding() {
-		let dataSource = RxTableViewSectionedAnimatedDataSource<PostsSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .automatic, reloadAnimation: .fade, deleteAnimation: .left)) { data, tableView, indexPath, item in
+		let dataSource = RxTableViewSectionedAnimatedDataSource<PostsSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .fade, reloadAnimation: .fade, deleteAnimation: .fade)) { data, tableView, indexPath, item in
 			guard let cell = tableView.dequeueReusableCell(withIdentifier: EventsTableViewCell.description(), for: indexPath) as? EventsTableViewCell else { fatalError("Dequeue EventsTableViewCell Error") }
-			cell.configureCell(item)
+
+			if data[indexPath.section].row == .skeleton {
+				cell.configureSkeleton()
+			} else {
+				cell.configureCell(item)
+				
+			}
+
 			return cell
 		} titleForHeaderInSection: { data, index in
 			return "\(data[index].header)"
 		}
 
-		let inputDidAppear = self.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
-			.map { _ in	}.debug()
+		let inputDidAppear = self.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:))).map { _ in	}
+
+		let inputWillAppear = self.rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in }
+
+		let inputDidSelect = Observable.zip(eventsView.eventTableView.rx.modelSelected(EventPost.self).asObservable(),
+																	 eventsView.eventTableView.rx.itemSelected.asObservable())
 
 		let input = EventsViewModel.Input(inputRefresh: eventsView.refreshControl.rx.controlEvent(.valueChanged),
-													 inputDidAppear: inputDidAppear)
+													 inputDidAppear: inputDidAppear,
+													 inputWillAppear: inputWillAppear,
+													 inputDidSelect: inputDidSelect)
 
 		let output = viewModel.transform(input: input)
 
@@ -56,5 +70,18 @@ final class EventsViewController: BaseViewController {
 				}
 			}
 			.disposed(by: disposeBag)
+
+		output.outputWillAppear
+			.drive(with: self) { owner, _ in
+				owner.tabBarController?.tabBar.isHidden = false
+			}
+			.disposed(by: disposeBag)
+
+		output.outputDidSelect
+			.drive(with: self) { owner, value in
+				let vc = DetailViewController()
+				owner.eventsView.eventTableView.reloadRows(at: [value.1], with: .automatic)
+				owner.navigationController?.pushViewController(vc, animated: true)
+			}.disposed(by: disposeBag)
 	}
 }

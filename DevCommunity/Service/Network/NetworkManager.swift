@@ -56,7 +56,7 @@ class RequestManager {
 						switch response.result {
 						case .success(let result):
 							single(.success(result))
-						case .failure(let fail):
+						case .failure(_):
 							single(.failure(self.getErrorCase(code: response.response?.statusCode)))
 						}
 					}

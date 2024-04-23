@@ -51,7 +51,7 @@ struct EventPost: Decodable {
 	var dDay: String {
 		let calendar = Calendar.current
 		let day = calendar.dateComponents([.day], from: dateStart, to: Date()).day ?? 0
-		return day == 0 ? "D-day" : "\(day)"
+		return day == 0 ? "D-day" : "D\(day)"
 	}
 
 	var month: Int {
@@ -65,7 +65,10 @@ struct EventPost: Decodable {
 	}
 
 	var imageURL: URL {
-		return URL(string: APIKey.baseURL.rawValue + "/v1/" + files.first!)!
+		if let fileURL = files.first  {
+			return URL(string: APIKey.baseURL.rawValue + "/v1/" + fileURL)!
+		}
+		return URL(string: APIKey.baseURL.rawValue)!
 	}
 
 	enum CodingKeys: String, CodingKey {
@@ -106,7 +109,7 @@ struct EventPost: Decodable {
 	}
 
 	init() {
-		self.postID =  ""
+		self.postID = UUID().uuidString
 		self.productID = ""
 		self.content = ""
 		self.content1 =  ""
