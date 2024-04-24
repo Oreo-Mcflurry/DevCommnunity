@@ -15,6 +15,9 @@ final class DetailViewController: BaseViewController {
 	private let detailView = DetailView()
 	private let disposeBag = DisposeBag()
 
+	var eventPost = EventPost()
+	private let dismissButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: DetailViewController.self, action: nil)
+
 	override func loadView() {
 		self.view = detailView
 	}
@@ -23,11 +26,21 @@ final class DetailViewController: BaseViewController {
 		super.viewDidLoad()
 	}
 
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
+	override func configureView() {
+		self.tabBarController?.tabBar.isHidden = true
+		detailView.configureUI(eventPost)
+		self.navigationItem.leftBarButtonItem = dismissButton
 	}
-
 	override func configureBinding() {
-		let inputWillAppear = self.rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in }
+		//		dismissButton.rx.tap.bind(with: self) { owner, _ in
+		//			print("RRR")
+		//		}
+
+		detailView.scrollView.rx.contentOffset
+			.bind(with: self) { owner, value in
+				let scaleFactor = max(0, -value.y) / 100
+
+				owner.detailView.heroImageView.transform = CGAffineTransform(scaleX: 1 + scaleFactor, y: 1 + scaleFactor)
+			}.disposed(by: disposeBag)
 	}
 }

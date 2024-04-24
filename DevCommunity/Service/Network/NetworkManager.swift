@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class RequestManager {
 
@@ -79,6 +80,7 @@ class RequestManager {
 					case .success(let result):
 						UserDefaults.standard[.refreshToken] = result.refreshToken
 						UserDefaults.standard[.accessToken] = result.accessToken
+						KingfisherManager.shared.setHeaders()
 						completionHandler()
 					case .failure(_):
 						print("Fail")
@@ -99,6 +101,7 @@ class RequestManager {
 						UserDefaults.standard[.accessToken] = result.accessToken
 						UserDefaults.standard[.refreshToken] = result.refreshToken
 						UserDefaults.standard[.password] = query.password
+						KingfisherManager.shared.setHeaders()
 						single(.success(result))
 					case .failure(let error):
 						single(.failure(error))

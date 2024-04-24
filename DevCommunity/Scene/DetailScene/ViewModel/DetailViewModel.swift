@@ -11,11 +11,9 @@ import RxCocoa
 
 final class DetailViewModel: InputOutputViewModelProtocol {
 	struct Input {
-
 	}
 
 	struct Output {
-
 	}
 
 	var disposeBag = DisposeBag()
