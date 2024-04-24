@@ -64,6 +64,8 @@ final class SignUpView: BaseUIView {
 			item.snp.makeConstraints { $0.height.equalTo(60) }
 			item.isHidden = true
 		}
+
+		scrollView.alwaysBounceVertical = true
 	}
 
 
