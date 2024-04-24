@@ -71,6 +71,10 @@ struct EventPost: Decodable {
 		return URL(string: APIKey.baseURL.rawValue)!
 	}
 
+	var likeString: String {
+		return "👍 \(likes.count)"
+	}
+
 	enum CodingKeys: String, CodingKey {
 		case postID = "post_id"
 		case productID = "product_id"

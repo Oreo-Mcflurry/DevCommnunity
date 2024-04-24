@@ -33,15 +33,7 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 		let outputError = BehaviorRelay(value: Void())
 
 		Observable<[PostsSectionModel]>
-			.just([PostsSectionModel(header: "",
-											items: [
-											  EventPost(),
-											  EventPost(),
-											  EventPost(),
-											  EventPost(),
-											  EventPost(),
-											],
-											row: .skeleton)])
+			.just([PostsSectionModel(header: "", items: [EventPost()], row: .skeleton)])
 			.bind(with: self) { owner, value in
 				outputRefresh.accept(value)
 			}

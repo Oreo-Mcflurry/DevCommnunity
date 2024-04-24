@@ -65,6 +65,12 @@ final class EventsTableViewCell: BaseTableViewCell {
 		[self, self.contentView, eventsImageView, organizerLabel, eventTitleLabel, dDayLabel, timeLabel, hashTagsLabel].forEach {
 			$0.isSkeletonable = true
 		}
+		organizerLabel.font = .preferredFont(forTextStyle: .callout)
+		eventTitleLabel.font = .preferredFont(forTextStyle: .title3)
+		eventTitleLabel.numberOfLines = 2
+		timeLabel.textColor = .lightGray
+		hashTagsLabel.textColor = .lightGray
+
 	}
 
 	func configureSkeleton() {
@@ -73,23 +79,12 @@ final class EventsTableViewCell: BaseTableViewCell {
 
 	func configureCell(_ data: EventPost) {
 		self.hideSkeleton()
-		KingfisherManager.shared.setHeaders()
-		eventsImageView.kf.setImage(with: data.imageURL)
-
+		eventsImageView.kf.setHeaderAndImage(with: data.imageURL)
 		organizerLabel.text = data.organizer
-		organizerLabel.font = .preferredFont(forTextStyle: .title3)
-
 		eventTitleLabel.text = data.title
-		eventTitleLabel.font = .preferredFont(forTextStyle: .title3)
-		eventTitleLabel.numberOfLines = 2
-
 		dDayLabel.text = data.dDay
-
 		timeLabel.text = data.time
-		timeLabel.textColor = .lightGray
-
 		hashTagsLabel.text = data.hashTags
-		hashTagsLabel.textColor = .lightGray
 	}
 
 	override func prepareForReuse() {

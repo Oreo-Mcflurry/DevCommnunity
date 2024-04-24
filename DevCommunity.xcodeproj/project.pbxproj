@@ -330,6 +330,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		0B469D6F2BD88C5C00691995 /* DdayLabel */ = {
+			isa = PBXGroup;
+			children = (
+				0B469D582BD6828100691995 /* DdayLabel.swift */,
+			);
+			path = DdayLabel;
+			sourceTree = "<group>";
+		};
 		0B5B4DEF2BCBBD3E00F0F8E4 /* SignUpLabelsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -685,11 +693,11 @@
 		0BDE9FFD2BC8296300289075 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0B469D6F2BD88C5C00691995 /* DdayLabel */,
 				0B5B4DEF2BCBBD3E00F0F8E4 /* SignUpLabelsView */,
 				0BCFF0622BCA455300CDC6E5 /* CheckBoxView */,
 				0BDEA0002BC8299300289075 /* SignUpTextFieldView */,
 				0BDE9FDB2BC76EE100289075 /* CodeView */,
-				0B469D582BD6828100691995 /* DdayLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

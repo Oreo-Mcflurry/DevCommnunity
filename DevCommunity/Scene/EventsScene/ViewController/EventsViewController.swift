@@ -80,8 +80,11 @@ final class EventsViewController: BaseViewController {
 		output.outputDidSelect
 			.drive(with: self) { owner, value in
 				let vc = DetailViewController()
+				vc.eventPost = value.0
+				let nav = UINavigationController(rootViewController: vc)
+				nav.modalPresentationStyle = .fullScreen
 				owner.eventsView.eventTableView.reloadRows(at: [value.1], with: .automatic)
-				owner.navigationController?.pushViewController(vc, animated: true)
+				owner.present(nav, animated: true)
 			}.disposed(by: disposeBag)
 	}
 }
