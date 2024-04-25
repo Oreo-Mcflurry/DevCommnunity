@@ -91,9 +91,13 @@ final class DetailView: BaseUIView {
 		defendHeroView.backgroundColor = .white
 
 		organizerLabel.font = .preferredFont(forTextStyle: .callout)
+
 		eventTitleLabel.font = .preferredFont(forTextStyle: .title3)
 		eventTitleLabel.numberOfLines = 2
+
 		timeLabel.textColor = .lightGray
+
+		likeLabel.textColor = .lightGray
 	}
 
 	func configureUI(_ data: EventPost) {

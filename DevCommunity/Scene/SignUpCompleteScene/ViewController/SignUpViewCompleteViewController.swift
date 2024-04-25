@@ -23,8 +23,7 @@ final class SignUpViewCompleteViewController: BaseViewController {
 	}
 
 	override func configureBinding() {
-		let inputDidAppear = self.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:)))
-			.map { _ in }
+		let inputDidAppear = self.rx.viewDidAppear
 
 		let input = SignUpViewCompleteViewModel.Input(inputDidAppear: inputDidAppear,
 																	 inputTapNextButton: signUpCompleteView.nextButton.rx.tap)

@@ -44,9 +44,9 @@ final class EventsViewController: BaseViewController {
 			return "\(data[index].header)"
 		}
 
-		let inputDidAppear = self.rx.sentMessage(#selector(UIViewController.viewDidAppear(_:))).map { _ in	}
+		let inputDidAppear = self.rx.viewDidAppear
 
-		let inputWillAppear = self.rx.sentMessage(#selector(UIViewController.viewWillAppear(_:))).map { _ in }
+		let inputWillAppear = self.rx.viewWillAppear
 
 		let inputDidSelect = Observable.zip(eventsView.eventTableView.rx.modelSelected(EventPost.self).asObservable(),
 																	 eventsView.eventTableView.rx.itemSelected.asObservable())

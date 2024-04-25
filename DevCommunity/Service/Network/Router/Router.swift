@@ -13,6 +13,7 @@ enum Router {
 	case login(query: LoginRequestModel)
 	case getPost(query: PostsRequestModel)
 	case signUp(data: SignUpRequetModel)
+	case getPartyPost(query: PostsRequestModel)
 }
 
 extension Router: TargetType {
@@ -44,6 +45,8 @@ extension Router: TargetType {
 			return .get
 		case .signUp:
 			return .post
+		case .getPartyPost:
+			return .get
 		}
 	}
 
@@ -60,7 +63,7 @@ extension Router: TargetType {
 				HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue
 			]
-		case .getPost:
+		case .getPost, .getPartyPost:
 			return [
 				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken],
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue
@@ -74,7 +77,7 @@ extension Router: TargetType {
 			return "v1/auth/refresh"
 		case .login:
 			return "v1/users/login"
-		case .getPost:
+		case .getPost, .getPartyPost:
 			return "v1/posts"
 		case .signUp:
 			return "v1/users/join"
@@ -102,7 +105,7 @@ extension Router: TargetType {
 			let encoder = JSONEncoder()
 			encoder.keyEncodingStrategy = .convertToSnakeCase
 			return try? encoder.encode(query)
-		case .getPost:
+		case .getPost, .getPartyPost:
 			return nil
 		case .signUp(let data):
 			let encoder = JSONEncoder()

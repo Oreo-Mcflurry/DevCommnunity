@@ -13,10 +13,12 @@ import SkeletonView
 final class DetailViewController: BaseViewController {
 	private let viewModel = DetailViewModel()
 	private let detailView = DetailView()
+	private let titleView = TitleView()
 	private let disposeBag = DisposeBag()
 
 	var eventPost = EventPost()
 	private let dismissButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: DetailViewController.self, action: nil)
+	private let heartButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: DetailViewController.self, action: nil)
 
 	override func loadView() {
 		self.view = detailView
@@ -30,22 +32,41 @@ final class DetailViewController: BaseViewController {
 		self.tabBarController?.tabBar.isHidden = true
 		detailView.configureUI(eventPost)
 		self.navigationItem.leftBarButtonItem = dismissButton
-		self.navigationItem.titleView
+		self.navigationItem.rightBarButtonItem = heartButton
+		self.navigationItem.titleView = titleView
+
+		titleView.configureUI(eventPost)
 	}
 
 	override func configureBinding() {
-		//		dismissButton.rx.tap.bind(with: self) { owner, _ in
-		//			print("RRR")
-		//		}
+		let input = DetailViewModel.Input(inputOffset: detailView.scrollView.rx.contentOffset,
+													 inputDismissButton: dismissButton.rx.tap,
+													 inputHeartButton: heartButton.rx.tap,
+													 inputViewDidAppear: self.rx.viewDidAppear)
 
-		detailView.scrollView.rx.contentOffset
-			.bind(with: self) { owner, value in
-				let scaleFactor = max(0, -value.y) / 120
+		let output = viewModel.transform(input: input)
 
-				owner.detailView.heroImageView.transform = CGAffineTransform(scaleX: 1 + scaleFactor, y: 1 + scaleFactor)
+		output.outputHeroImageOpacity
+			.drive(self.detailView.heroImageView.layer.rx.opacity)
+			.disposed(by: disposeBag)
 
-				let opacityFactor: Float = Float(max(0, 1-value.y/100))
-				owner.detailView.heroImageView.layer.opacity = opacityFactor
+		output.outputHeroImageTransform
+			.drive(self.detailView.heroImageView.rx.transform)
+			.disposed(by: disposeBag)
+
+		output.outputTitleViewIsHidden
+			.drive(with: self) { owner, value in
+				owner.navigationItem.titleView?.isHidden = value
+			}.disposed(by: disposeBag)
+
+		output.outputTitleViewOpacity
+			.drive(with: self) { owner, value in
+				owner.navigationItem.titleView?.layer.opacity = value
+			}.disposed(by: disposeBag)
+
+		output.outputDismissButton
+			.drive(with: self) { owner, _ in
+				owner.dismiss(animated: true)
 			}.disposed(by: disposeBag)
 	}
 }

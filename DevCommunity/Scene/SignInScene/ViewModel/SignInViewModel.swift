@@ -68,3 +68,4 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 						  outputTapLoginButton: outputTapLoginButton.asDriver(),
 						  outputTapSignupButton: input.inputTapSignupButton.asDriver())
 	}
+}

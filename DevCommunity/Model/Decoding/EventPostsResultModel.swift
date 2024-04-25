@@ -72,7 +72,7 @@ struct EventPost: Decodable {
 	}
 
 	var likeString: String {
-		return "👍 \(likes.count)"
+		return "관심 \(likes.count)"
 	}
 
 	enum CodingKeys: String, CodingKey {

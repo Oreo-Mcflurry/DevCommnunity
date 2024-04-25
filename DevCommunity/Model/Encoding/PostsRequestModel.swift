@@ -9,7 +9,7 @@ import Foundation
 
 struct PostsRequestModel: Encodable {
 	 let next: String
-	 let limit = "1000"
+	 var limit = "1000"
 	 var product_id = "DevCommunity"
 }
 
