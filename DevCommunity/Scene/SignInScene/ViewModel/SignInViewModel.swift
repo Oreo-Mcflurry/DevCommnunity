@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 
 final class SignInViewModel: InputOutputViewModelProtocol {
+	private let requestManager = RequestManager()
+
 	struct Input {
 		let inputEmailText: ControlProperty<String?>
 		let inputPasswordText: ControlProperty<String?>
@@ -48,7 +50,7 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 		input.inputTapLoginButton
 			.map { LoginRequestModel(email: $0.0 ?? "", password: $0.1 ?? "") }
 			.flatMap {
-				RequestManager().createLogin(query: $0)
+				self.requestManager.createLogin(query: $0)
 			}.subscribe(with: self, onNext: { _, data in
 				UserDefaults.standard[.userNickname] = data.nick
 				UserDefaults.standard[.emailId] = data.email
@@ -66,20 +68,3 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 						  outputTapLoginButton: outputTapLoginButton.asDriver(),
 						  outputTapSignupButton: input.inputTapSignupButton.asDriver())
 	}
-
-//	private func requestLogin(_ request: LoginRequestModel) -> Single<Bool> {
-//		return Single<Bool>.create { single in
-//			RequestManager().callRequest(.login(query: request), type: LoginResultModel.self)
-//				.subscribe(with: self) { _, data in
-//					UserDefaults.standard[.emailId] = data.email
-//					UserDefaults.standard[.password] = request.password
-//					UserDefaults.standard[.accessToken] = data.accessToken
-//					UserDefaults.standard[.refreshToken] = data.refreshToken
-//					UserDefaults.standard[.userId] = data.user_id
-//					single(.success(true))
-//				} onFailure: { _, error in
-//					single(.failure(error))
-//				}
-//		}
-//	}
-}

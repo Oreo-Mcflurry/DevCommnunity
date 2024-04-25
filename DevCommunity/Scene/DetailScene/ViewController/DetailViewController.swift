@@ -30,7 +30,9 @@ final class DetailViewController: BaseViewController {
 		self.tabBarController?.tabBar.isHidden = true
 		detailView.configureUI(eventPost)
 		self.navigationItem.leftBarButtonItem = dismissButton
+		self.navigationItem.titleView
 	}
+
 	override func configureBinding() {
 		//		dismissButton.rx.tap.bind(with: self) { owner, _ in
 		//			print("RRR")
@@ -38,9 +40,12 @@ final class DetailViewController: BaseViewController {
 
 		detailView.scrollView.rx.contentOffset
 			.bind(with: self) { owner, value in
-				let scaleFactor = max(0, -value.y) / 100
+				let scaleFactor = max(0, -value.y) / 120
 
 				owner.detailView.heroImageView.transform = CGAffineTransform(scaleX: 1 + scaleFactor, y: 1 + scaleFactor)
+
+				let opacityFactor: Float = Float(max(0, 1-value.y/100))
+				owner.detailView.heroImageView.layer.opacity = opacityFactor
 			}.disposed(by: disposeBag)
 	}
 }

@@ -10,7 +10,9 @@ import RxSwift
 import RxCocoa
 
 final class SignUpViewCompleteViewModel: InputOutputViewModelProtocol {
+	private let requestManager = RequestManager()
 	var requestModel: SignUpRequetModel?
+
 	private var isSuccess: Bool? = nil
 
 	struct Input {
@@ -34,13 +36,13 @@ final class SignUpViewCompleteViewModel: InputOutputViewModelProtocol {
 		input.inputDidAppear
 			.map { self.requestModel ?? SignUpRequetModel(email: "", password: "", nick: "", phoneNum: "")}
 			.flatMap {
-				RequestManager().createSignUp(data: $0)
+				self.requestManager.createSignUp(data: $0)
 			}
 			.subscribe(with: self, onNext: { owner, _ in
 				owner.isSuccess = true
 
 				let login = LoginRequestModel(email: UserDefaults.standard[.emailId], password: UserDefaults.standard[.password])
-				RequestManager().createLogin(query: login)
+				self.requestManager.createLogin(query: login)
 					.subscribe(with: self) { owner, _ in
 						signUpComplete.accept(true)
 					}.disposed(by: self.disposeBag)

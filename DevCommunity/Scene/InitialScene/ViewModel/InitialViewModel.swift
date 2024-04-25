@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class InitialViewModel: InputOutputViewModelProtocol {
+	private let requestManager = RequestManager()
 	struct Input {
 		let inputDidAppear: Observable<Void>
 	}
@@ -26,7 +27,7 @@ final class InitialViewModel: InputOutputViewModelProtocol {
 		input.inputDidAppear
 			.map {
 				LoginRequestModel(email: UserDefaults.standard[.emailId], password: UserDefaults.standard[.password])
-			}.flatMap { RequestManager().createLogin(query: $0) }
+			}.flatMap { self.requestManager.createLogin(query: $0) }
 			.subscribe(with: self) { _, _ in
 				outputLoginResult.accept(true)
 			} onError: { _, _ in

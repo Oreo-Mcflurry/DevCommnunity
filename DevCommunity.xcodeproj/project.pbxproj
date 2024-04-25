@@ -37,6 +37,7 @@
 		0B469D542BD64CB400691995 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D532BD64CB400691995 /* DetailView.swift */; };
 		0B469D572BD64CC000691995 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D562BD64CC000691995 /* DetailViewModel.swift */; };
 		0B469D592BD6828100691995 /* DdayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D582BD6828100691995 /* DdayLabel.swift */; };
+		0B469D722BD9F31300691995 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D712BD9F31300691995 /* TitleView.swift */; };
 		0B5B4DF12BCBBD4E00F0F8E4 /* SignUpLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4DF02BCBBD4E00F0F8E4 /* SignUpLabelsView.swift */; };
 		0B5B4E0F2BCD4BA700F0F8E4 /* AccessTokenRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E0E2BCD4BA700F0F8E4 /* AccessTokenRefresh.swift */; };
 		0B5B4E172BCD62B600F0F8E4 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E162BCD62B600F0F8E4 /* EventsViewController.swift */; };
@@ -109,6 +110,7 @@
 		0B469D532BD64CB400691995 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0B469D562BD64CC000691995 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		0B469D582BD6828100691995 /* DdayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DdayLabel.swift; sourceTree = "<group>"; };
+		0B469D712BD9F31300691995 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		0B5B4DF02BCBBD4E00F0F8E4 /* SignUpLabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpLabelsView.swift; sourceTree = "<group>"; };
 		0B5B4E0E2BCD4BA700F0F8E4 /* AccessTokenRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenRefresh.swift; sourceTree = "<group>"; };
 		0B5B4E162BCD62B600F0F8E4 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
@@ -336,6 +338,14 @@
 				0B469D582BD6828100691995 /* DdayLabel.swift */,
 			);
 			path = DdayLabel;
+			sourceTree = "<group>";
+		};
+		0B469D702BD9F30800691995 /* TitleView */ = {
+			isa = PBXGroup;
+			children = (
+				0B469D712BD9F31300691995 /* TitleView.swift */,
+			);
+			path = TitleView;
 			sourceTree = "<group>";
 		};
 		0B5B4DEF2BCBBD3E00F0F8E4 /* SignUpLabelsView */ = {
@@ -693,6 +703,7 @@
 		0BDE9FFD2BC8296300289075 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0B469D702BD9F30800691995 /* TitleView */,
 				0B469D6F2BD88C5C00691995 /* DdayLabel */,
 				0B5B4DEF2BCBBD3E00F0F8E4 /* SignUpLabelsView */,
 				0BCFF0622BCA455300CDC6E5 /* CheckBoxView */,
@@ -815,6 +826,7 @@
 				0B019DC42BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift in Sources */,
 				0BDE9FDD2BC76EF100289075 /* CodeView.swift in Sources */,
 				0B5B4DF12BCBBD4E00F0F8E4 /* SignUpLabelsView.swift in Sources */,
+				0B469D722BD9F31300691995 /* TitleView.swift in Sources */,
 				0B5B4E692BCFA74D00F0F8E4 /* SettingViewController.swift in Sources */,
 				0B5B4E672BCFA73600F0F8E4 /* SettingViewModel.swift in Sources */,
 				0B5B4E592BCEBA9A00F0F8E4 /* InitialViewController.swift in Sources */,

@@ -12,6 +12,8 @@ import RxDataSources
 
 final class EventsViewModel: InputOutputViewModelProtocol {
 
+	private let requestManager = RequestManager()
+
 	struct Input {
 		let inputRefresh: ControlEvent<Void>
 		let inputDidAppear: Observable<Void>
@@ -42,7 +44,7 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 		Observable.merge(input.inputRefresh.asObservable(), input.inputDidAppear)
 			.debug()
 			.flatMap { _ in
-				RequestManager().getPosts(query: .event)
+				self.requestManager.getPosts(query: .event)
 			}
 			.delay(.seconds(1), scheduler: MainScheduler.asyncInstance)
 			.debug()
