@@ -10,11 +10,15 @@ import RxSwift
 import RxCocoa
 
 final class DetailViewModel: InputOutputViewModelProtocol {
+	private let requestManager = RequestManager()
+	private var next = ""
+	private var partyPost: [PartyPost] = []
+
 	struct Input {
 		let inputOffset: ControlProperty<CGPoint>
-		let inputDismissButton: ControlEvent<Void>
-		let inputHeartButton: ControlEvent<Void>
-		let inputViewDidAppear: Observable<Void>
+		let inputHeartButton: Observable<EventPost>
+		let inputWebJoinButton: ControlEvent<Void>
+		let inputViewDidAppear: Observable<EventPost>
 	}
 
 	struct Output {
@@ -22,8 +26,10 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputHeroImageTransform: Driver<CGAffineTransform>
 		let outputTitleViewIsHidden: Driver<Bool>
 		let outputTitleViewOpacity: Driver<Float>
-		let outputDismissButton: Driver<Void>
-		let outputHeartButton: Driver<Void>
+		let outputHeartButton: Driver<Bool>
+		let outputWebJoinButton: Driver<Void>
+		let outputError: Driver<Void>
+		let outputPartyPost: Driver<[PartyPost]>
 	}
 
 	var disposeBag = DisposeBag()
@@ -33,6 +39,11 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputHeroImageTransform: BehaviorRelay<CGAffineTransform> = BehaviorRelay(value: CGAffineTransform(scaleX: 0, y: 0))
 		let outputTitleViewIsHidden = BehaviorRelay(value: false)
 		let outputTitleViewOpacity: BehaviorRelay<Float> = BehaviorRelay(value: 0.0)
+
+		let outputPartyPost: BehaviorRelay<[PartyPost]> = BehaviorRelay(value: [])
+		let outputError = BehaviorRelay(value: Void())
+
+		let outputHeartButton = BehaviorRelay(value: false)
 
 		input.inputOffset
 			.bind(with: self) { owner, value in
@@ -50,11 +61,38 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 				}
 			}.disposed(by: disposeBag)
 
+		input.inputViewDidAppear
+			.flatMap { value in
+				let query = PostsRequestModel(next: self.next, limit: "5", product_id: value.requestProductID)
+				return self.requestManager.getPartyPost(query: .party(query: query))
+					.catch { _ in
+						outputError.accept(Void())
+						return Observable.never()
+					}
+			}
+			.subscribe(with: self) { owner, value in
+				owner.next = value.nextCursor
+				owner.partyPost.append(contentsOf: value.data)
+				outputPartyPost.accept(owner.partyPost)
+			}.disposed(by: disposeBag)
+
+		input.inputHeartButton
+			.flatMap {
+				let query = LikeRequestModel(like_status: !$0.isLiked)
+				return self.requestManager.requestLike(postID: $0.postID, query: query)
+					.catchAndReturn(LikeResultModel(like_status: false))
+			}
+			.map { $0.like_status }
+			.bind(to: outputHeartButton)
+			.disposed(by: disposeBag)
+
 		return Output(outputHeroImageOpacity: outputHeroImageOpacity.asDriver(),
 						  outputHeroImageTransform: outputHeroImageTransform.asDriver(),
 						  outputTitleViewIsHidden: outputTitleViewIsHidden.asDriver(),
 						  outputTitleViewOpacity: outputTitleViewOpacity.asDriver(),
-						  outputDismissButton: input.inputDismissButton.asDriver(),
-						  outputHeartButton: input.inputHeartButton.asDriver())
+						  outputHeartButton: outputHeartButton.asDriver(),
+						  outputWebJoinButton: input.inputWebJoinButton.asDriver(),
+						  outputError: outputError.asDriver(),
+						  outputPartyPost: outputPartyPost.asDriver())
 	}
 }

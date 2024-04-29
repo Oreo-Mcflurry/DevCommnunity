@@ -22,10 +22,15 @@ final class DetailView: BaseUIView {
 	private let timeLabel = UILabel()
 	private let likeLabel = UILabel()
 
+	private let partyDiscriptionLabel = UILabel()
+
+	let partyStackView = UIStackView()
+	var partyCellView: [PartyViewCell] = []
+
 	override func configureHierarchy() {
 		[scrollView].forEach { addSubview($0) }
 		[contentView].forEach { scrollView.addSubview($0) }
-		[heroImageView, roundedView, defendHeroView, organizerLabel, eventTitleLabel, timeLabel, likeLabel].forEach { contentView.addSubview($0) }
+		[heroImageView, roundedView, defendHeroView, organizerLabel, eventTitleLabel, timeLabel, likeLabel, partyDiscriptionLabel, partyStackView].forEach { contentView.addSubview($0) }
 	}
 
 	override func configureLayout() {
@@ -72,7 +77,17 @@ final class DetailView: BaseUIView {
 		likeLabel.snp.makeConstraints {
 			$0.top.equalTo(timeLabel.snp.bottom).offset(10)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
-			$0.bottom.lessThanOrEqualTo(contentView)
+		}
+
+		partyDiscriptionLabel.snp.makeConstraints {
+			$0.top.equalTo(likeLabel.snp.bottom).offset(30)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
+		}
+
+		partyStackView.snp.makeConstraints {
+			$0.top.equalTo(partyDiscriptionLabel.snp.bottom).offset(10)
+			$0.horizontalEdges.equalTo(contentView)
+			$0.bottom.equalTo(contentView).inset(20)
 		}
 	}
 
@@ -98,6 +113,12 @@ final class DetailView: BaseUIView {
 		timeLabel.textColor = .lightGray
 
 		likeLabel.textColor = .lightGray
+
+		partyDiscriptionLabel.text = "팀원 구합니다"
+		partyDiscriptionLabel.font = .boldSystemFont(ofSize: 20)
+
+		partyStackView.axis = .vertical
+
 	}
 
 	func configureUI(_ data: EventPost) {
@@ -106,5 +127,17 @@ final class DetailView: BaseUIView {
 		eventTitleLabel.text = data.title
 		timeLabel.text = data.time
 		likeLabel.text = data.likeString
+	}
+
+	func configureStackView(_ data: [PartyPost]) {
+		data.forEach {
+			let cell = PartyViewCell()
+			cell.configureUI($0)
+			partyCellView.append(cell)
+		}
+
+		partyCellView.forEach {
+			partyStackView.addArrangedSubview($0)
+		}
 	}
 }

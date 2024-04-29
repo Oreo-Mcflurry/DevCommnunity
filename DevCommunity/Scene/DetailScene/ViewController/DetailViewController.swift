@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SkeletonView
+import RxDataSources
+import RxGesture
 
 final class DetailViewController: BaseViewController {
 	private let viewModel = DetailViewModel()
@@ -17,8 +19,8 @@ final class DetailViewController: BaseViewController {
 	private let disposeBag = DisposeBag()
 
 	var eventPost = EventPost()
-	private let dismissButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: DetailViewController.self, action: nil)
 	private let heartButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: DetailViewController.self, action: nil)
+	private let webJoinButton = UIBarButtonItem(image: UIImage(systemName: "globe"), style: .plain, target: DetailViewController.self, action: nil)
 
 	override func loadView() {
 		self.view = detailView
@@ -31,18 +33,20 @@ final class DetailViewController: BaseViewController {
 	override func configureView() {
 		self.tabBarController?.tabBar.isHidden = true
 		detailView.configureUI(eventPost)
-		self.navigationItem.leftBarButtonItem = dismissButton
-		self.navigationItem.rightBarButtonItem = heartButton
-		self.navigationItem.titleView = titleView
-
 		titleView.configureUI(eventPost)
+		heartButton.image = eventPost.isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+		self.navigationItem.rightBarButtonItems = [heartButton, webJoinButton]
+		self.navigationItem.titleView = titleView
 	}
 
 	override func configureBinding() {
+		let inputViewDidAppear = self.rx.viewDidAppear.map { self.eventPost }
+		let inputHeartButton = self.heartButton.rx.tap.map { self.eventPost }
+
 		let input = DetailViewModel.Input(inputOffset: detailView.scrollView.rx.contentOffset,
-													 inputDismissButton: dismissButton.rx.tap,
-													 inputHeartButton: heartButton.rx.tap,
-													 inputViewDidAppear: self.rx.viewDidAppear)
+													 inputHeartButton: inputHeartButton,
+													 inputWebJoinButton: webJoinButton.rx.tap,
+													 inputViewDidAppear: inputViewDidAppear)
 
 		let output = viewModel.transform(input: input)
 
@@ -64,9 +68,39 @@ final class DetailViewController: BaseViewController {
 				owner.navigationItem.titleView?.layer.opacity = value
 			}.disposed(by: disposeBag)
 
-		output.outputDismissButton
-			.drive(with: self) { owner, _ in
-				owner.dismiss(animated: true)
+		output.outputPartyPost
+			.drive(with: self) { owner, value in
+				owner.detailView.configureStackView(value)
+				owner.tapGestureSetting()
 			}.disposed(by: disposeBag)
+
+		output.outputWebJoinButton
+			.drive(with: self) { owner, _ in
+				let vc = WebViewController()
+				print(owner.eventPost.webURL)
+				vc.url = owner.eventPost.webURL
+				owner.navigationController?.pushViewController(vc, animated: true)
+			}.disposed(by: disposeBag)
+
+		output.outputHeartButton
+			.drive(with: self) { owner, value in
+				owner.eventPost.isLiked = value
+				owner.heartButton.image = value ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+			}.disposed(by: disposeBag)
+	}
+
+	private func tapGestureSetting() {
+
+		detailView.partyCellView.forEach { view in
+			view.rx.tapGesture()
+				.when(.recognized)
+				.asDriver{ _ in .never() }
+				.map { _ in
+					view.data
+				}
+				.drive(with: self) { owner, value in
+					print(value)
+				}.disposed(by: disposeBag)
+		}
 	}
 }
