@@ -30,7 +30,7 @@ final class EventsViewController: BaseViewController {
 
 	override func configureBinding() {
 		let dataSource = RxTableViewSectionedAnimatedDataSource<EventsPostsSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .fade, reloadAnimation: .fade, deleteAnimation: .fade)) { data, tableView, indexPath, item in
-			guard let cell = tableView.dequeueReusableCell(withIdentifier: EventsTableViewCell.description(), for: indexPath) as? EventsTableViewCell else { fatalError("Dequeue EventsTableViewCell Error") }
+			guard let cell = tableView.dequeueReusableCell(withIdentifier: EventsTableViewCell.identifier, for: indexPath) as? EventsTableViewCell else { fatalError("Dequeue EventsTableViewCell Error") }
 
 			if data[indexPath.section].row == .skeleton {
 				cell.configureSkeleton()

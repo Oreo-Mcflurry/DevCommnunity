@@ -67,6 +67,9 @@
 		0B60E1A42BDF7A1500779038 /* PartyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1A32BDF7A1500779038 /* PartyDetailViewController.swift */; };
 		0B60E1A62BDF7A2E00779038 /* PartyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1A52BDF7A2E00779038 /* PartyDetailView.swift */; };
 		0B60E1A82BDF7A4A00779038 /* PartyDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1A72BDF7A4A00779038 /* PartyDetailViewModel.swift */; };
+		0B60E1AC2BDF830700779038 /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1AB2BDF830700779038 /* DetailHeaderView.swift */; };
+		0B60E1AE2BDF837A00779038 /* BaseTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1AD2BDF837A00779038 /* BaseTableHeaderView.swift */; };
+		0B60E1B02BDF86BF00779038 /* DetailViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1AF2BDF86BF00779038 /* DetailViewSectionModel.swift */; };
 		0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */; };
 		0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */; };
 		0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */; };
@@ -147,6 +150,9 @@
 		0B60E1A32BDF7A1500779038 /* PartyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyDetailViewController.swift; sourceTree = "<group>"; };
 		0B60E1A52BDF7A2E00779038 /* PartyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyDetailView.swift; sourceTree = "<group>"; };
 		0B60E1A72BDF7A4A00779038 /* PartyDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyDetailViewModel.swift; sourceTree = "<group>"; };
+		0B60E1AB2BDF830700779038 /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
+		0B60E1AD2BDF837A00779038 /* BaseTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableHeaderView.swift; sourceTree = "<group>"; };
+		0B60E1AF2BDF86BF00779038 /* DetailViewSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewSectionModel.swift; sourceTree = "<group>"; };
 		0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewController.swift; sourceTree = "<group>"; };
 		0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetView.swift; sourceTree = "<group>"; };
 		0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewModel.swift; sourceTree = "<group>"; };
@@ -491,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				0B5B4E802BD1F50F00F0F8E4 /* EventsPostsSectionModel.swift */,
+				0B60E1AF2BDF86BF00779038 /* DetailViewSectionModel.swift */,
 			);
 			path = SectionModel;
 			sourceTree = "<group>";
@@ -507,6 +514,7 @@
 			isa = PBXGroup;
 			children = (
 				0B60E1602BDB8B2C00779038 /* PartyViewCell.swift */,
+				0B60E1AB2BDF830700779038 /* DetailHeaderView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -761,6 +769,7 @@
 				0BDE9FE42BC8120D00289075 /* BaseTableViewCell.swift */,
 				0BDE9FE52BC8120D00289075 /* BaseUIView.swift */,
 				0BDE9FE62BC8120D00289075 /* BaseViewController.swift */,
+				0B60E1AD2BDF837A00779038 /* BaseTableHeaderView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -916,6 +925,7 @@
 				0B469D722BD9F31300691995 /* TitleView.swift in Sources */,
 				0B60E1612BDB8B2C00779038 /* PartyViewCell.swift in Sources */,
 				0B5B4E692BCFA74D00F0F8E4 /* SettingViewController.swift in Sources */,
+				0B60E1AC2BDF830700779038 /* DetailHeaderView.swift in Sources */,
 				0B5B4E672BCFA73600F0F8E4 /* SettingViewModel.swift in Sources */,
 				0B5B4E592BCEBA9A00F0F8E4 /* InitialViewController.swift in Sources */,
 				0BDE9FF72BC826B900289075 /* SignUpView.swift in Sources */,
@@ -932,6 +942,7 @@
 				0B60E19A2BDF652F00779038 /* WebView.swift in Sources */,
 				0BDE9FF42BC826AD00289075 /* SignUpViewController.swift in Sources */,
 				0B019D782BC6BB8600E89BB4 /* AppDelegate.swift in Sources */,
+				0B60E1AE2BDF837A00779038 /* BaseTableHeaderView.swift in Sources */,
 				0B019DBD2BC6CC3300E89BB4 /* ReusableID.swift in Sources */,
 				0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */,
 				0BDE9FEF2BC812AB00289075 /* SignInViewModel.swift in Sources */,
@@ -947,6 +958,7 @@
 				0BCFF0832BCAADE300CDC6E5 /* LoginResultModel.swift in Sources */,
 				0B019DBA2BC6CC0300E89BB4 /* NetworkManager.swift in Sources */,
 				0B019DC22BC6CC9200E89BB4 /* APIKeyPublic.swift in Sources */,
+				0B60E1B02BDF86BF00779038 /* DetailViewSectionModel.swift in Sources */,
 				0BCFF0692BCAA5B400CDC6E5 /* ProfileSettingViewController.swift in Sources */,
 				0B60E1A82BDF7A4A00779038 /* PartyDetailViewModel.swift in Sources */,
 				0B469D592BD6828100691995 /* BasePaddingLabel.swift in Sources */,

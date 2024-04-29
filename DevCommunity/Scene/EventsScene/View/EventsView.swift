@@ -24,7 +24,7 @@ final class EventsView: BaseUIView {
 	}
 
 	override func configureView() {
-		eventTableView.register(EventsTableViewCell.self, forCellReuseIdentifier: EventsTableViewCell.description())
+		eventTableView.register(EventsTableViewCell.self, forCellReuseIdentifier: EventsTableViewCell.identifier)
 		eventTableView.refreshControl = refreshControl
 		eventTableView.rowHeight = UITableView.automaticDimension
 	}

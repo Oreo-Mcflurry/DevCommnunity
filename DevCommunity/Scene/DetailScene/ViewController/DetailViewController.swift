@@ -37,26 +37,37 @@ final class DetailViewController: BaseViewController {
 		heartButton.image = eventPost.isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
 		self.navigationItem.rightBarButtonItems = [heartButton, webJoinButton]
 		self.navigationItem.titleView = titleView
+
+		detailView.detailTableView.delegate = self
 	}
 
 	override func configureBinding() {
+
+		let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel> (animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
+			guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyViewCell.identifier, for: indexPath) as? PartyViewCell else { fatalError() }
+			cell.configureUI(item)
+			return cell
+		}
+
+
+
 		let inputViewDidAppear = self.rx.viewDidAppear.map { self.eventPost }
 		let inputHeartButton = self.heartButton.rx.tap.map { self.eventPost }
 
-		let input = DetailViewModel.Input(inputOffset: detailView.scrollView.rx.contentOffset,
+		let input = DetailViewModel.Input(inputOffset: detailView.detailTableView.rx.contentOffset,
 													 inputHeartButton: inputHeartButton,
 													 inputWebJoinButton: webJoinButton.rx.tap,
 													 inputViewDidAppear: inputViewDidAppear)
 
 		let output = viewModel.transform(input: input)
 
-		output.outputHeroImageOpacity
-			.drive(self.detailView.heroImageView.layer.rx.opacity)
-			.disposed(by: disposeBag)
-
-		output.outputHeroImageTransform
-			.drive(self.detailView.heroImageView.rx.transform)
-			.disposed(by: disposeBag)
+//		output.outputHeroImageOpacity
+//			.drive(self.detailView.heroImageView.layer.rx.opacity)
+//			.disposed(by: disposeBag)
+//
+//		output.outputHeroImageTransform
+//			.drive(self.detailView.heroImageView.rx.transform)
+//			.disposed(by: disposeBag)
 
 		output.outputTitleViewIsHidden
 			.drive(with: self) { owner, value in
@@ -69,10 +80,8 @@ final class DetailViewController: BaseViewController {
 			}.disposed(by: disposeBag)
 
 		output.outputPartyPost
-			.drive(with: self) { owner, value in
-				owner.detailView.configureStackView(value)
-				owner.tapGestureSetting()
-			}.disposed(by: disposeBag)
+			.drive(self.detailView.detailTableView.rx.items(dataSource: dataSource))
+			.disposed(by: disposeBag)
 
 		output.outputWebJoinButton
 			.drive(with: self) { owner, _ in
@@ -85,22 +94,17 @@ final class DetailViewController: BaseViewController {
 		output.outputHeartButton
 			.drive(with: self) { owner, value in
 				owner.eventPost.isLiked = value
-				owner.heartButton.image = value ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+//				owner.heartButton.image = value ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
 			}.disposed(by: disposeBag)
 	}
+}
 
-	private func tapGestureSetting() {
+extension DetailViewController: UITableViewDelegate {
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DetailHeaderView.identifier) as? DetailHeaderView else { fatalError() }
 
-		detailView.partyCellView.forEach { view in
-			view.rx.tapGesture()
-				.when(.recognized)
-				.asDriver{ _ in .never() }
-				.map { _ in
-					view.data
-				}
-				.drive(with: self) { owner, value in
-					print(value)
-				}.disposed(by: disposeBag)
-		}
+		header.configureUI(eventPost)
+
+		return header
 	}
 }

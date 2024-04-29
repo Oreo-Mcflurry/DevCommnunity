@@ -12,7 +12,7 @@ import RxCocoa
 final class DetailViewModel: InputOutputViewModelProtocol {
 	private let requestManager = RequestManager()
 	private var next = ""
-	private var partyPost: [PartyPost] = []
+	private var partyPost: DetailViewSectionModel = DetailViewSectionModel(header: "", items: [], row: .data)
 
 	struct Input {
 		let inputOffset: ControlProperty<CGPoint>
@@ -29,7 +29,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputHeartButton: Driver<Bool>
 		let outputWebJoinButton: Driver<Void>
 		let outputError: Driver<Void>
-		let outputPartyPost: Driver<[PartyPost]>
+		let outputPartyPost: Driver<[DetailViewSectionModel]>
 	}
 
 	var disposeBag = DisposeBag()
@@ -40,7 +40,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputTitleViewIsHidden = BehaviorRelay(value: false)
 		let outputTitleViewOpacity: BehaviorRelay<Float> = BehaviorRelay(value: 0.0)
 
-		let outputPartyPost: BehaviorRelay<[PartyPost]> = BehaviorRelay(value: [])
+		let outputPartyPost: BehaviorRelay<[DetailViewSectionModel]> = BehaviorRelay(value: [])
 		let outputError = BehaviorRelay(value: Void())
 
 		let outputHeartButton = BehaviorRelay(value: false)
@@ -72,8 +72,8 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 			}
 			.subscribe(with: self) { owner, value in
 				owner.next = value.nextCursor
-				owner.partyPost.append(contentsOf: value.data)
-				outputPartyPost.accept(owner.partyPost)
+				owner.partyPost.items.append(contentsOf: value.data)
+				outputPartyPost.accept([owner.partyPost])
 			}.disposed(by: disposeBag)
 
 		input.inputHeartButton

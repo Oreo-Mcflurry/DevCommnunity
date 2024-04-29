@@ -13,6 +13,7 @@ final class PartyDetailViewController: BaseViewController {
 	private let partyDetailView = PartyDetailView()
 	private let partyDetailViewModel = PartyDetailViewModel()
 	private let disposeBag = DisposeBag()
+	var partyPost = PartyPost()
 
 	override func loadView() {
 		self.view = partyDetailView

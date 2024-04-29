@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class PartyViewCell: BaseUIView {
+final class PartyViewCell: BaseTableViewCell {
 	var data = PartyPost()
 	
 	private let dDayLabel = UILabel()
@@ -20,48 +20,48 @@ final class PartyViewCell: BaseUIView {
 	private let seperator = UIView()
 
 	override func configureHierarchy() {
-		[dDayLabel, partyMaxLabel, titleLabel, bookmarkButton, discriptionLabel, recruitMentsStackView, seperator].forEach { self.addSubview($0) }
+		[dDayLabel, partyMaxLabel, titleLabel, bookmarkButton, discriptionLabel, recruitMentsStackView, seperator].forEach { self.contentView.addSubview($0) }
 	}
 
 	override func configureLayout() {
 		dDayLabel.snp.makeConstraints {
-			$0.top.equalTo(self).inset(10)
-			$0.leading.equalTo(self).inset(20)
+			$0.top.equalTo(contentView).inset(10)
+			$0.leading.equalTo(contentView).inset(20)
 		}
 
 		partyMaxLabel.snp.makeConstraints {
-			$0.top.equalTo(self).inset(10)
+			$0.top.equalTo(contentView).inset(10)
 			$0.leading.equalTo(dDayLabel.snp.trailing).offset(20)
 		}
 
 		bookmarkButton.snp.makeConstraints {
-			$0.top.equalTo(self).inset(10)
+			$0.top.equalTo(contentView).inset(10)
 			$0.leading.greaterThanOrEqualTo(partyMaxLabel.snp.trailing).offset(10)
 			$0.size.equalTo(30)
-			$0.trailing.equalTo(self).inset(20)
+			$0.trailing.equalTo(contentView).inset(20)
 		}
 
 		titleLabel.snp.makeConstraints  {
 			$0.top.equalTo(bookmarkButton.snp.bottom).offset(10)
-			$0.horizontalEdges.equalTo(self).inset(20)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
 		}
 
 		discriptionLabel.snp.makeConstraints {
 			$0.top.equalTo(titleLabel.snp.bottom).offset(10)
-			$0.horizontalEdges.equalTo(self).inset(20)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
 		}
 
 		recruitMentsStackView.snp.makeConstraints {
 			$0.top.equalTo(discriptionLabel.snp.bottom).offset(10)
-			$0.leading.equalTo(self).inset(20)
-			$0.trailing.lessThanOrEqualTo(self).inset(20)
+			$0.leading.equalTo(contentView).inset(20)
+			$0.trailing.lessThanOrEqualTo(contentView).inset(20)
 		}
 
 		seperator.snp.makeConstraints {
 			$0.top.equalTo(recruitMentsStackView.snp.bottom).offset(10)
-			$0.horizontalEdges.equalTo(self)
+			$0.horizontalEdges.equalTo(contentView)
 			$0.height.equalTo(1)
-			$0.bottom.equalTo(self).inset(10)
+			$0.bottom.equalTo(contentView).inset(10)
 		}
 	}
 
