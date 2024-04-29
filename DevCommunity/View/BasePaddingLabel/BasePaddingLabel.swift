@@ -1,5 +1,5 @@
 //
-//  DdayLabel.swift
+//  BasePaddingLabel.swift
 //  DevCommunity
 //
 //  Created by A_Mcflurry on 4/22/24.
