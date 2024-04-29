@@ -14,6 +14,7 @@ enum Router {
 	case getPost(query: PostsRequestModel)
 	case signUp(data: SignUpRequetModel)
 	case getPartyPost(query: PostsRequestModel)
+	case like(postID: String, query: LikeRequestModel)
 }
 
 extension Router: TargetType {
@@ -47,6 +48,8 @@ extension Router: TargetType {
 			return .post
 		case .getPartyPost:
 			return .get
+		case .like:
+			return .post
 		}
 	}
 
@@ -68,6 +71,13 @@ extension Router: TargetType {
 				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken],
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue
 			]
+
+		case .like:
+			return [
+				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken],
+				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue,
+				HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue
+			]
 		}
 	}
 
@@ -81,6 +91,8 @@ extension Router: TargetType {
 			return "v1/posts"
 		case .signUp:
 			return "v1/users/join"
+		case .like(let postID, _):
+			return "v1/posts/\(postID)/like"
 		}
 	}
 
@@ -92,6 +104,9 @@ extension Router: TargetType {
 		switch self {
 		case .getPost(let query):
 			return query.queryItems
+
+		case .getPartyPost(let query):
+			return query.queryItems
 		default:
 			return nil
 		}
@@ -101,16 +116,20 @@ extension Router: TargetType {
 		switch self {
 		case .access:
 			return nil
-		case .login(let query):
-			let encoder = JSONEncoder()
-			encoder.keyEncodingStrategy = .convertToSnakeCase
-			return try? encoder.encode(query)
+		case .login(let data):
+			return encoding(data: data)
 		case .getPost, .getPartyPost:
 			return nil
 		case .signUp(let data):
-			let encoder = JSONEncoder()
-			encoder.keyEncodingStrategy = .convertToSnakeCase
-			return try? encoder.encode(data)
+			return encoding(data: data)
+		case .like(_, let data):
+			return encoding(data: data)
 		}
+	}
+
+	private func encoding(data: Encodable) -> Data? {
+		let encoder = JSONEncoder()
+		encoder.keyEncodingStrategy = .convertToSnakeCase
+		return try? encoder.encode(data)
 	}
 }
