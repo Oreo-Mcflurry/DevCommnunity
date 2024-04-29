@@ -26,11 +26,11 @@ struct EventPost: Decodable {
 	let time: String
 	let organizer: String
 	private let url: String
-	let recruitProductId: String
+	private let recruitProductId: String
 	let createdAt: String
 	let creator: Creator
 	let files: [String]
-	private let likes: [String]
+	private var likes: [String]
 	private let likes2: [String]
 	private let hashTag: [String]
 	let title: String
@@ -73,6 +73,30 @@ struct EventPost: Decodable {
 
 	var likeString: String {
 		return "관심 \(likes.count)"
+	}
+
+	var isLiked: Bool {
+		get {
+			return likes.contains(UserDefaults.standard[.userId])
+		} set {
+			if newValue {
+				likes.append(UserDefaults.standard[.userId])
+			} else {
+				likes.enumerated().forEach { index, item in
+					if item == UserDefaults.standard[.userId] {
+						likes.remove(at: index)
+					}
+				}
+			}
+		}
+	}
+
+	var requestProductID: String {
+		return "DevCommunity\(postID)"
+	}
+
+	var webURL: URL {
+		return URL(string: url) ?? URL(string: "www.naver.com")!
 	}
 
 	enum CodingKeys: String, CodingKey {

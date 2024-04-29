@@ -8,20 +8,20 @@
 import Foundation
 import RxDataSources
 
-struct PostsSectionModel {
+struct EventsPostsSectionModel {
 	var header: String
 	var items: [EventPost]
 	var row: Row
 }
 
-extension PostsSectionModel: AnimatableSectionModelType {
+extension EventsPostsSectionModel: AnimatableSectionModelType {
 	typealias Identity = String
 
 	var identity: String {
 		return header
 	}
 
-	init(original: PostsSectionModel, items: [EventPost]) {
+	init(original: EventsPostsSectionModel, items: [EventPost]) {
 		self = original
 		self.items = items
 	}

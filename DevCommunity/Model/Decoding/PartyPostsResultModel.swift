@@ -8,7 +8,7 @@
 import Foundation
 import Differentiator
 
-struct PartyPostsModel: Decodable {
+struct PartyPostsResultModel: Decodable {
 	var data: [PartyPost]
 	let nextCursor: String
 
@@ -25,32 +25,47 @@ struct PartyPost: Decodable {
 	private let content1: String
 	private let content2: String
 	private let content3: String
+	let mainText: String
 	let createdAt: String
 	let creator: Creator
 	let files: [String]
 	private let likes: [String]
 	private let likes2: [String]
-	let hashTags: [String]
+	private let hashTags: [String]
 	let title: String
 
 	var dateStart: Date {
 		let formatter = DateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd"
 		return formatter.date(from: content1) ?? Date()
 	}
 
 	var dateEnd: Date {
 		let formatter = DateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd"
 		return formatter.date(from: content2) ?? Date()
 	}
 
-	var dDay: Int {
+	var dDay: String {
 		let calendar = Calendar.current
-		let components = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
-		return components.day ?? 0
+		let day = calendar.dateComponents([.day], from: dateEnd, to: Date()).day ?? 0
+		return day == 0 ? "D-day" : "D\(day)"
 	}
 
-	var upToPeople: Int {
-		return Int(content3) ?? 0
+	var maxPeople: String {
+		return "\(Int(content3) ?? 0)명 구인"
+	}
+
+	var isBookmarked: Bool {
+		return likes.contains(UserDefaults.standard[.userId])
+	}
+
+	var isJoined: Bool {
+		return likes2.contains(UserDefaults.standard[.userId])
+	}
+
+	var hashTagString: [String] {
+		return hashTags.map { $0.split(separator: ";").joined(separator: " ") + "명" }
 	}
 
 	enum CodingKeys: String, CodingKey {
@@ -60,6 +75,7 @@ struct PartyPost: Decodable {
 		case content1 = "content1"
 		case content2 = "content2"
 		case content3 = "content3"
+		case mainText = "content4"
 		case createdAt = "createdAt"
 		case creator = "creator"
 		case files = "files"
@@ -77,6 +93,7 @@ struct PartyPost: Decodable {
 		self.content1 = try container.decodeIfPresent(String.self, forKey: .content1) ?? ""
 		self.content2 = try container.decodeIfPresent(String.self, forKey: .content2) ?? ""
 		self.content3 = try container.decodeIfPresent(String.self, forKey: .content3) ?? ""
+		self.mainText = try container.decodeIfPresent(String.self, forKey: .mainText) ?? ""
 		self.createdAt = try container.decodeIfPresent(String.self, forKey: .createdAt) ?? ""
 		self.creator = try container.decodeIfPresent(Creator.self, forKey: .creator) ?? Creator(userID: "", nick: "")
 		self.files = try container.decodeIfPresent([String].self, forKey: .files) ?? []
@@ -93,6 +110,7 @@ struct PartyPost: Decodable {
 		self.content1 =  ""
 		self.content2 = ""
 		self.content3 = ""
+		self.mainText = ""
 		self.createdAt = ""
 		self.creator = Creator(userID: "", nick: "")
 		self.files = []
