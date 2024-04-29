@@ -29,16 +29,14 @@ final class EventsViewController: BaseViewController {
 	}
 
 	override func configureBinding() {
-		let dataSource = RxTableViewSectionedAnimatedDataSource<PostsSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .fade, reloadAnimation: .fade, deleteAnimation: .fade)) { data, tableView, indexPath, item in
+		let dataSource = RxTableViewSectionedAnimatedDataSource<EventsPostsSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .fade, reloadAnimation: .fade, deleteAnimation: .fade)) { data, tableView, indexPath, item in
 			guard let cell = tableView.dequeueReusableCell(withIdentifier: EventsTableViewCell.description(), for: indexPath) as? EventsTableViewCell else { fatalError("Dequeue EventsTableViewCell Error") }
 
 			if data[indexPath.section].row == .skeleton {
 				cell.configureSkeleton()
 			} else {
 				cell.configureCell(item)
-				
 			}
-
 			return cell
 		} titleForHeaderInSection: { data, index in
 			return "\(data[index].header)"
@@ -81,10 +79,13 @@ final class EventsViewController: BaseViewController {
 			.drive(with: self) { owner, value in
 				let vc = DetailViewController()
 				vc.eventPost = value.0
-				let nav = UINavigationController(rootViewController: vc)
-				nav.modalPresentationStyle = .fullScreen
 				owner.eventsView.eventTableView.reloadRows(at: [value.1], with: .automatic)
-				owner.present(nav, animated: true)
+				owner.navigationController?.pushViewController(vc, animated: true)
+			}.disposed(by: disposeBag)
+
+		output.outputError
+			.drive(with: self) { owner, _ in
+				owner.showToast(.serverError)
 			}.disposed(by: disposeBag)
 	}
 }

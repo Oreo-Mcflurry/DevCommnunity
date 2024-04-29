@@ -22,7 +22,7 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 	}
 
 	struct Output {
-		let outputRefresh: Driver<[PostsSectionModel]>
+		let outputRefresh: Driver<[EventsPostsSectionModel]>
 		let outputWillAppear: Driver<Void>
 		let outputError: Driver<Void>
 		let outputDidSelect: Driver<(EventPost, IndexPath)>
@@ -31,11 +31,11 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 	var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
-		let outputRefresh: BehaviorRelay<[PostsSectionModel]> = BehaviorRelay(value: [])
+		let outputRefresh: BehaviorRelay<[EventsPostsSectionModel]> = BehaviorRelay(value: [])
 		let outputError = BehaviorRelay(value: Void())
 
-		Observable<[PostsSectionModel]>
-			.just([PostsSectionModel(header: "", items: [EventPost()], row: .skeleton)])
+		Observable<[EventsPostsSectionModel]>
+			.just([EventsPostsSectionModel(header: "", items: [EventPost()], row: .skeleton)])
 			.bind(with: self) { owner, value in
 				outputRefresh.accept(value)
 			}
@@ -45,17 +45,18 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 			.debug()
 			.flatMap { _ in
 				self.requestManager.getPosts(query: .event)
+					.catch { _ in
+						outputError.accept(Void())
+						return Observable.never()
+					}
 			}
 			.delay(.seconds(1), scheduler: MainScheduler.asyncInstance)
 			.debug()
 			.map { $0.data }
 			.map { self.groupPostsByMonth(posts: $0) }
-			.subscribe(with: self, onNext: { _, value in
+			.subscribe(with: self) { _, value in
 				outputRefresh.accept(value)
-			}, onError: { _, _ in
-				// 애러처리
-				outputError.accept(Void())
-			})
+			}
 			.disposed(by: disposeBag)
 
 		return Output(outputRefresh: outputRefresh.asDriver(), 
@@ -64,7 +65,7 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 						  outputDidSelect: input.inputDidSelect.asDriver(onErrorJustReturn: (EventPost(), IndexPath(row: 0, section: 0))))
 	}
 
-	private func groupPostsByMonth(posts: [EventPost]) -> [PostsSectionModel] {
+	private func groupPostsByMonth(posts: [EventPost]) -> [EventsPostsSectionModel] {
 		var groupedPosts: [Int: [EventPost]] = [:]
 
 		let sortedPost = posts.sorted { lhs, rhs in
@@ -82,7 +83,7 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 		}
 
 		let sortedKeys = groupedPosts.keys.sorted()
-		var sections: [PostsSectionModel] = []
+		var sections: [EventsPostsSectionModel] = []
 		for month in sortedKeys {
 			let header = "\(month)월"
 			if let items = groupedPosts[month] {
@@ -90,7 +91,7 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 					lhs.time < rhs.time
 				}
 
-				let section = PostsSectionModel(header: header, items: sortedItem, row: .data)
+				let section = EventsPostsSectionModel(header: header, items: sortedItem, row: .data)
 				sections.append(section)
 			}
 		}
