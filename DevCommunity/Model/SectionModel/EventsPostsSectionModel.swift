@@ -8,7 +8,7 @@
 import Foundation
 import RxDataSources
 
-struct EventsPostsSectionModel {
+struct EventsPostsSectionModel: SectionModelProtocol {	
 	var header: String
 	var items: [EventPost]
 	var row: Row
@@ -24,10 +24,5 @@ extension EventsPostsSectionModel: AnimatableSectionModelType {
 	init(original: EventsPostsSectionModel, items: [EventPost]) {
 		self = original
 		self.items = items
-	}
-
-	enum Row {
-		case skeleton
-		case data
 	}
 }

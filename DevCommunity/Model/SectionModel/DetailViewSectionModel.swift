@@ -8,7 +8,7 @@
 import Foundation
 import RxDataSources
 
-struct DetailViewSectionModel {
+struct DetailViewSectionModel: SectionModelProtocol {
 	var header: String
 	var items: [PartyPost]
 	var row: Row
@@ -24,10 +24,5 @@ extension DetailViewSectionModel: AnimatableSectionModelType {
 	init(original: DetailViewSectionModel, items: [PartyPost]) {
 		self = original
 		self.items = items
-	}
-
-	enum Row {
-		case skeleton
-		case data
 	}
 }

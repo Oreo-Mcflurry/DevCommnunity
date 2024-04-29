@@ -70,6 +70,8 @@
 		0B60E1AC2BDF830700779038 /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1AB2BDF830700779038 /* DetailHeaderView.swift */; };
 		0B60E1AE2BDF837A00779038 /* BaseTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1AD2BDF837A00779038 /* BaseTableHeaderView.swift */; };
 		0B60E1B02BDF86BF00779038 /* DetailViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1AF2BDF86BF00779038 /* DetailViewSectionModel.swift */; };
+		0B60E1B32BE067F600779038 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1B22BE067F600779038 /* Row.swift */; };
+		0B60E1B52BE0683500779038 /* SectionModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1B42BE0683500779038 /* SectionModelProtocol.swift */; };
 		0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */; };
 		0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */; };
 		0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */; };
@@ -153,6 +155,8 @@
 		0B60E1AB2BDF830700779038 /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
 		0B60E1AD2BDF837A00779038 /* BaseTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableHeaderView.swift; sourceTree = "<group>"; };
 		0B60E1AF2BDF86BF00779038 /* DetailViewSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewSectionModel.swift; sourceTree = "<group>"; };
+		0B60E1B22BE067F600779038 /* Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
+		0B60E1B42BE0683500779038 /* SectionModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModelProtocol.swift; sourceTree = "<group>"; };
 		0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewController.swift; sourceTree = "<group>"; };
 		0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetView.swift; sourceTree = "<group>"; };
 		0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewModel.swift; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 		0B019D762BC6BB8600E89BB4 /* WhyIsn'tWorking */ = {
 			isa = PBXGroup;
 			children = (
+				0B60E1B12BE067ED00779038 /* Enum */,
 				0BCFF07D2BCAAC8900CDC6E5 /* Model */,
 				0BDE9FFD2BC8296300289075 /* View */,
 				0B019DAA2BC6BCA900E89BB4 /* Extension */,
@@ -274,6 +279,7 @@
 			children = (
 				0B019DAB2BC6BCBA00E89BB4 /* InputOutputViewModelProtocol.swift */,
 				0B019DBC2BC6CC3300E89BB4 /* ReusableID.swift */,
+				0B60E1B42BE0683500779038 /* SectionModelProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -576,6 +582,14 @@
 				0B60E1A72BDF7A4A00779038 /* PartyDetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B60E1B12BE067ED00779038 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				0B60E1B22BE067F600779038 /* Row.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		0BCFF0552BCA42F500CDC6E5 /* SignUpBottomSheet */ = {
@@ -954,6 +968,7 @@
 				0B5B4E1B2BCD631300F0F8E4 /* EventsView.swift in Sources */,
 				0B60E19E2BDF6C2B00779038 /* LikeResultModel.swift in Sources */,
 				0B019D7A2BC6BB8600E89BB4 /* SceneDelegate.swift in Sources */,
+				0B60E1B52BE0683500779038 /* SectionModelProtocol.swift in Sources */,
 				0BDE9FE82BC8120E00289075 /* BaseCollectionViewCell.swift in Sources */,
 				0BCFF0832BCAADE300CDC6E5 /* LoginResultModel.swift in Sources */,
 				0B019DBA2BC6CC0300E89BB4 /* NetworkManager.swift in Sources */,
@@ -990,6 +1005,7 @@
 				0B5B4EA02BD24FF000F0F8E4 /* EventsTableViewCell.swift in Sources */,
 				0B469D572BD64CC000691995 /* DetailViewModel.swift in Sources */,
 				0B60E1972BDF64DE00779038 /* WebViewController.swift in Sources */,
+				0B60E1B32BE067F600779038 /* Row.swift in Sources */,
 				0B5B4E4E2BCE748B00F0F8E4 /* SignUpRequetModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
