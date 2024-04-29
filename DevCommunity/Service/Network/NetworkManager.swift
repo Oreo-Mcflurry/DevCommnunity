@@ -22,14 +22,14 @@ class RequestManager {
 
 	enum PostsKind {
 		case event
-		case party(name: String)
+		case party(query: PostsRequestModel)
 
 		var requestValue: String {
 			switch self {
 			case .event:
 				return "DevCommunity"
-			case .party(let name):
-				return "DevCommunity\(name)"
+			case .party(let query):
+				return query.product_id
 			}
 		}
 	}
@@ -101,6 +101,7 @@ class RequestManager {
 						UserDefaults.standard[.accessToken] = result.accessToken
 						UserDefaults.standard[.refreshToken] = result.refreshToken
 						UserDefaults.standard[.password] = query.password
+						UserDefaults.standard[.userId] = result.user_id
 						KingfisherManager.shared.setHeaders()
 						single(.success(result))
 					case .failure(let error):
@@ -143,7 +144,6 @@ class RequestManager {
 					case .failure(_):
 						self.refreshAccessToken {
 							self.callRequest(.getPost(query: request), type: EventPostsResultModel.self)
-								.map { $0 }
 								.subscribe(with: self) { _, result in
 									observer.onNext(result)
 								} onFailure: { _, error in
@@ -152,6 +152,52 @@ class RequestManager {
 						}
 					}
 				}
+		}
+	}
+
+	func getPartyPost(query: PostsKind) -> Observable<PartyPostsResultModel> {
+		var request = PostsRequestModel(next: "")
+
+		if case .party(let query) = query {
+			request = query
+		}
+
+		return Observable.create { observer -> Disposable in
+			self.callRequest(.getPartyPost(query: request), type: PartyPostsResultModel.self)
+				.subscribe { event in
+					switch event {
+					case .success(let result):
+						observer.onNext(result)
+
+					case .failure(_):
+						self.refreshAccessToken {
+							self.callRequest(.getPost(query: request), type: PartyPostsResultModel.self)
+								.subscribe(with: self) { _, result in
+									observer.onNext(result)
+								} onFailure: { _, error in
+									observer.onError(error)
+								}.disposed(by: self.disposeBag)
+						}
+					}
+				}
+		}
+	}
+
+	func requestLike(postID: String, query: LikeRequestModel) -> Single<LikeResultModel> {
+		return Single<LikeResultModel>.create { single in
+			self.callRequest(.like(postID: postID, query: query), type: LikeResultModel.self)
+				.subscribe(with: self) { _, value in
+					single(.success(value))
+				} onFailure: { _, error in
+					self.callRequest(.like(postID: postID, query: query), type: LikeResultModel.self)
+							.subscribe(with: self) { _, value in
+								single(.success(value))
+							} onFailure: { _, error in
+								single(.failure(error))
+							}.disposed(by: self.disposeBag)
+				}.disposed(by: self.disposeBag)
+
+			return Disposables.create()
 		}
 	}
 }
