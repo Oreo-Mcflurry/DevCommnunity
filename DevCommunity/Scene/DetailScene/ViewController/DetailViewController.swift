@@ -17,6 +17,7 @@ final class DetailViewController: BaseViewController {
 	private let detailView = DetailView()
 	private let titleView = TitleView()
 	private let disposeBag = DisposeBag()
+	let tableHeaderView = DetailHeaderView()
 
 	var eventPost = EventPost()
 	private let heartButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: DetailViewController.self, action: nil)
@@ -45,7 +46,13 @@ final class DetailViewController: BaseViewController {
 
 		let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel> (animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
 			guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyViewCell.identifier, for: indexPath) as? PartyViewCell else { fatalError() }
-			cell.configureUI(item)
+
+			if data[indexPath.section].row == .data {
+				cell.configureUI(item)
+			} else {
+				cell.configureSkeleton()
+			}
+
 			return cell
 		}
 
@@ -61,13 +68,13 @@ final class DetailViewController: BaseViewController {
 
 		let output = viewModel.transform(input: input)
 
-//		output.outputHeroImageOpacity
-//			.drive(self.detailView.heroImageView.layer.rx.opacity)
-//			.disposed(by: disposeBag)
-//
-//		output.outputHeroImageTransform
-//			.drive(self.detailView.heroImageView.rx.transform)
-//			.disposed(by: disposeBag)
+		output.outputHeroImageOpacity
+			.drive(self.tableHeaderView.heroImageView.layer.rx.opacity)
+			.disposed(by: disposeBag)
+
+		output.outputHeroImageTransform
+			.drive(self.tableHeaderView.heroImageView.rx.transform)
+			.disposed(by: disposeBag)
 
 		output.outputTitleViewIsHidden
 			.drive(with: self) { owner, value in
@@ -101,10 +108,9 @@ final class DetailViewController: BaseViewController {
 
 extension DetailViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DetailHeaderView.identifier) as? DetailHeaderView else { fatalError() }
+//		guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DetailHeaderView.identifier) as? DetailHeaderView else { fatalError() }
+		tableHeaderView.configureUI(eventPost)
 
-		header.configureUI(eventPost)
-
-		return header
+		return tableHeaderView
 	}
 }

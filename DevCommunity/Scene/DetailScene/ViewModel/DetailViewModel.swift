@@ -12,7 +12,7 @@ import RxCocoa
 final class DetailViewModel: InputOutputViewModelProtocol {
 	private let requestManager = RequestManager()
 	private var next = ""
-	private var partyPost: DetailViewSectionModel = DetailViewSectionModel(header: "", items: [], row: .data)
+	private var partyPost: DetailViewSectionModel = DetailViewSectionModel(header: "", items: [], row: .skeleton)
 
 	struct Input {
 		let inputOffset: ControlProperty<CGPoint>
@@ -45,9 +45,13 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 
 		let outputHeartButton = BehaviorRelay(value: false)
 
+		Observable.just([DetailViewSectionModel(header: "", items: [PartyPost()], row: .skeleton)])
+		.bind(to: outputPartyPost)
+		.disposed(by: disposeBag)
+
 		input.inputOffset
 			.bind(with: self) { owner, value in
-				let scaleFactor = 1 + (max(0, -value.y) / 120)
+				let scaleFactor = 1 + (max(0, -value.y) / 130)
 				outputHeroImageTransform.accept(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
 
 				let opacityFactor = Float(max(0, 1-value.y/100))
@@ -72,7 +76,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 			}
 			.subscribe(with: self) { owner, value in
 				owner.next = value.nextCursor
-				owner.partyPost.items.append(contentsOf: value.data)
+				owner.partyPost = DetailViewSectionModel(header: "", items: value.data, row: .data)
 				outputPartyPost.accept([owner.partyPost])
 			}.disposed(by: disposeBag)
 

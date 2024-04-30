@@ -7,10 +7,9 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class PartyViewCell: BaseTableViewCell {
-	var data = PartyPost()
-	
 	private let dDayLabel = UILabel()
 	private let partyMaxLabel = UILabel()
 	private let titleLabel = UILabel()
@@ -69,11 +68,15 @@ final class PartyViewCell: BaseTableViewCell {
 		recruitMentsStackView.alignment = .leading
 		recruitMentsStackView.distribution = .equalSpacing
 		recruitMentsStackView.spacing = 10
+		contentView.backgroundColor = .white
+
+		[self, contentView, dDayLabel, partyMaxLabel, titleLabel, bookmarkButton, discriptionLabel, recruitMentsStackView].forEach {
+			$0.isSkeletonable = true
+		}
 	}
 
 	func configureUI(_ data: PartyPost) {
-		self.data = data
-
+		self.hideSkeleton()
 		dDayLabel.text = data.dDay
 		partyMaxLabel.text = data.maxPeople
 		titleLabel.text = data.title
@@ -86,5 +89,9 @@ final class PartyViewCell: BaseTableViewCell {
 			basePaddingLabel.text = $0
 			recruitMentsStackView.addArrangedSubview(basePaddingLabel)
 		}
+	}
+
+	func configureSkeleton() {
+		self.showAnimatedSkeleton()
 	}
 }
