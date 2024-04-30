@@ -11,7 +11,7 @@ import SnapKit
 import Kingfisher
 
 final class DetailView: BaseUIView {
-	let detailTableView = UITableView()
+	let detailTableView = UITableView(frame: .zero, style: .grouped)
 	private let detailTableHeaderView = DetailHeaderView()
 
 	override func configureHierarchy() {
@@ -27,6 +27,9 @@ final class DetailView: BaseUIView {
 	override func configureView() {
 		detailTableView.register(DetailHeaderView.self, forHeaderFooterViewReuseIdentifier: DetailHeaderView.identifier)
 		detailTableView.register(PartyViewCell.self, forCellReuseIdentifier: PartyViewCell.identifier)
+		detailTableView.contentInsetAdjustmentBehavior = .never
+		detailTableView.sectionFooterHeight = 0
+		detailTableView.backgroundColor = .white
 	}
 
 	func configureUI(_ data: EventPost) {

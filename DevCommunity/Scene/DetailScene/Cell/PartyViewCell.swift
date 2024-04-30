@@ -17,10 +17,9 @@ final class PartyViewCell: BaseTableViewCell {
 	private let bookmarkButton = UIButton()
 	private let discriptionLabel = UILabel()
 	private let recruitMentsStackView = UIStackView()
-	private let seperator = UIView()
 
 	override func configureHierarchy() {
-		[dDayLabel, partyMaxLabel, titleLabel, bookmarkButton, discriptionLabel, recruitMentsStackView, seperator].forEach { self.contentView.addSubview($0) }
+		[dDayLabel, partyMaxLabel, titleLabel, bookmarkButton, discriptionLabel, recruitMentsStackView].forEach { self.contentView.addSubview($0) }
 	}
 
 	override func configureLayout() {
@@ -55,12 +54,6 @@ final class PartyViewCell: BaseTableViewCell {
 			$0.top.equalTo(discriptionLabel.snp.bottom).offset(10)
 			$0.leading.equalTo(contentView).inset(20)
 			$0.trailing.lessThanOrEqualTo(contentView).inset(20)
-		}
-
-		seperator.snp.makeConstraints {
-			$0.top.equalTo(recruitMentsStackView.snp.bottom).offset(10)
-			$0.horizontalEdges.equalTo(contentView)
-			$0.height.equalTo(1)
 			$0.bottom.equalTo(contentView).inset(10)
 		}
 	}
@@ -76,8 +69,6 @@ final class PartyViewCell: BaseTableViewCell {
 		recruitMentsStackView.alignment = .leading
 		recruitMentsStackView.distribution = .equalSpacing
 		recruitMentsStackView.spacing = 10
-
-		seperator.backgroundColor = .systemGray5
 	}
 
 	func configureUI(_ data: PartyPost) {

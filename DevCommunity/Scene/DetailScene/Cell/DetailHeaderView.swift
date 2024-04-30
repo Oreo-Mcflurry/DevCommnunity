@@ -63,6 +63,7 @@ final class DetailHeaderView: BaseTableHeaderView {
 		partyDiscriptionLabel.snp.makeConstraints {
 			$0.top.equalTo(likeLabel.snp.bottom).offset(30)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
+			$0.bottom.equalTo(contentView)
 		}
 	}
 
