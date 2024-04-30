@@ -54,19 +54,16 @@ final class SignUpBottomSheetViewController: BaseViewController {
 
 		let output = viewModel.transform(input: input)
 
-		output.outputBackColor
-			.drive(signUpBottomSheet.nextButton.rx.backgroundColor)
-			.disposed(by: disposeBag)
-
 		output.outputIsEnabled
-			.drive(signUpBottomSheet.nextButton.rx.isEnabled)
-			.disposed(by: disposeBag)
+			.drive(with: self) { owner, value in
+				owner.signUpBottomSheet.nextButton.isEnabled = value
+				owner.signUpBottomSheet.nextButton.backgroundColor = value ? UIColor.systemBlue : UIColor.lightGray
+			}.disposed(by: disposeBag)
 
 		output.outputTapNextButton
 			.drive(with: self) { owner, _ in
 				owner.dismiss(animated: true)
 					owner.inputNextButton.accept(Void())
-//
 			}.disposed(by: disposeBag)
 	}
 }

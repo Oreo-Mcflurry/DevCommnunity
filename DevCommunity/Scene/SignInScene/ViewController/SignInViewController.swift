@@ -46,13 +46,11 @@ final class SignInViewController: BaseViewController {
 
 		let output = signInViewModel.transform(input: input)
 
-		output.outputBackButton
-			.drive(signInView.loginButton.rx.backgroundColor)
-			.disposed(by: disposeBag)
-
 		output.outputIsEnabled
-			.drive(signInView.loginButton.rx.isEnabled)
-			.disposed(by: disposeBag)
+			.drive(with: self) { owner, value in
+				owner.signInView.loginButton.isEnabled = value
+				owner.signInView.loginButton.backgroundColor = value ? UIColor.systemBlue : UIColor.lightGray
+			}.disposed(by: disposeBag)
 
 		output.outputTapSignupButton
 			.drive(with: self) { owner, _ in

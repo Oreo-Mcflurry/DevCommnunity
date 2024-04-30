@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit.UIColor
 import RxSwift
 import RxCocoa
 
@@ -22,7 +21,6 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 
 	struct Output {
 		let outputIsEnabled: Driver<Bool>
-		let outputBackButton: Driver<UIColor>
 		let outputTapLoginButton: Driver<Bool>
 		let outputTapSignupButton: Driver<Void>
 	}
@@ -31,7 +29,6 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 
 	func transform(input: Input) -> Output {
 		let outputIsEnabled = BehaviorRelay(value: false)
-		let outputBackButton = BehaviorRelay(value: UIColor.lightGray)
 		let outputTapLoginButton = BehaviorRelay(value: false)
 
 		let validation = Observable.combineLatest(input.inputEmailText.orEmpty, input.inputPasswordText.orEmpty)
@@ -40,11 +37,6 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 
 		validation
 			.bind(to: outputIsEnabled)
-			.disposed(by: disposeBag)
-
-		validation
-			.map { $0 ? UIColor.systemBlue : UIColor.lightGray }
-			.bind(to: outputBackButton)
 			.disposed(by: disposeBag)
 
 		input.inputTapLoginButton
@@ -64,7 +56,6 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 
 
 		return Output(outputIsEnabled: outputIsEnabled.asDriver(),
-						  outputBackButton: outputBackButton.asDriver(),
 						  outputTapLoginButton: outputTapLoginButton.asDriver(),
 						  outputTapSignupButton: input.inputTapSignupButton.asDriver())
 	}
