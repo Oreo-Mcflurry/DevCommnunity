@@ -10,4 +10,5 @@ import Foundation
 enum Row {
 	case skeleton
 	case data
+	case empty
 }
