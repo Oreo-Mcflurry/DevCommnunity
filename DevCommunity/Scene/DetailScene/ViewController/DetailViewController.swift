@@ -43,9 +43,12 @@ final class DetailViewController: BaseViewController {
 
 		let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel> (animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
 
-			print("==========\(data[indexPath.section].row)")
 			if data[indexPath.section].row == .empty {
 				guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyEmptyTableViewCell.identifier, for: indexPath) as? PartyEmptyTableViewCell else { fatalError() }
+				tableView.visibleCells.forEach { $0.hideSkeleton() }
+				tableView.separatorStyle = .none
+				cell.selectionStyle = .none
+				cell.isUserInteractionEnabled = false
 				return cell
 			}
 
@@ -60,15 +63,14 @@ final class DetailViewController: BaseViewController {
 			return cell
 		}
 
-
-
 		let inputViewDidAppear = self.rx.viewDidAppear.map { self.eventPost }
 		let inputHeartButton = self.heartButton.rx.tap.map { self.eventPost }
 
 		let input = DetailViewModel.Input(inputOffset: detailView.detailTableView.rx.contentOffset,
 													 inputHeartButton: inputHeartButton,
 													 inputWebJoinButton: webJoinButton.rx.tap,
-													 inputViewDidAppear: inputViewDidAppear)
+													 inputViewDidAppear: inputViewDidAppear,
+													 inputDidSelect: detailView.detailTableView.rx.modelSelected(PartyPost.self))
 
 		let output = viewModel.transform(input: input)
 
@@ -111,6 +113,14 @@ final class DetailViewController: BaseViewController {
 		output.outputOffset
 			.drive(self.detailView.detailTableView.rx.contentOffset)
 			.disposed(by: disposeBag)
+
+		output.outputDidSelect
+			.drive(with: self) { owner, value in
+				print(value)
+				let vc = PartyDetailViewController()
+				vc.partyPost = value
+				owner.navigationController?.pushViewController(vc, animated: true)
+			}.disposed(by: disposeBag)
 	}
 }
 

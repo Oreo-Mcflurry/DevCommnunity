@@ -104,7 +104,7 @@ struct PartyPost: Decodable {
 	}
 
 	init() {
-		self.postID =  ""
+		self.postID = UUID().uuidString
 		self.productID = ""
 		self.content = ""
 		self.content1 =  ""

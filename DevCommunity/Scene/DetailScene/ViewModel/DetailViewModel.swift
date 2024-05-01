@@ -19,6 +19,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let inputHeartButton: Observable<EventPost>
 		let inputWebJoinButton: ControlEvent<Void>
 		let inputViewDidAppear: Observable<EventPost>
+		let inputDidSelect: ControlEvent<PartyPost>
 	}
 
 	struct Output {
@@ -31,6 +32,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputWebJoinButton: Driver<Void>
 		let outputError: Driver<Void>
 		let outputPartyPost: Driver<[DetailViewSectionModel]>
+		let outputDidSelect: Driver<PartyPost>
 	}
 
 	var disposeBag = DisposeBag()
@@ -82,12 +84,11 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 			.subscribe(with: self) { owner, value in
 				owner.next = value.nextCursor
 				if value.data.isEmpty {
-					owner.partyPost = DetailViewSectionModel(header: "", items: [PartyPost()], row: .empty)
+					outputPartyPost.accept([DetailViewSectionModel(header: "", items: [PartyPost()], row: .empty)])
 				} else {
 					owner.partyPost = DetailViewSectionModel(header: "", items: value.data, row: .data)
+					outputPartyPost.accept([owner.partyPost])
 				}
-
-				outputPartyPost.accept([owner.partyPost])
 			}.disposed(by: disposeBag)
 
 		input.inputHeartButton
@@ -108,6 +109,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 						  outputHeartButton: outputHeartButton.asDriver(),
 						  outputWebJoinButton: input.inputWebJoinButton.asDriver(),
 						  outputError: outputError.asDriver(),
-						  outputPartyPost: outputPartyPost.asDriver())
+						  outputPartyPost: outputPartyPost.asDriver(), 
+						  outputDidSelect: input.inputDidSelect.asDriver())
 	}
 }

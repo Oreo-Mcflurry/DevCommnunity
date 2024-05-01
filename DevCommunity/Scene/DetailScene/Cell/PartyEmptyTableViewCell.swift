@@ -10,29 +10,29 @@ import SnapKit
 
 final class PartyEmptyTableViewCell: BaseTableViewCell {
 	private let emptyMainLabel = UILabel()
-	private let emptyImage = UIImageView()
+	private let emptyImageLabel = UILabel()
 	private let emptySubLabel = UILabel()
 
 	override func configureHierarchy() {
-		[emptyMainLabel, emptyImage, emptySubLabel].forEach { contentView.addSubview($0) }
+		[emptyMainLabel, emptyImageLabel, emptySubLabel].forEach { contentView.addSubview($0) }
 	}
 
 	override func configureLayout() {
 		emptyMainLabel.snp.makeConstraints {
+			$0.top.equalTo(contentView).inset(20)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
 			$0.width.equalTo(150)
 		}
 
-		emptyImage.snp.makeConstraints {
+		emptyImageLabel.snp.makeConstraints {
 			$0.top.equalTo(emptyMainLabel.snp.bottom).offset(10)
 			$0.centerX.equalTo(contentView)
-			$0.size.equalTo(50)
 		}
 
 		emptySubLabel.snp.makeConstraints {
-			$0.top.equalTo(emptyImage.snp.bottom).offset(10)
+			$0.top.equalTo(emptyImageLabel.snp.bottom).offset(10)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
-			$0.bottom.equalTo(contentView)
+			$0.bottom.equalTo(contentView).inset(20)
 		}
 	}
 
@@ -41,9 +41,12 @@ final class PartyEmptyTableViewCell: BaseTableViewCell {
 		emptyMainLabel.textAlignment = .center
 		emptyMainLabel.font = .boldSystemFont(ofSize: 25)
 
-		emptyImage.image = UIImage(systemName: "star")
+		emptyImageLabel.text = "😥"
+		emptyImageLabel.font = .preferredFont(forTextStyle: .largeTitle)
 
-		emptySubLabel.text = "모집글이 없네요!\n모집글을 작성해서 팀원을 구해보세요!"
+		emptySubLabel.text = "모집글이 없네요.\n모집글을 작성해서 팀원을 구해보세요!"
+		emptySubLabel.numberOfLines = 2
+		emptySubLabel.textAlignment = .center
 		emptySubLabel.textColor = .gray
 	}
 }

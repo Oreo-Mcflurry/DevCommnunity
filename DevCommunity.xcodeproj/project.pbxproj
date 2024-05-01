@@ -284,6 +284,7 @@
 		0B019DA92BC6BCA500E89BB4 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				0BCFF0782BCAA9CD00CDC6E5 /* AlamofireTargetType.swift */,
 				0B019DAB2BC6BCBA00E89BB4 /* InputOutputViewModelProtocol.swift */,
 				0B019DBC2BC6CC3300E89BB4 /* ReusableID.swift */,
 				0B60E1B42BE0683500779038 /* SectionModelProtocol.swift */,
@@ -332,7 +333,6 @@
 				0B019DB22BC6CC0300E89BB4 /* HTTPHeader.swift */,
 				0B019DB42BC6CC0300E89BB4 /* NetworkManager.swift */,
 				0B019DC12BC6CC9200E89BB4 /* APIKeyPublic.swift */,
-				0BCFF0782BCAA9CD00CDC6E5 /* AlamofireTargetType.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
