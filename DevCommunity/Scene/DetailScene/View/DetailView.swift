@@ -26,29 +26,10 @@ final class DetailView: BaseUIView {
 
 	override func configureView() {
 		detailTableView.register(DetailHeaderView.self, forHeaderFooterViewReuseIdentifier: DetailHeaderView.identifier)
-		detailTableView.register(PartyViewCell.self, forCellReuseIdentifier: PartyViewCell.identifier)
+		detailTableView.register(PartyTableViewCell.self, forCellReuseIdentifier: PartyTableViewCell.identifier)
+		detailTableView.register(PartyEmptyTableViewCell.self, forCellReuseIdentifier: PartyEmptyTableViewCell.identifier)
 		detailTableView.contentInsetAdjustmentBehavior = .never
 		detailTableView.sectionFooterHeight = 0
 		detailTableView.backgroundColor = .white
-	}
-
-	func configureUI(_ data: EventPost) {
-//		heroImageView.kf.setImage(with: data.imageURL)
-//		organizerLabel.text = data.organizer
-//		eventTitleLabel.text = data.title
-//		timeLabel.text = data.time
-//		likeLabel.text = data.likeString
-	}
-
-	func configureStackView(_ data: [PartyPost]) {
-//		data.forEach {
-//			let cell = PartyViewCell()
-//			cell.configureUI($0)
-//			partyCellView.append(cell)
-//		}
-//
-//		partyCellView.forEach {
-//			partyStackView.addArrangedSubview($0)
-//		}
 	}
 }

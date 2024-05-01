@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import SkeletonView
 import RxDataSources
-import RxGesture
 
 final class DetailViewController: BaseViewController {
 	private let viewModel = DetailViewModel()
@@ -33,19 +32,24 @@ final class DetailViewController: BaseViewController {
 
 	override func configureView() {
 		self.tabBarController?.tabBar.isHidden = true
-		detailView.configureUI(eventPost)
 		titleView.configureUI(eventPost)
 		heartButton.image = eventPost.isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
 		self.navigationItem.rightBarButtonItems = [heartButton, webJoinButton]
 		self.navigationItem.titleView = titleView
-
 		detailView.detailTableView.delegate = self
 	}
 
 	override func configureBinding() {
 
 		let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel> (animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
-			guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyViewCell.identifier, for: indexPath) as? PartyViewCell else { fatalError() }
+
+			print("==========\(data[indexPath.section].row)")
+			if data[indexPath.section].row == .empty {
+				guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyEmptyTableViewCell.identifier, for: indexPath) as? PartyEmptyTableViewCell else { fatalError() }
+				return cell
+			}
+
+			guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyTableViewCell.identifier, for: indexPath) as? PartyTableViewCell else { fatalError() }
 
 			if data[indexPath.section].row == .data {
 				cell.configureUI(item)
@@ -103,6 +107,10 @@ final class DetailViewController: BaseViewController {
 				owner.eventPost.isLiked = value
 //				owner.heartButton.image = value ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
 			}.disposed(by: disposeBag)
+
+		output.outputOffset
+			.drive(self.detailView.detailTableView.rx.contentOffset)
+			.disposed(by: disposeBag)
 	}
 }
 

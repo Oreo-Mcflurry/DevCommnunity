@@ -23,6 +23,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 
 	struct Output {
 		let outputHeroImageOpacity: Driver<Float>
+		let outputOffset: Driver<CGPoint>
 		let outputHeroImageTransform: Driver<CGAffineTransform>
 		let outputTitleViewIsHidden: Driver<Bool>
 		let outputTitleViewOpacity: Driver<Float>
@@ -39,6 +40,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputHeroImageTransform: BehaviorRelay<CGAffineTransform> = BehaviorRelay(value: CGAffineTransform(scaleX: 0, y: 0))
 		let outputTitleViewIsHidden = BehaviorRelay(value: false)
 		let outputTitleViewOpacity: BehaviorRelay<Float> = BehaviorRelay(value: 0.0)
+		let outputOffset = BehaviorRelay(value: CGPoint(x: 0, y: 0))
 
 		let outputPartyPost: BehaviorRelay<[DetailViewSectionModel]> = BehaviorRelay(value: [])
 		let outputError = BehaviorRelay(value: Void())
@@ -50,8 +52,9 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		.disposed(by: disposeBag)
 
 		input.inputOffset
+			.observe(on:MainScheduler.instance)
 			.bind(with: self) { owner, value in
-				let scaleFactor = 1 + (max(0, -value.y) / 130)
+				let scaleFactor = 1 + (max(0, -value.y) / 120)
 				outputHeroImageTransform.accept(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
 
 				let opacityFactor = Float(max(0, 1-value.y/100))
@@ -63,6 +66,8 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 					outputTitleViewIsHidden.accept(false)
 					outputTitleViewOpacity.accept(1-opacityFactor)
 				}
+
+				outputOffset.accept(CGPoint(x: value.x, y: max(-150, value.y)))
 			}.disposed(by: disposeBag)
 
 		input.inputViewDidAppear
@@ -76,7 +81,12 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 			}
 			.subscribe(with: self) { owner, value in
 				owner.next = value.nextCursor
-				owner.partyPost = DetailViewSectionModel(header: "", items: value.data, row: .data)
+				if value.data.isEmpty {
+					owner.partyPost = DetailViewSectionModel(header: "", items: [PartyPost()], row: .empty)
+				} else {
+					owner.partyPost = DetailViewSectionModel(header: "", items: value.data, row: .data)
+				}
+
 				outputPartyPost.accept([owner.partyPost])
 			}.disposed(by: disposeBag)
 
@@ -91,6 +101,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 			.disposed(by: disposeBag)
 
 		return Output(outputHeroImageOpacity: outputHeroImageOpacity.asDriver(),
+						  outputOffset: outputOffset.asDriver(),
 						  outputHeroImageTransform: outputHeroImageTransform.asDriver(),
 						  outputTitleViewIsHidden: outputTitleViewIsHidden.asDriver(),
 						  outputTitleViewOpacity: outputTitleViewOpacity.asDriver(),
