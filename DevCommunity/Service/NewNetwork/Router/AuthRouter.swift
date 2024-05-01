@@ -8,6 +8,7 @@
 import Foundation
 import Moya
 
+// Moya + Interceptor로 관리하는 로직을 계획하고 있었는데, 도저히 공수가 맞지 않아서 일단 주말로 미뤘습니다. 다 완성하고 네트워크쪽 건드는걸로 계획을 다시 수정하는걸로 하겠습니다.
 
 enum AuthRouter {
 	case access

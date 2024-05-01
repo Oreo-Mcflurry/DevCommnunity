@@ -25,8 +25,8 @@ struct PartyPost: Decodable {
 	private let content1: String
 	private let content2: String
 	private let content3: String
-	let mainText: String
-	let createdAt: String
+	let discriptionText: String
+	private let createdAt: String
 	let creator: Creator
 	let files: [String]
 	private let likes: [String]
@@ -52,7 +52,7 @@ struct PartyPost: Decodable {
 		return day == 0 ? "D-day" : "D\(day)"
 	}
 
-	var maxPeople: String {
+	var partyMax: String {
 		return "\(Int(content3) ?? 0)명 구인"
 	}
 
@@ -66,6 +66,13 @@ struct PartyPost: Decodable {
 
 	var hashTagString: [String] {
 		return hashTags.map { $0.split(separator: ";").joined(separator: " ") + "명" }
+	}
+
+	var createDate: String {
+		let formatter = DateFormatter()
+		let data = formatter.date(from: createdAt) ?? Date()
+		formatter.dateFormat = "MM/dd mm:ss"
+		return formatter.string(from: data)
 	}
 
 	enum CodingKeys: String, CodingKey {
@@ -93,7 +100,7 @@ struct PartyPost: Decodable {
 		self.content1 = try container.decodeIfPresent(String.self, forKey: .content1) ?? ""
 		self.content2 = try container.decodeIfPresent(String.self, forKey: .content2) ?? ""
 		self.content3 = try container.decodeIfPresent(String.self, forKey: .content3) ?? ""
-		self.mainText = try container.decodeIfPresent(String.self, forKey: .mainText) ?? ""
+		self.discriptionText = try container.decodeIfPresent(String.self, forKey: .mainText) ?? ""
 		self.createdAt = try container.decodeIfPresent(String.self, forKey: .createdAt) ?? ""
 		self.creator = try container.decodeIfPresent(Creator.self, forKey: .creator) ?? Creator(userID: "", nick: "")
 		self.files = try container.decodeIfPresent([String].self, forKey: .files) ?? []
@@ -110,7 +117,7 @@ struct PartyPost: Decodable {
 		self.content1 =  ""
 		self.content2 = ""
 		self.content3 = ""
-		self.mainText = ""
+		self.discriptionText = ""
 		self.createdAt = ""
 		self.creator = Creator(userID: "", nick: "")
 		self.files = []

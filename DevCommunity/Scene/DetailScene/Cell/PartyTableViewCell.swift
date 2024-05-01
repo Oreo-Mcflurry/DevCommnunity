@@ -15,10 +15,10 @@ final class PartyTableViewCell: BaseTableViewCell {
 	private let titleLabel = UILabel()
 	private let bookmarkButton = UIButton()
 	private let discriptionLabel = UILabel()
-	private let recruitMentsStackView = UIStackView()
+	private let recruitmentsStackView = UIStackView()
 
 	override func configureHierarchy() {
-		[dDayLabel, partyMaxLabel, titleLabel, bookmarkButton, discriptionLabel, recruitMentsStackView].forEach { self.contentView.addSubview($0) }
+		[dDayLabel, partyMaxLabel, titleLabel, bookmarkButton, discriptionLabel, recruitmentsStackView].forEach { self.contentView.addSubview($0) }
 	}
 
 	override func configureLayout() {
@@ -49,7 +49,7 @@ final class PartyTableViewCell: BaseTableViewCell {
 			$0.horizontalEdges.equalTo(contentView).inset(20)
 		}
 
-		recruitMentsStackView.snp.makeConstraints {
+		recruitmentsStackView.snp.makeConstraints {
 			$0.top.equalTo(discriptionLabel.snp.bottom).offset(10)
 			$0.leading.equalTo(contentView).inset(20)
 			$0.trailing.lessThanOrEqualTo(contentView).inset(20)
@@ -65,12 +65,12 @@ final class PartyTableViewCell: BaseTableViewCell {
 
 		titleLabel.font = .preferredFont(forTextStyle: .title3)
 
-		recruitMentsStackView.alignment = .leading
-		recruitMentsStackView.distribution = .equalSpacing
-		recruitMentsStackView.spacing = 10
+		recruitmentsStackView.alignment = .leading
+		recruitmentsStackView.distribution = .equalSpacing
+		recruitmentsStackView.spacing = 10
 		contentView.backgroundColor = .white
 
-		[self, contentView, dDayLabel, partyMaxLabel, titleLabel, bookmarkButton, discriptionLabel, recruitMentsStackView].forEach {
+		[self, contentView, dDayLabel, partyMaxLabel, titleLabel, bookmarkButton, discriptionLabel, recruitmentsStackView].forEach {
 			$0.isSkeletonable = true
 		}
 	}
@@ -78,16 +78,16 @@ final class PartyTableViewCell: BaseTableViewCell {
 	func configureUI(_ data: PartyPost) {
 		self.hideSkeleton()
 		dDayLabel.text = data.dDay
-		partyMaxLabel.text = data.maxPeople
+		partyMaxLabel.text = data.partyMax
 		titleLabel.text = data.title
 		bookmarkButton.setImage(data.isBookmarked ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"), for: .normal)
-		discriptionLabel.text = data.mainText
+		discriptionLabel.text = data.discriptionText
 
 		data.hashTagString.forEach {
 			let basePaddingLabel = BasePaddingLabel(padding: 6)
 
 			basePaddingLabel.text = $0
-			recruitMentsStackView.addArrangedSubview(basePaddingLabel)
+			recruitmentsStackView.addArrangedSubview(basePaddingLabel)
 		}
 	}
 
