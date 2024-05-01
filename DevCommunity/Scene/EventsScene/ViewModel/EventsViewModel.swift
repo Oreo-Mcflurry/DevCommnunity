@@ -73,6 +73,7 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 		}
 
 		for post in sortedPost {
+			if post.dateStart <= Date() { continue }
 			let month = post.month
 			if var monthPosts = groupedPosts[month] {
 				monthPosts.append(post)

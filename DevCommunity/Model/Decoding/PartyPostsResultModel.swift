@@ -53,7 +53,7 @@ struct PartyPost: Decodable {
 	}
 
 	var partyMax: String {
-		return "\(Int(content3) ?? 0)명 구인"
+		return "\(Int(content3) ?? 0)명 모집"
 	}
 
 	var isBookmarked: Bool {

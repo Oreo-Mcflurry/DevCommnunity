@@ -126,9 +126,7 @@ final class DetailViewController: BaseViewController {
 
 extension DetailViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//		guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DetailHeaderView.identifier) as? DetailHeaderView else { fatalError() }
 		tableHeaderView.configureUI(eventPost)
-
 		return tableHeaderView
 	}
 }
