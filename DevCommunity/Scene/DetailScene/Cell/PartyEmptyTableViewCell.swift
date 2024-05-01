@@ -21,7 +21,6 @@ final class PartyEmptyTableViewCell: BaseTableViewCell {
 		emptyMainLabel.snp.makeConstraints {
 			$0.top.equalTo(contentView).inset(20)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
-			$0.width.equalTo(150)
 		}
 
 		emptyImageLabel.snp.makeConstraints {
