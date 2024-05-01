@@ -17,7 +17,7 @@ enum Router {
 	case like(postID: String, query: LikeRequestModel)
 }
 
-extension Router: TargetType {
+extension Router: AlamofireTargetType {
 
 	func asURLRequest() throws -> URLRequest {
 		let url = try baseURL.asURL()
