@@ -53,7 +53,7 @@ class RequestManager {
 				AF.request(urlRequest)
 					.validate(statusCode: 200..<300)
 					.responseDecodable(of: T.self) { response in
-						debugPrint(response)
+//						debugPrint(response)
 						switch response.result {
 						case .success(let result):
 							single(.success(result))
