@@ -55,6 +55,13 @@ final class PartyDetailView: BaseUIView {
 			$0.top.equalTo(dDayLabel.snp.bottom).offset(20)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
 		}
+
+		recruitmentImageStackView.snp.makeConstraints {
+			$0.top.equalTo(discriptionLabel.snp.bottom).offset(20)
+			$0.leading.equalTo(contentView).offset(20)
+			$0.trailing.lessThanOrEqualTo(contentView).inset(20)
+			$0.bottom.equalTo(contentView).inset(20)
+		}
 	}
 
 	override func configureView() {
@@ -70,6 +77,10 @@ final class PartyDetailView: BaseUIView {
 		uploadDateLabel.textColor = .lightGray
 
 		discriptionLabel.numberOfLines = 0
+
+		recruitmentImageStackView.axis = .horizontal
+		recruitmentImageStackView.spacing = 10
+		recruitmentImageStackView.alignment = .leading
 	}
 
 	func configureUI(_ data: PartyPost) {
@@ -78,5 +89,12 @@ final class PartyDetailView: BaseUIView {
 		titleLabel.text = data.title
 		discriptionLabel.text = data.discriptionText
 		uploadDateLabel.text = data.createDate
+
+		data.recruitmentTuple.forEach {
+			let cell = PartyDetailViewStackCell()
+			cell.configureUI($0)
+
+			recruitmentImageStackView.addArrangedSubview(cell)
+		}
 	}
 }

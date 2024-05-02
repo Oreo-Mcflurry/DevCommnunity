@@ -18,19 +18,6 @@ enum AuthRouter {
 
 extension AuthRouter: TargetType {
 
-	func asURLRequest() throws -> URLRequest {
-		let url = try baseURL.asURL()
-		var urlRequest = try URLRequest(url: url.appendingPathComponent(path), method: method)
-
-		if let queryItems = queryItems {
-			urlRequest.url?.append(queryItems: queryItems)
-		}
-		urlRequest.allHTTPHeaderFields = headers
-		urlRequest.httpBody = parameters?.data(using: .utf8)
-		urlRequest.httpBody = body
-		return urlRequest
-	}
-
 	var path: String {
 		switch self {
 		case .access:
@@ -58,7 +45,12 @@ extension AuthRouter: TargetType {
 	
 
 	var task: Moya.Task {
-		return .requestParameters(parameters: headers ?? [:], encoding: URLEncoding.default)
+		switch self {
+		case .access:
+			return .requestParameters(parameters: headers ?? [:], encoding: URLEncoding.default)
+		case .login(let query):
+			return .requestJSONEncodable(query)
+		}
 	}
 
 	var baseURL: URL {
@@ -72,28 +64,5 @@ extension AuthRouter: TargetType {
 		case .login:
 			return .post
 		}
-	}
-
-	var parameters: String? {
-		return nil
-	}
-
-	var queryItems: [URLQueryItem]? {
-		return nil
-	}
-
-	var body: Data? {
-		switch self {
-		case .access:
-			return nil
-		case .login(let data):
-			return encoding(data: data)
-		}
-	}
-
-	private func encoding(data: Encodable) -> Data? {
-		let encoder = JSONEncoder()
-		encoder.keyEncodingStrategy = .convertToSnakeCase
-		return try? encoder.encode(data)
 	}
 }

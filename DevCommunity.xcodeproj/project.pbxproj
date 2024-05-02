@@ -105,6 +105,9 @@
 		0BDE9FF92BC826C300289075 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE9FF82BC826C300289075 /* SignUpViewModel.swift */; };
 		0BDE9FFC2BC8279500289075 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 0BDE9FFB2BC8279500289075 /* TextFieldEffects */; };
 		0BDE9FFF2BC8298000289075 /* SignUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE9FFE2BC8298000289075 /* SignUpTextField.swift */; };
+		0BFED7DD2BE362E500970D8C /* PartyDetailViewStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7DC2BE362E400970D8C /* PartyDetailViewStackCell.swift */; };
+		0BFED7DF2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7DE2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift */; };
+		0BFED7E22BE37EBF00970D8C /* AuthRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7E12BE37EBF00970D8C /* AuthRequestManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -195,6 +198,9 @@
 		0BDE9FF62BC826B900289075 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		0BDE9FF82BC826C300289075 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		0BDE9FFE2BC8298000289075 /* SignUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTextField.swift; sourceTree = "<group>"; };
+		0BFED7DC2BE362E400970D8C /* PartyDetailViewStackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyDetailViewStackCell.swift; sourceTree = "<group>"; };
+		0BFED7DE2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+Interceptor+Extension.swift"; sourceTree = "<group>"; };
+		0BFED7E12BE37EBF00970D8C /* AuthRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +314,7 @@
 				0B019DC72BC6CD0000E89BB4 /* KeyChain+Extension.swift */,
 				0B469D462BD3E72000691995 /* KingFisher+Extension.swift */,
 				0B60E1552BDA52BD00779038 /* RxSwift+Extension.swift */,
+				0BFED7DE2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -569,6 +576,7 @@
 		0B60E19F2BDF79F400779038 /* PartyDetailScene */ = {
 			isa = PBXGroup;
 			children = (
+				0BFED7DB2BE362CD00970D8C /* Cell */,
 				0B60E1A22BDF7A0500779038 /* ViewModel */,
 				0B60E1A12BDF79FF00779038 /* ViewController */,
 				0B60E1A02BDF79FD00779038 /* View */,
@@ -611,17 +619,18 @@
 		0B60E20F2BE116FD00779038 /* NewNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				0B60E2102BE1170900779038 /* Router */,
+				0B60E2102BE1170900779038 /* Auth */,
 			);
 			path = NewNetwork;
 			sourceTree = "<group>";
 		};
-		0B60E2102BE1170900779038 /* Router */ = {
+		0B60E2102BE1170900779038 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				0B60E2152BE11D7F00779038 /* AuthRouter.swift */,
+				0BFED7E12BE37EBF00970D8C /* AuthRequestManager.swift */,
 			);
-			path = Router;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		0B60E21E2BE26CD600779038 /* PartyPostAddScene */ = {
@@ -899,6 +908,14 @@
 			path = SignUpTextFieldView;
 			sourceTree = "<group>";
 		};
+		0BFED7DB2BE362CD00970D8C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED7DC2BE362E400970D8C /* PartyDetailViewStackCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -998,6 +1015,7 @@
 			files = (
 				0B019DB82BC6CC0300E89BB4 /* HTTPHeader.swift in Sources */,
 				0B5B4E532BCEB76000F0F8E4 /* TabbarController.swift in Sources */,
+				0BFED7DF2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift in Sources */,
 				0B019DC42BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift in Sources */,
 				0BDE9FDD2BC76EF100289075 /* CodeView.swift in Sources */,
 				0B5B4DF12BCBBD4E00F0F8E4 /* SignUpLabelsView.swift in Sources */,
@@ -1035,6 +1053,7 @@
 				0B60E2162BE11D7F00779038 /* AuthRouter.swift in Sources */,
 				0B5B4E1B2BCD631300F0F8E4 /* EventsView.swift in Sources */,
 				0B60E19E2BDF6C2B00779038 /* LikeResultModel.swift in Sources */,
+				0BFED7E22BE37EBF00970D8C /* AuthRequestManager.swift in Sources */,
 				0B019D7A2BC6BB8600E89BB4 /* SceneDelegate.swift in Sources */,
 				0B60E1B52BE0683500779038 /* SectionModelProtocol.swift in Sources */,
 				0BDE9FE82BC8120E00289075 /* BaseCollectionViewCell.swift in Sources */,
@@ -1063,6 +1082,7 @@
 				0BCFF0772BCAA68000CDC6E5 /* SignUpCompleteView.swift in Sources */,
 				0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */,
 				0BDE9FE22BC811D600289075 /* SignInViewController.swift in Sources */,
+				0BFED7DD2BE362E500970D8C /* PartyDetailViewStackCell.swift in Sources */,
 				0BDE9FFF2BC8298000289075 /* SignUpTextField.swift in Sources */,
 				0B60E2232BE26CF900779038 /* PartyPostAddViewController.swift in Sources */,
 				0B019DAC2BC6BCBA00E89BB4 /* InputOutputViewModelProtocol.swift in Sources */,

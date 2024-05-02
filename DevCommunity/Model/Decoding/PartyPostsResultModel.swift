@@ -64,8 +64,12 @@ struct PartyPost: Decodable {
 		return likes2.contains(UserDefaults.standard[.userId])
 	}
 
-	var hashTagString: [String] {
+	var recruitmentString: [String] {
 		return hashTags.map { $0.split(separator: ";").joined(separator: " ") + "명" }
+	}
+
+	var recruitmentTuple: [(job: String, maxParty: String)] {
+		return hashTags.map { $0.split(separator: ";") }.map { (job: "\($0[0])", maxParty: "\($0[1])") }
 	}
 
 	var createDate: String {

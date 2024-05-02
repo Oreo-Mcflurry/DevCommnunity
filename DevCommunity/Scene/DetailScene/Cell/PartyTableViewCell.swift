@@ -83,7 +83,7 @@ final class PartyTableViewCell: BaseTableViewCell {
 		bookmarkButton.setImage(data.isBookmarked ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"), for: .normal)
 		discriptionLabel.text = data.discriptionText
 
-		data.hashTagString.forEach {
+		data.recruitmentString.forEach {
 			let basePaddingLabel = BasePaddingLabel(padding: 6)
 
 			basePaddingLabel.text = $0
