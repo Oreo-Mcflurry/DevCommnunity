@@ -22,6 +22,6 @@ final class PartyDetailViewController: BaseViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		partyDetailView.configureUI(partyPost)
-		navigationController?.title = "팀원 모집"
+		navigationItem.title = "팀원 모집"
 	}
 }

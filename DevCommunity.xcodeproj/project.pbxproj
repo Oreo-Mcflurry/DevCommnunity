@@ -75,6 +75,9 @@
 		0B60E2182BE121C200779038 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0B60E2172BE121C200779038 /* ReactiveMoya */; };
 		0B60E21A2BE121C200779038 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0B60E2192BE121C200779038 /* RxMoya */; };
 		0B60E21C2BE1CA3700779038 /* MoyaTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E21B2BE1CA3700779038 /* MoyaTargetType.swift */; };
+		0B60E2232BE26CF900779038 /* PartyPostAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2222BE26CF900779038 /* PartyPostAddViewController.swift */; };
+		0B60E2252BE26D1900779038 /* PartyPostAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2242BE26D1900779038 /* PartyPostAddView.swift */; };
+		0B60E2272BE26D3200779038 /* PartyPostAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2262BE26D3200779038 /* PartyPostAddViewModel.swift */; };
 		0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */; };
 		0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */; };
 		0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */; };
@@ -163,6 +166,9 @@
 		0B60E2032BE0A5D700779038 /* PartyEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		0B60E2152BE11D7F00779038 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		0B60E21B2BE1CA3700779038 /* MoyaTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaTargetType.swift; sourceTree = "<group>"; };
+		0B60E2222BE26CF900779038 /* PartyPostAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPostAddViewController.swift; sourceTree = "<group>"; };
+		0B60E2242BE26D1900779038 /* PartyPostAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPostAddView.swift; sourceTree = "<group>"; };
+		0B60E2262BE26D3200779038 /* PartyPostAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPostAddViewModel.swift; sourceTree = "<group>"; };
 		0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewController.swift; sourceTree = "<group>"; };
 		0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetView.swift; sourceTree = "<group>"; };
 		0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewModel.swift; sourceTree = "<group>"; };
@@ -255,6 +261,7 @@
 		0B019DA72BC6BC9E00E89BB4 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0B60E21E2BE26CD600779038 /* PartyPostAddScene */,
 				0B60E19F2BDF79F400779038 /* PartyDetailScene */,
 				0B60E1942BDF64CE00779038 /* WebScene */,
 				0B469D4D2BD64C8300691995 /* DetailScene */,
@@ -615,6 +622,40 @@
 				0B60E2152BE11D7F00779038 /* AuthRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		0B60E21E2BE26CD600779038 /* PartyPostAddScene */ = {
+			isa = PBXGroup;
+			children = (
+				0B60E2212BE26CE800779038 /* ViewModel */,
+				0B60E2202BE26CE400779038 /* ViewController */,
+				0B60E21F2BE26CDE00779038 /* View */,
+			);
+			path = PartyPostAddScene;
+			sourceTree = "<group>";
+		};
+		0B60E21F2BE26CDE00779038 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B60E2242BE26D1900779038 /* PartyPostAddView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0B60E2202BE26CE400779038 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B60E2222BE26CF900779038 /* PartyPostAddViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0B60E2212BE26CE800779038 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B60E2262BE26D3200779038 /* PartyPostAddViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0BCFF0552BCA42F500CDC6E5 /* SignUpBottomSheet */ = {
@@ -985,6 +1026,7 @@
 				0B019DBD2BC6CC3300E89BB4 /* ReusableID.swift in Sources */,
 				0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */,
 				0BDE9FEF2BC812AB00289075 /* SignInViewModel.swift in Sources */,
+				0B60E2252BE26D1900779038 /* PartyPostAddView.swift in Sources */,
 				0BCFF0792BCAA9CD00CDC6E5 /* AlamofireTargetType.swift in Sources */,
 				0B5B4E0F2BCD4BA700F0F8E4 /* AccessTokenRefresh.swift in Sources */,
 				0B5B4E6B2BCFA7EB00F0F8E4 /* SettingView.swift in Sources */,
@@ -1003,6 +1045,7 @@
 				0BCFF0692BCAA5B400CDC6E5 /* ProfileSettingViewController.swift in Sources */,
 				0B60E1A82BDF7A4A00779038 /* PartyDetailViewModel.swift in Sources */,
 				0B469D592BD6828100691995 /* BasePaddingLabel.swift in Sources */,
+				0B60E2272BE26D3200779038 /* PartyPostAddViewModel.swift in Sources */,
 				0BDE9FEA2BC8120E00289075 /* BaseUIView.swift in Sources */,
 				0BCFF06D2BCAA5D000CDC6E5 /* ProfileSettingViewModel.swift in Sources */,
 				0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */,
@@ -1021,6 +1064,7 @@
 				0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */,
 				0BDE9FE22BC811D600289075 /* SignInViewController.swift in Sources */,
 				0BDE9FFF2BC8298000289075 /* SignUpTextField.swift in Sources */,
+				0B60E2232BE26CF900779038 /* PartyPostAddViewController.swift in Sources */,
 				0B019DAC2BC6BCBA00E89BB4 /* InputOutputViewModelProtocol.swift in Sources */,
 				0B5B4E172BCD62B600F0F8E4 /* EventsViewController.swift in Sources */,
 				0B5B4E502BCE799A00F0F8E4 /* SignUpResultModel.swift in Sources */,
