@@ -8,11 +8,11 @@
 import Foundation
 import Moya
 
-// Moya + Interceptor로 관리하는 로직을 계획하고 있었는데, 도저히 공수가 맞지 않아서 일단 주말로 미뤘습니다. 다 완성하고 네트워크쪽 건드는걸로 계획을 다시 수정하는걸로 하겠습니다.
-
 enum AuthRouter {
 	case access
 	case login(query: LoginRequestModel)
+	case withDraw
+	case signUp(data: SignUpRequetModel)
 }
 
 
@@ -24,6 +24,10 @@ extension AuthRouter: TargetType {
 			return "v1/auth/refresh"
 		case .login:
 			return "v1/users/login"
+		case .withDraw:
+			return "v1/users/withdraw"
+		case .signUp:
+			return "v1/users/join"
 		}
 	}
 	
@@ -35,10 +39,15 @@ extension AuthRouter: TargetType {
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue,
 				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken]
 			]
-		case .login:
+		case .login, .signUp:
 			return [
 				HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue
+			]
+		case .withDraw:
+			return [
+				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue,
+				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken]
 			]
 		}
 	}
@@ -50,6 +59,10 @@ extension AuthRouter: TargetType {
 			return .requestParameters(parameters: headers ?? [:], encoding: URLEncoding.default)
 		case .login(let query):
 			return .requestJSONEncodable(query)
+		case .withDraw:
+			return .requestParameters(parameters: headers ?? [:], encoding: URLEncoding.default)
+		case .signUp(let data):
+			return .requestJSONEncodable(data)
 		}
 	}
 
@@ -62,6 +75,10 @@ extension AuthRouter: TargetType {
 		case .access:
 			return .get
 		case .login:
+			return .post
+		case .withDraw:
+			return .get
+		case .signUp:
 			return .post
 		}
 	}
