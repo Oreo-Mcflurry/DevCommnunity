@@ -8,7 +8,7 @@
 import Foundation
 
 extension UserDefaults {
-	enum UserDefaultsBoolKeys: String {
+	enum UserDefaultsStringKeys: String {
 		case emailId
 		case password
 		case accessToken
@@ -17,7 +17,7 @@ extension UserDefaults {
 		case userNickname
 	}
 
-	subscript(_ item: UserDefaultsBoolKeys) -> String {
+	subscript(_ item: UserDefaultsStringKeys) -> String {
 		get {
 			return UserDefaults.standard.string(forKey: item.rawValue) ?? ""
 		} set {

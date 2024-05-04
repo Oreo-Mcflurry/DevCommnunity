@@ -15,8 +15,11 @@ enum AuthRouter {
 	case signUp(data: SignUpRequetModel)
 }
 
-
 extension AuthRouter: TargetType {
+
+	var baseURL: URL {
+		return URL(string: APIKey.baseURL.rawValue)!
+	}
 
 	var path: String {
 		switch self {
@@ -30,7 +33,33 @@ extension AuthRouter: TargetType {
 			return "v1/users/join"
 		}
 	}
-	
+
+	var method: Moya.Method {
+		switch self {
+		case .access:
+			return .get
+		case .login:
+			return .post
+		case .withDraw:
+			return .get
+		case .signUp:
+			return .post
+		}
+	}
+
+	var task: Moya.Task {
+		switch self {
+		case .access:
+			return .requestParameters(parameters: headers ?? [:], encoding: URLEncoding.default)
+		case .login(let query):
+			return .requestJSONEncodable(query)
+		case .withDraw:
+			return .requestParameters(parameters: headers ?? [:], encoding: URLEncoding.default)
+		case .signUp(let data):
+			return .requestJSONEncodable(data)
+		}
+	}
+
 	var headers: [String : String]? {
 		switch self {
 		case .access:
@@ -51,35 +80,8 @@ extension AuthRouter: TargetType {
 			]
 		}
 	}
-	
-
-	var task: Moya.Task {
-		switch self {
-		case .access:
-			return .requestParameters(parameters: headers ?? [:], encoding: URLEncoding.default)
-		case .login(let query):
-			return .requestJSONEncodable(query)
-		case .withDraw:
-			return .requestParameters(parameters: headers ?? [:], encoding: URLEncoding.default)
-		case .signUp(let data):
-			return .requestJSONEncodable(data)
-		}
-	}
-
-	var baseURL: URL {
-		return URL(string: APIKey.baseURL.rawValue)!
-	}
-
-	var method: Moya.Method {
-		switch self {
-		case .access:
-			return .get
-		case .login:
-			return .post
-		case .withDraw:
-			return .get
-		case .signUp:
-			return .post
-		}
-	}
 }
+
+//	var decodeModel: Decodable.Type {
+//		return AccessTokenRefreshModel.self
+//	}

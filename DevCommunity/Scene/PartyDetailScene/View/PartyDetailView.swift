@@ -81,6 +81,7 @@ final class PartyDetailView: BaseUIView {
 		recruitmentImageStackView.axis = .horizontal
 		recruitmentImageStackView.spacing = 10
 		recruitmentImageStackView.alignment = .leading
+		recruitmentImageStackView.distribution = .fillEqually
 	}
 
 	func configureUI(_ data: PartyPost) {

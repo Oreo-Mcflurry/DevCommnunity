@@ -26,7 +26,7 @@ final class PartyDetailViewStackCell: BaseUIView {
 		jobImageView.snp.makeConstraints {
 			$0.top.equalTo(jobNameLabel.snp.bottom).offset(10)
 			$0.horizontalEdges.equalTo(self).inset(10)
-			$0.size.equalTo(150)
+			$0.width.equalTo(jobImageView.snp.height)
 		}
 
 		maxPartyLabel.snp.makeConstraints {
@@ -44,7 +44,10 @@ final class PartyDetailViewStackCell: BaseUIView {
 	}
 
 	func configureUI(_ data: (job: String, maxParty: String)) {
-		jobNameLabel.text = data.job
-		maxPartyLabel.text = data.maxParty
+		let jobCase = Job.getCase(data.job)
+
+		jobNameLabel.text = jobCase.rawValue
+		maxPartyLabel.text = "\(data.maxParty)명 모집 중"
+		jobImageView.image = jobCase.image
 	}
 }

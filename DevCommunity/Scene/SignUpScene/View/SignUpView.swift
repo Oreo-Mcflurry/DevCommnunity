@@ -15,7 +15,7 @@ final class SignUpView: BaseUIView {
 	let signUpLabelsView = SignUpLabelsView()
 	private let signUpStackView = UIStackView()
 
-	let textFields = [SignUpTextField(), SignUpTextField(), SignUpTextField(), SignUpTextField()]
+	let textFields = [BaseTextField(), BaseTextField(), BaseTextField(), BaseTextField()]
 
 	override func configureHierarchy() {
 		[scrollView].forEach { addSubview($0) }

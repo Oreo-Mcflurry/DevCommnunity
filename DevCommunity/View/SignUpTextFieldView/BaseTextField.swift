@@ -8,12 +8,12 @@
 import Foundation
 import TextFieldEffects
 
-final class SignUpTextField: HoshiTextField {
+final class BaseTextField: HoshiTextField {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		self.borderInactiveColor = .gray
-		self.borderActiveColor = .systemBlue
+		self.borderActiveColor = .accent
 	}
 
 	required init?(coder: NSCoder) {

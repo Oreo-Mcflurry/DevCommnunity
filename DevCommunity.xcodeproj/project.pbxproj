@@ -103,11 +103,20 @@
 		0BDE9FF72BC826B900289075 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE9FF62BC826B900289075 /* SignUpView.swift */; };
 		0BDE9FF92BC826C300289075 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE9FF82BC826C300289075 /* SignUpViewModel.swift */; };
 		0BDE9FFC2BC8279500289075 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 0BDE9FFB2BC8279500289075 /* TextFieldEffects */; };
-		0BDE9FFF2BC8298000289075 /* SignUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE9FFE2BC8298000289075 /* SignUpTextField.swift */; };
+		0BDE9FFF2BC8298000289075 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE9FFE2BC8298000289075 /* BaseTextField.swift */; };
 		0BFED7DD2BE362E500970D8C /* PartyDetailViewStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7DC2BE362E400970D8C /* PartyDetailViewStackCell.swift */; };
 		0BFED7DF2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7DE2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift */; };
 		0BFED7E22BE37EBF00970D8C /* AuthRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7E12BE37EBF00970D8C /* AuthRequestManager.swift */; };
 		0BFED7ED2BE45FCE00970D8C /* WithDrawResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7EC2BE45FCE00970D8C /* WithDrawResultModel.swift */; };
+		0BFED7FA2BE4B80100970D8C /* CustomTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7F92BE4B80100970D8C /* CustomTargetType.swift */; };
+		0BFED7FD2BE4D08400970D8C /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7FC2BE4D08400970D8C /* PostRouter.swift */; };
+		0BFED8002BE4D4CE00970D8C /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7FF2BE4D4CE00970D8C /* Interceptor.swift */; };
+		0BFED8022BE4D6B800970D8C /* PostRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8012BE4D6B800970D8C /* PostRequestModel.swift */; };
+		0BFED8082BE5170500970D8C /* PartyJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8072BE5170500970D8C /* PartyJoinViewController.swift */; };
+		0BFED80A2BE5172500970D8C /* PartyJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8092BE5172500970D8C /* PartyJoinView.swift */; };
+		0BFED80C2BE5174000970D8C /* PartyJoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED80B2BE5174000970D8C /* PartyJoinViewModel.swift */; };
+		0BFED80E2BE518D200970D8C /* UIViewController+Preview+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED80D2BE518D200970D8C /* UIViewController+Preview+Extension.swift */; };
+		0BFED8102BE5BBA000970D8C /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED80F2BE5BBA000970D8C /* Job.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,11 +205,20 @@
 		0BDE9FF32BC826AD00289075 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0BDE9FF62BC826B900289075 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		0BDE9FF82BC826C300289075 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		0BDE9FFE2BC8298000289075 /* SignUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTextField.swift; sourceTree = "<group>"; };
+		0BDE9FFE2BC8298000289075 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		0BFED7DC2BE362E400970D8C /* PartyDetailViewStackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyDetailViewStackCell.swift; sourceTree = "<group>"; };
 		0BFED7DE2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+Interceptor+Extension.swift"; sourceTree = "<group>"; };
 		0BFED7E12BE37EBF00970D8C /* AuthRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestManager.swift; sourceTree = "<group>"; };
 		0BFED7EC2BE45FCE00970D8C /* WithDrawResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDrawResultModel.swift; sourceTree = "<group>"; };
+		0BFED7F92BE4B80100970D8C /* CustomTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTargetType.swift; sourceTree = "<group>"; };
+		0BFED7FC2BE4D08400970D8C /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
+		0BFED7FF2BE4D4CE00970D8C /* Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
+		0BFED8012BE4D6B800970D8C /* PostRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestModel.swift; sourceTree = "<group>"; };
+		0BFED8072BE5170500970D8C /* PartyJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyJoinViewController.swift; sourceTree = "<group>"; };
+		0BFED8092BE5172500970D8C /* PartyJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyJoinView.swift; sourceTree = "<group>"; };
+		0BFED80B2BE5174000970D8C /* PartyJoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyJoinViewModel.swift; sourceTree = "<group>"; };
+		0BFED80D2BE518D200970D8C /* UIViewController+Preview+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Preview+Extension.swift"; sourceTree = "<group>"; };
+		0BFED80F2BE5BBA000970D8C /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +285,7 @@
 		0B019DA72BC6BC9E00E89BB4 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0BFED8032BE516D900970D8C /* PartyJoinView */,
 				0B60E21E2BE26CD600779038 /* PartyPostAddScene */,
 				0B60E19F2BDF79F400779038 /* PartyDetailScene */,
 				0B60E1942BDF64CE00779038 /* WebScene */,
@@ -300,6 +319,7 @@
 			children = (
 				0BCFF0782BCAA9CD00CDC6E5 /* AlamofireTargetType.swift */,
 				0B019DAB2BC6BCBA00E89BB4 /* InputOutputViewModelProtocol.swift */,
+				0BFED7F92BE4B80100970D8C /* CustomTargetType.swift */,
 				0B019DBC2BC6CC3300E89BB4 /* ReusableID.swift */,
 				0B60E1B42BE0683500779038 /* SectionModelProtocol.swift */,
 			);
@@ -315,6 +335,7 @@
 				0B469D462BD3E72000691995 /* KingFisher+Extension.swift */,
 				0B60E1552BDA52BD00779038 /* RxSwift+Extension.swift */,
 				0BFED7DE2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift */,
+				0BFED80D2BE518D200970D8C /* UIViewController+Preview+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -610,6 +631,7 @@
 			isa = PBXGroup;
 			children = (
 				0B60E1B22BE067F600779038 /* Row.swift */,
+				0BFED80F2BE5BBA000970D8C /* Job.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -617,6 +639,8 @@
 		0B60E20F2BE116FD00779038 /* NewNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				0BFED7FE2BE4D4C000970D8C /* Interceptor */,
+				0BFED7FB2BE4D07200970D8C /* Post */,
 				0B60E2102BE1170900779038 /* Auth */,
 			);
 			path = NewNetwork;
@@ -902,7 +926,7 @@
 		0BDEA0002BC8299300289075 /* SignUpTextFieldView */ = {
 			isa = PBXGroup;
 			children = (
-				0BDE9FFE2BC8298000289075 /* SignUpTextField.swift */,
+				0BDE9FFE2BC8298000289075 /* BaseTextField.swift */,
 			);
 			path = SignUpTextFieldView;
 			sourceTree = "<group>";
@@ -922,6 +946,57 @@
 				0B019DB12BC6CC0300E89BB4 /* APIKey.swift */,
 			);
 			path = APIKey;
+			sourceTree = "<group>";
+		};
+		0BFED7FB2BE4D07200970D8C /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED7FC2BE4D08400970D8C /* PostRouter.swift */,
+				0BFED8012BE4D6B800970D8C /* PostRequestModel.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		0BFED7FE2BE4D4C000970D8C /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED7FF2BE4D4CE00970D8C /* Interceptor.swift */,
+			);
+			path = Interceptor;
+			sourceTree = "<group>";
+		};
+		0BFED8032BE516D900970D8C /* PartyJoinView */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED8062BE516EC00970D8C /* ViewModel */,
+				0BFED8052BE516E500970D8C /* ViewController */,
+				0BFED8042BE516E000970D8C /* View */,
+			);
+			path = PartyJoinView;
+			sourceTree = "<group>";
+		};
+		0BFED8042BE516E000970D8C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED8092BE5172500970D8C /* PartyJoinView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0BFED8052BE516E500970D8C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED8072BE5170500970D8C /* PartyJoinViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0BFED8062BE516EC00970D8C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED80B2BE5174000970D8C /* PartyJoinViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1024,10 +1099,13 @@
 				0B019DB82BC6CC0300E89BB4 /* HTTPHeader.swift in Sources */,
 				0B5B4E532BCEB76000F0F8E4 /* TabbarController.swift in Sources */,
 				0BFED7DF2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift in Sources */,
+				0BFED80E2BE518D200970D8C /* UIViewController+Preview+Extension.swift in Sources */,
 				0B019DC42BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift in Sources */,
 				0BDE9FDD2BC76EF100289075 /* CodeView.swift in Sources */,
 				0B5B4DF12BCBBD4E00F0F8E4 /* SignUpLabelsView.swift in Sources */,
 				0B469D722BD9F31300691995 /* TitleView.swift in Sources */,
+				0BFED8082BE5170500970D8C /* PartyJoinViewController.swift in Sources */,
+				0BFED8102BE5BBA000970D8C /* Job.swift in Sources */,
 				0B60E1612BDB8B2C00779038 /* PartyTableViewCell.swift in Sources */,
 				0B5B4E692BCFA74D00F0F8E4 /* SettingViewController.swift in Sources */,
 				0B60E1AC2BDF830700779038 /* DetailHeaderView.swift in Sources */,
@@ -1048,13 +1126,18 @@
 				0BDE9FF42BC826AD00289075 /* SignUpViewController.swift in Sources */,
 				0B019D782BC6BB8600E89BB4 /* AppDelegate.swift in Sources */,
 				0B60E1AE2BDF837A00779038 /* BaseTableHeaderView.swift in Sources */,
+				0BFED8002BE4D4CE00970D8C /* Interceptor.swift in Sources */,
 				0B019DBD2BC6CC3300E89BB4 /* ReusableID.swift in Sources */,
+				0BFED80A2BE5172500970D8C /* PartyJoinView.swift in Sources */,
+				0BFED80C2BE5174000970D8C /* PartyJoinViewModel.swift in Sources */,
 				0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */,
 				0BDE9FEF2BC812AB00289075 /* SignInViewModel.swift in Sources */,
 				0B60E2252BE26D1900779038 /* PartyPostAddView.swift in Sources */,
 				0BCFF0792BCAA9CD00CDC6E5 /* AlamofireTargetType.swift in Sources */,
 				0B5B4E0F2BCD4BA700F0F8E4 /* AccessTokenRefreshModel.swift in Sources */,
+				0BFED8022BE4D6B800970D8C /* PostRequestModel.swift in Sources */,
 				0B5B4E6B2BCFA7EB00F0F8E4 /* SettingView.swift in Sources */,
+				0BFED7FD2BE4D08400970D8C /* PostRouter.swift in Sources */,
 				0B60E19C2BDF6A2600779038 /* LikeRequestModel.swift in Sources */,
 				0BCFF0612BCA455000CDC6E5 /* CheckBoxView.swift in Sources */,
 				0B60E2162BE11D7F00779038 /* AuthRouter.swift in Sources */,
@@ -1070,6 +1153,7 @@
 				0B019DC22BC6CC9200E89BB4 /* APIKeyPublic.swift in Sources */,
 				0B60E1B02BDF86BF00779038 /* DetailViewSectionModel.swift in Sources */,
 				0BCFF0692BCAA5B400CDC6E5 /* ProfileSettingViewController.swift in Sources */,
+				0BFED7FA2BE4B80100970D8C /* CustomTargetType.swift in Sources */,
 				0B60E1A82BDF7A4A00779038 /* PartyDetailViewModel.swift in Sources */,
 				0B469D592BD6828100691995 /* BasePaddingLabel.swift in Sources */,
 				0B60E2272BE26D3200779038 /* PartyPostAddViewModel.swift in Sources */,
@@ -1091,7 +1175,7 @@
 				0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */,
 				0BDE9FE22BC811D600289075 /* SignInViewController.swift in Sources */,
 				0BFED7DD2BE362E500970D8C /* PartyDetailViewStackCell.swift in Sources */,
-				0BDE9FFF2BC8298000289075 /* SignUpTextField.swift in Sources */,
+				0BDE9FFF2BC8298000289075 /* BaseTextField.swift in Sources */,
 				0B60E2232BE26CF900779038 /* PartyPostAddViewController.swift in Sources */,
 				0B019DAC2BC6BCBA00E89BB4 /* InputOutputViewModelProtocol.swift in Sources */,
 				0B5B4E172BCD62B600F0F8E4 /* EventsViewController.swift in Sources */,

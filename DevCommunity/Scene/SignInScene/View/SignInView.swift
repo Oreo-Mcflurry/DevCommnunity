@@ -10,8 +10,8 @@ import SnapKit
 
 final class SignInView: BaseUIView {
 	private let signUpLabelsView = SignUpLabelsView()
-	let emailTextField = SignUpTextField()
-	let passwordTextField = SignUpTextField()
+	let emailTextField = BaseTextField()
+	let passwordTextField = BaseTextField()
 	let loginButton = UIButton()
 	let signUpButton = UIButton()
 
