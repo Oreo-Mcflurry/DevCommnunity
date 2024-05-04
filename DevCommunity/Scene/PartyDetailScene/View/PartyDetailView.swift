@@ -13,7 +13,7 @@ final class PartyDetailView: BaseUIView {
 	private let contentView = UIView()
 
 	private let bottomView = UIView()
-	let heartButton = UIButton()
+	let bookmarkButton = UIButton()
 	let joinButton = UIButton()
 
 	private let titleLabel = UILabel()
@@ -26,7 +26,7 @@ final class PartyDetailView: BaseUIView {
 
 	override func configureHierarchy() {
 		[scrollView, bottomView].forEach { addSubview($0) }
-		[heartButton, joinButton].forEach { bottomView.addSubview($0) }
+		[bookmarkButton, joinButton].forEach { bottomView.addSubview($0) }
 		[contentView].forEach { scrollView.addSubview($0) }
 		[titleLabel, uploadDateLabel, dDayLabel, partyMaxLabel, discriptionLabel, recruitDiscriptionLabel, recruitmentImageStackView].forEach { contentView.addSubview($0) }
 	}
@@ -48,16 +48,16 @@ final class PartyDetailView: BaseUIView {
 			$0.height.equalTo(100)
 		}
 
-		heartButton.snp.makeConstraints {
+		bookmarkButton.snp.makeConstraints {
 			$0.top.leading.equalTo(bottomView).inset(20)
 			$0.bottom.equalTo(bottomView).inset(30)
-			$0.width.equalTo(heartButton.snp.height)
+			$0.width.equalTo(bookmarkButton.snp.height)
 		}
 
 		joinButton.snp.makeConstraints {
 			$0.top.trailing.equalTo(bottomView).inset(20)
 			$0.bottom.equalTo(bottomView).inset(30)
-			$0.leading.equalTo(heartButton.snp.trailing).offset(20)
+			$0.leading.equalTo(bookmarkButton.snp.trailing).offset(20)
 		}
 
 		// Main
@@ -101,9 +101,8 @@ final class PartyDetailView: BaseUIView {
 		bottomView.layer.borderColor = UIColor.lightGray.cgColor
 		bottomView.layer.borderWidth = 1
 
-		heartButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-//		heartButton.imageView?.contentMode = .scaleAspectFit
-		heartButton.setPreferredSymbolConfiguration(.init(pointSize: 25, weight: .regular, scale: .default), forImageIn: .normal)
+		bookmarkButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
+		bookmarkButton.setPreferredSymbolConfiguration(.init(pointSize: 25, weight: .regular, scale: .default), forImageIn: .normal)
 
 		joinButton.setTitle("참가신청", for: .normal)
 		joinButton.backgroundColor = .accent

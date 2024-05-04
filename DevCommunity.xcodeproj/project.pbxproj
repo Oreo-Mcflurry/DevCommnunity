@@ -115,6 +115,8 @@
 		0BFED80C2BE5174000970D8C /* PartyJoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED80B2BE5174000970D8C /* PartyJoinViewModel.swift */; };
 		0BFED80E2BE518D200970D8C /* UIViewController+Preview+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED80D2BE518D200970D8C /* UIViewController+Preview+Extension.swift */; };
 		0BFED8102BE5BBA000970D8C /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED80F2BE5BBA000970D8C /* Job.swift */; };
+		0BFED8142BE66F7A00970D8C /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8132BE66F7A00970D8C /* ProfileSettingView.swift */; };
+		0BFED8162BE66F9D00970D8C /* AccountSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,6 +217,8 @@
 		0BFED80B2BE5174000970D8C /* PartyJoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyJoinViewModel.swift; sourceTree = "<group>"; };
 		0BFED80D2BE518D200970D8C /* UIViewController+Preview+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Preview+Extension.swift"; sourceTree = "<group>"; };
 		0BFED80F2BE5BBA000970D8C /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		0BFED8132BE66F7A00970D8C /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
+		0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +285,7 @@
 		0B019DA72BC6BC9E00E89BB4 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0BFED8112BE66F6100970D8C /* ProfileSettingView */,
 				0BFED8032BE516D900970D8C /* PartyJoinView */,
 				0B60E21E2BE26CD600779038 /* PartyPostAddScene */,
 				0B60E19F2BDF79F400779038 /* PartyDetailScene */,
@@ -296,6 +301,7 @@
 				0BDE9FE72BC8120D00289075 /* Base */,
 				0B019DAF2BC6BD0800E89BB4 /* SignUpScene */,
 				0B019DAE2BC6BCEB00E89BB4 /* SignInScene */,
+				0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -977,6 +983,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		0BFED8112BE66F6100970D8C /* ProfileSettingView */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED8122BE66F7100970D8C /* View */,
+			);
+			path = ProfileSettingView;
+			sourceTree = "<group>";
+		};
+		0BFED8122BE66F7100970D8C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED8132BE66F7A00970D8C /* ProfileSettingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1095,6 +1117,7 @@
 				0B5B4EA22BD251D400F0F8E4 /* PartyPostsResultModel.swift in Sources */,
 				0B5B4E4C2BCE610600F0F8E4 /* EventPostsResultModel.swift in Sources */,
 				0B5B4EA42BD258C300F0F8E4 /* PostsRequestModel.swift in Sources */,
+				0BFED8142BE66F7A00970D8C /* ProfileSettingView.swift in Sources */,
 				0B469D472BD3E72000691995 /* KingFisher+Extension.swift in Sources */,
 				0BDE9FE92BC8120E00289075 /* BaseTableViewCell.swift in Sources */,
 				0BDE9FEB2BC8120E00289075 /* BaseViewController.swift in Sources */,
@@ -1134,6 +1157,7 @@
 				0B469D592BD6828100691995 /* BasePaddingLabel.swift in Sources */,
 				0B60E2272BE26D3200779038 /* PartyPostAddViewModel.swift in Sources */,
 				0BDE9FEA2BC8120E00289075 /* BaseUIView.swift in Sources */,
+				0BFED8162BE66F9D00970D8C /* AccountSettingView.swift in Sources */,
 				0BCFF06D2BCAA5D000CDC6E5 /* ProfileSettingViewModel.swift in Sources */,
 				0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */,
 				0B5B4E812BD1F50F00F0F8E4 /* EventsPostsSectionModel.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class TabbarViewController: UITabBarController {
 
@@ -19,8 +20,10 @@ final class TabbarViewController: UITabBarController {
 		let homeVC = UINavigationController(rootViewController: EventsViewController())
 		homeVC.tabBarItem = UITabBarItem(title: "Events", image: UIImage(systemName: "calendar"), tag: 0)
 
+		let settingVC = UINavigationController(rootViewController: UIHostingController(rootView: SettingView()))
+		settingVC.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(systemName: "gearshape"), tag: 1)
 
-		self.viewControllers = [homeVC]
+		self.viewControllers = [homeVC, settingVC]
 	}
 
 	private func configureTabbarDesign() {
