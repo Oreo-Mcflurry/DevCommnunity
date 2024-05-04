@@ -26,7 +26,7 @@ final class PartyDetailViewStackCell: BaseUIView {
 		jobImageView.snp.makeConstraints {
 			$0.top.equalTo(jobNameLabel.snp.bottom).offset(10)
 			$0.horizontalEdges.equalTo(self).inset(10)
-			$0.width.equalTo(jobImageView.snp.height)
+			$0.width.equalTo(jobImageView.snp.height).dividedBy(0.5)
 		}
 
 		maxPartyLabel.snp.makeConstraints {

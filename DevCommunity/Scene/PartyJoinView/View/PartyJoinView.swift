@@ -15,14 +15,16 @@ final class PartyJoinView: BaseUIView {
 
 	let nextButton = UIButton()
 
+	private let defaultDiscriptionLabel = UILabel()
 	private let nickNameTextField = BaseTextField()
 	private let introduceTextField = BaseTextField()
 	private let selectDiscriptionLabel = UILabel()
+	let selectSegmentedControl = UISegmentedControl()
 
 	override func configureHierarchy() {
 		[scrollView, nextButton].forEach { addSubview($0) }
 		[contentView].forEach { scrollView.addSubview($0) }
-		[nickNameTextField, introduceTextField].forEach { contentView.addSubview($0) }
+		[defaultDiscriptionLabel, nickNameTextField, introduceTextField, selectDiscriptionLabel, selectSegmentedControl].forEach { contentView.addSubview($0) }
 	}
 
 	override func configureLayout() {
@@ -41,8 +43,13 @@ final class PartyJoinView: BaseUIView {
 			$0.height.equalTo(40)
 		}
 
-		nickNameTextField.snp.makeConstraints {
+		defaultDiscriptionLabel.snp.makeConstraints {
 			$0.top.equalTo(contentView)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
+		}
+
+		nickNameTextField.snp.makeConstraints {
+			$0.top.equalTo(defaultDiscriptionLabel.snp.bottom).offset(20)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
 			$0.height.equalTo(60)
 		}
@@ -51,6 +58,16 @@ final class PartyJoinView: BaseUIView {
 			$0.top.equalTo(nickNameTextField.snp.bottom).offset(20)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
 			$0.height.equalTo(60)
+		}
+
+		selectDiscriptionLabel.snp.makeConstraints {
+			$0.top.equalTo(introduceTextField.snp.bottom).offset(30)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
+		}
+
+		selectSegmentedControl.snp.makeConstraints {
+			$0.top.equalTo(selectDiscriptionLabel.snp.bottom).offset(20)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
 			$0.bottom.equalTo(contentView)
 		}
 	}
@@ -60,11 +77,21 @@ final class PartyJoinView: BaseUIView {
 
 		nextButton.setTitle("다음", for: .normal)
 		nextButton.backgroundColor = .lightGray
+		nextButton.layer.cornerRadius = 10
+
+		defaultDiscriptionLabel.text = "닉네임과 소개"
+		defaultDiscriptionLabel.font = .boldSystemFont(ofSize: 20)
 
 		nickNameTextField.placeholder = "닉네임"
 		nickNameTextField.text = UserDefaults.standard[.userNickname]
 
-		introduceTextField.placeholder = "한줄소개"
+		introduceTextField.placeholder = "한줄 소개"
+
+		selectDiscriptionLabel.text = "지원 직무"
+		selectDiscriptionLabel.font = .boldSystemFont(ofSize: 20)
+
+		selectSegmentedControl.insertSegment(withTitle: "Test", at: 0, animated: false)
+		selectSegmentedControl.insertSegment(withTitle: "Test1", at: 0, animated: false)
 	}
 }
 

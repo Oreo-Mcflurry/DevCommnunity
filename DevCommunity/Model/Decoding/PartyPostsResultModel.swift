@@ -75,7 +75,7 @@ struct PartyPost: Decodable {
 	var createDate: String {
 		let formatter = DateFormatter()
 		let data = formatter.date(from: createdAt) ?? Date()
-		formatter.dateFormat = "MM/dd mm:ss"
+		formatter.dateFormat = "MM/dd hh:mm"
 		return formatter.string(from: data)
 	}
 

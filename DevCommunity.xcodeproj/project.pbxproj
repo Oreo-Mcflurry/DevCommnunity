@@ -46,8 +46,6 @@
 		0B5B4E592BCEBA9A00F0F8E4 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E582BCEBA9A00F0F8E4 /* InitialViewController.swift */; };
 		0B5B4E5B2BCEBAA200F0F8E4 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E5A2BCEBAA200F0F8E4 /* InitialView.swift */; };
 		0B5B4E5D2BCEBAC700F0F8E4 /* InitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E5C2BCEBAC700F0F8E4 /* InitialViewModel.swift */; };
-		0B5B4E672BCFA73600F0F8E4 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E662BCFA73600F0F8E4 /* SettingViewModel.swift */; };
-		0B5B4E692BCFA74D00F0F8E4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E682BCFA74D00F0F8E4 /* SettingViewController.swift */; };
 		0B5B4E6B2BCFA7EB00F0F8E4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E6A2BCFA7EB00F0F8E4 /* SettingView.swift */; };
 		0B5B4E7C2BD1675600F0F8E4 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 0B5B4E7B2BD1675600F0F8E4 /* Differentiator */; };
 		0B5B4E7E2BD1675600F0F8E4 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 0B5B4E7D2BD1675600F0F8E4 /* RxDataSources */; };
@@ -154,8 +152,6 @@
 		0B5B4E582BCEBA9A00F0F8E4 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		0B5B4E5A2BCEBAA200F0F8E4 /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		0B5B4E5C2BCEBAC700F0F8E4 /* InitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewModel.swift; sourceTree = "<group>"; };
-		0B5B4E662BCFA73600F0F8E4 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
-		0B5B4E682BCFA74D00F0F8E4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0B5B4E6A2BCFA7EB00F0F8E4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		0B5B4E802BD1F50F00F0F8E4 /* EventsPostsSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPostsSectionModel.swift; sourceTree = "<group>"; };
 		0B5B4E9F2BD24FF000F0F8E4 /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
@@ -509,8 +505,6 @@
 		0B5B4E622BCFA70F00F0F8E4 /* SettingScene */ = {
 			isa = PBXGroup;
 			children = (
-				0B5B4E652BCFA71C00F0F8E4 /* ViewModel */,
-				0B5B4E642BCFA71800F0F8E4 /* ViewController */,
 				0B5B4E632BCFA71500F0F8E4 /* View */,
 			);
 			path = SettingScene;
@@ -522,22 +516,6 @@
 				0B5B4E6A2BCFA7EB00F0F8E4 /* SettingView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		0B5B4E642BCFA71800F0F8E4 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0B5B4E682BCFA74D00F0F8E4 /* SettingViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		0B5B4E652BCFA71C00F0F8E4 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0B5B4E662BCFA73600F0F8E4 /* SettingViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0B5B4E7F2BD1F4FC00F0F8E4 /* SectionModel */ = {
@@ -1107,9 +1085,7 @@
 				0BFED8082BE5170500970D8C /* PartyJoinViewController.swift in Sources */,
 				0BFED8102BE5BBA000970D8C /* Job.swift in Sources */,
 				0B60E1612BDB8B2C00779038 /* PartyTableViewCell.swift in Sources */,
-				0B5B4E692BCFA74D00F0F8E4 /* SettingViewController.swift in Sources */,
 				0B60E1AC2BDF830700779038 /* DetailHeaderView.swift in Sources */,
-				0B5B4E672BCFA73600F0F8E4 /* SettingViewModel.swift in Sources */,
 				0B5B4E592BCEBA9A00F0F8E4 /* InitialViewController.swift in Sources */,
 				0BDE9FF72BC826B900289075 /* SignUpView.swift in Sources */,
 				0B469D522BD64CA200691995 /* DetailViewController.swift in Sources */,
