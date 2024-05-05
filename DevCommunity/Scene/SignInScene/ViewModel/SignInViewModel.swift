@@ -32,7 +32,7 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 		let outputTapLoginButton = BehaviorRelay(value: false)
 
 		let validation = Observable.combineLatest(input.inputEmailText.orEmpty, input.inputPasswordText.orEmpty)
-			.map { $0.0.contains("@") && $0.1.count > 8 }
+			.map { $0.0.contains("@") && $0.1.count >= 8 }
 			.share()
 
 		validation

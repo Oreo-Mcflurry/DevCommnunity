@@ -52,12 +52,12 @@ final class PartyDetailViewController: BaseViewController {
 				owner.partyDetailView.joinButton.setTitle(value, for: .normal)
 			}.disposed(by: disposeBag)
 
-		tapJoinCompleteButton
-			.bind(with: self) { owner, _ in
-				owner.partyDetailView.joinButton.isEnabled = false
-				owner.partyDetailView.joinButton.backgroundColor = .lightGray
-				owner.partyDetailView.joinButton.setTitle("이미 가입되어 있습니다", for: .normal)
-				owner.partyPost.isJoined = true
-			}.disposed(by: disposeBag)
+//		tapJoinCompleteButton
+//			.bind(with: self) { owner, _ in
+//				owner.partyDetailView.joinButton.isEnabled = false
+//				owner.partyDetailView.joinButton.backgroundColor = .lightGray
+//				owner.partyDetailView.joinButton.setTitle("이미 가입되어 있습니다", for: .normal)
+//				owner.partyPost.isJoined = true
+//			}.disposed(by: disposeBag)
 	}
 }

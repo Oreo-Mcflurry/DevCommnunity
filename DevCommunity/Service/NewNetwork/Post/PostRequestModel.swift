@@ -58,6 +58,24 @@ final class PostRequestManager: BaseRequestManager {
 			return Disposables.create()
 		}
 	}
+
+	func getOnePost(postID: String) -> Single<Result<PartyPost, Error>> {
+		return Single<Result<PartyPost, Error>>.create { single in
+			self.provider.request(.getOnePartyPost(postID: postID)) { response in
+				self.requestHandling(single, response: response)
+			}
+			return Disposables.create()
+		}
+	}
+
+	func getEventOnePost(postID: String) -> Single<Result<EventPost, Error>> {
+		return Single<Result<EventPost, Error>>.create { single in
+			self.provider.request(.getOnePartyPost(postID: postID)) { response in
+				self.requestHandling(single, response: response)
+			}
+			return Disposables.create()
+		}
+	}
 }
 
 extension PostRequestManager: MoyaCacheable {

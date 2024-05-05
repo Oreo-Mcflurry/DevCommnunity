@@ -73,9 +73,3 @@ struct SettingView: View {
 
 	}
 }
-
-#Preview {
-	NavigationStack {
-		SettingView()
-	}
-}

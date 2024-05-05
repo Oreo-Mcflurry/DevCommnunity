@@ -52,8 +52,14 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputHeartButton = BehaviorRelay(value: false)
 
 		input.inputViewDidAppear
+			.flatMap {self.requestManager.getEventOnePost(postID: $0.postID) }
 			.bind(with: self) { owner, value in
-				outputHeartButton.accept(value.isLiked)
+				switch value {
+				case .success(let result):
+					outputHeartButton.accept(result.isLiked)
+				case .failure(_):
+					outputHeartButton.accept(false)
+				}
 			}.disposed(by: disposeBag)
 
 		Observable.just([DetailViewSectionModel(header: "", items: [PartyPost()], row: .skeleton)])
@@ -90,7 +96,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 					if result.data.isEmpty {
 						outputPartyPost.accept([DetailViewSectionModel(header: "", items: [PartyPost()], row: .empty)])
 					} else {
-						owner.partyPost = DetailViewSectionModel(header: "", items: result.data, row: .data)
+						owner.partyPost = DetailViewSectionModel(header: "", items: owner.filterPost(result.data), row: .data)
 						outputPartyPost.accept([owner.partyPost])
 					}
 				case .failure(_):
@@ -126,5 +132,11 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 						  outputPartyPost: outputPartyPost.asDriver(), 
 						  outputDidSelect: input.inputDidSelect.asDriver(), 
 						  outputPostAddButon: input.inputPostAddButon.asDriver(onErrorJustReturn: EventPost()))
+	}
+
+	private func filterPost(_ data: [PartyPost]) -> [PartyPost] {
+		return data.filter { $0.dateEnd >= Date() }.sorted { lhs, rhs in
+			lhs.dateEnd < rhs.dateEnd
+		}
 	}
 }
