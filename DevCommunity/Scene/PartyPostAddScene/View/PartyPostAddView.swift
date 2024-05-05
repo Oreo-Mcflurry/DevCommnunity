@@ -6,17 +6,24 @@
 //
 
 import UIKit
-
 import SnapKit
 
 final class PartyPostAddView: BaseUIView {
 	private let scrollView = UIScrollView()
 	private let contentView = UIView()
 
+	let nextButton = UIButton()
+
 	private let defaultDiscriptionLabel = UILabel()
 	private let titleTextField = BaseTextField()
 	private let datePickerTextField = BaseTextField()
 	private let datePicker = UIDatePicker()
+
+	private let peopleDiscriptionLabel = UILabel()
+	private let iosStepper = BaseStepperView()
+	private let backStepper = BaseStepperView()
+	private let pmStepper = BaseStepperView()
+	private let uiuxStepper = BaseStepperView()
 
 	private let introduceDiscriptionLabel = UILabel()
 	private let introduceTextView = UITextView()
@@ -25,7 +32,7 @@ final class PartyPostAddView: BaseUIView {
 	override func configureHierarchy() {
 		[scrollView].forEach { addSubview($0) }
 		[contentView].forEach { scrollView.addSubview($0) }
-		[defaultDiscriptionLabel, titleTextField, datePickerTextField, introduceDiscriptionLabel, introduceTextView].forEach { contentView.addSubview($0) }
+		[defaultDiscriptionLabel, titleTextField, datePickerTextField, peopleDiscriptionLabel, iosStepper, backStepper, pmStepper, uiuxStepper, introduceDiscriptionLabel, introduceTextView].forEach { contentView.addSubview($0) }
 	}
 
 	override func configureLayout() {
@@ -55,8 +62,34 @@ final class PartyPostAddView: BaseUIView {
 			$0.height.equalTo(60)
 		}
 
+		peopleDiscriptionLabel.snp.makeConstraints {
+			$0.top.equalTo(datePickerTextField.snp.bottom).offset(30)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
+		}
+
+		iosStepper.snp.makeConstraints {
+			$0.top.equalTo(peopleDiscriptionLabel.snp.bottom).offset(20)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
+		}
+
+		backStepper.snp.makeConstraints {
+			$0.top.equalTo(iosStepper.snp.bottom).offset(20)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
+		}
+
+		pmStepper.snp.makeConstraints {
+			$0.top.equalTo(backStepper.snp.bottom).offset(20)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
+		}
+
+		uiuxStepper.snp.makeConstraints {
+			$0.top.equalTo(pmStepper.snp.bottom).offset(20)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
+		}
+
+
 		introduceDiscriptionLabel.snp.makeConstraints {
-			$0.top.equalTo(datePickerTextField.snp.bottom).offset(20)
+			$0.top.equalTo(uiuxStepper.snp.bottom).offset(30)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
 		}
 
@@ -69,6 +102,11 @@ final class PartyPostAddView: BaseUIView {
 
 	override func configureView() {
 		scrollView.alwaysBounceVertical = true
+
+		nextButton.setTitle("다음", for: .normal)
+		nextButton.backgroundColor = .lightGray
+		nextButton.layer.cornerRadius = 10
+
 		defaultDiscriptionLabel.text = "기본 정보"
 		defaultDiscriptionLabel.font = .boldSystemFont(ofSize: 20)
 
@@ -81,6 +119,9 @@ final class PartyPostAddView: BaseUIView {
 		datePicker.minimumDate = Date()
 		datePicker.datePickerMode = .date
 		datePicker.preferredDatePickerStyle = .wheels
+
+		peopleDiscriptionLabel.text = "인원"
+		peopleDiscriptionLabel.font = .boldSystemFont(ofSize: 20)
 
 		introduceDiscriptionLabel.text = "소개"
 		introduceDiscriptionLabel.font = .boldSystemFont(ofSize: 20)

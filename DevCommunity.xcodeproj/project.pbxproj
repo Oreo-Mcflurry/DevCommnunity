@@ -115,6 +115,7 @@
 		0BFED8142BE66F7A00970D8C /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8132BE66F7A00970D8C /* ProfileSettingView.swift */; };
 		0BFED8162BE66F9D00970D8C /* AccountSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */; };
 		0BFED8182BE70DE500970D8C /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8172BE70DE500970D8C /* CALayer+Extension.swift */; };
+		0BFED81B2BE71CF800970D8C /* BaseStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81A2BE71CF800970D8C /* BaseStepperView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,6 +216,7 @@
 		0BFED8132BE66F7A00970D8C /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
 		0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingView.swift; sourceTree = "<group>"; };
 		0BFED8172BE70DE500970D8C /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
+		0BFED81A2BE71CF800970D8C /* BaseStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStepperView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -859,6 +861,7 @@
 		0BDE9FFD2BC8296300289075 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0BFED8192BE71CDF00970D8C /* BaseStepperView */,
 				0B469D702BD9F30800691995 /* TitleView */,
 				0B469D6F2BD88C5C00691995 /* BasePaddingLabel */,
 				0B5B4DEF2BCBBD3E00F0F8E4 /* SignUpLabelsView */,
@@ -959,6 +962,14 @@
 				0BFED8132BE66F7A00970D8C /* ProfileSettingView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0BFED8192BE71CDF00970D8C /* BaseStepperView */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED81A2BE71CF800970D8C /* BaseStepperView.swift */,
+			);
+			path = BaseStepperView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1085,6 +1096,7 @@
 				0BDE9FEB2BC8120E00289075 /* BaseViewController.swift in Sources */,
 				0B60E19A2BDF652F00779038 /* WebView.swift in Sources */,
 				0BDE9FF42BC826AD00289075 /* SignUpViewController.swift in Sources */,
+				0BFED81B2BE71CF800970D8C /* BaseStepperView.swift in Sources */,
 				0BFED8182BE70DE500970D8C /* CALayer+Extension.swift in Sources */,
 				0B019D782BC6BB8600E89BB4 /* AppDelegate.swift in Sources */,
 				0B60E1AE2BDF837A00779038 /* BaseTableHeaderView.swift in Sources */,
