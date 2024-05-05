@@ -12,6 +12,7 @@ enum PostRouter {
 	case getPost(query: PostsRequestModel)
 	case getPartyPost(query: PostsRequestModel)
 	case like(postID: String, query: LikeRequestModel)
+	case writePost(data: WritePostRequestModel)
 }
 
 extension PostRouter: TargetType {

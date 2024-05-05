@@ -56,7 +56,7 @@ final class SignUpBottomSheetViewController: BaseViewController {
 		output.outputIsEnabled
 			.drive(with: self) { owner, value in
 				owner.signUpBottomSheet.nextButton.isEnabled = value
-				owner.signUpBottomSheet.nextButton.backgroundColor = value ? UIColor.systemBlue : UIColor.lightGray
+				owner.signUpBottomSheet.nextButton.backgroundColor = value ? UIColor.accent : UIColor.lightGray
 			}.disposed(by: disposeBag)
 
 		output.outputTapNextButton

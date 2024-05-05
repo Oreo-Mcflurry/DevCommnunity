@@ -39,6 +39,8 @@ extension UserDefaults {
 	}
 
 	func saveSignUpRequest(_ data: SignUpRequetModel) {
-		UserDefaults.standard[.accessToken] = data.phoneNum
+		UserDefaults.standard[.emailId] = data.email
+		UserDefaults.standard[.password] = data.password
+		UserDefaults.standard[.userNickname] = data.nick
 	}
 }

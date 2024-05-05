@@ -22,7 +22,7 @@ final class SignUpViewCompleteViewModel: InputOutputViewModelProtocol {
 
 	struct Output {
 		let signUpComplte: Driver<Bool>
-		let outputError: Driver<BaseRequestManager.RequestError>
+		let outputError: Driver<BaseRequestManager.RequestError?>
 		let outputTapNextButton: Driver<Bool?>
 	}
 
@@ -30,11 +30,17 @@ final class SignUpViewCompleteViewModel: InputOutputViewModelProtocol {
 
 	func transform(input: Input) -> Output {
 		let signUpComplete = BehaviorRelay(value: false)
-		let outputError = BehaviorRelay(value: BaseRequestManager.RequestError.urlError)
+		let outputError: BehaviorRelay<BaseRequestManager.RequestError?> = BehaviorRelay(value: nil)
 		let outputTapNextButton: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
 
 		input.inputDidAppear
-			.map { self.requestModel ?? SignUpRequetModel(email: "", password: "", nick: "", phoneNum: "")}
+			.flatMap { myClass -> Observable<SignUpRequetModel> in
+				if let requestModel = self.requestModel {
+					return Observable.just(requestModel)
+				} else {
+					return Observable.never()
+				}
+			}
 			.flatMap {
 				UserDefaults.standard.saveSignUpRequest($0)
 				return self.requestManager.signUpRequest($0)
@@ -55,14 +61,13 @@ final class SignUpViewCompleteViewModel: InputOutputViewModelProtocol {
 							case .failure(_):
 								outputError.accept(.urlError)
 							}
-						}.disposed(by: self.disposeBag)
-
+						}
+						.disposed(by: self.disposeBag)
 
 				case .failure(_):
 					outputError.accept(.urlError)
 				}
-			}
-			.disposed(by: disposeBag)
+			}.disposed(by: disposeBag)
 
 		input.inputTapNextButton
 			.map { self.isSuccess }

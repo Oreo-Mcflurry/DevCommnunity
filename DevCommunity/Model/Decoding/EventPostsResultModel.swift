@@ -77,16 +77,22 @@ struct EventPost: Decodable {
 
 	var isLiked: Bool {
 		get {
+			print(likes)
 			return likes.contains(UserDefaults.standard[.userId])
 		} set {
+			print("===================\(UserDefaults.standard[.userId]), \(newValue)")
 			if newValue {
+				print("===================\(likes)")
 				likes.append(UserDefaults.standard[.userId])
+				print("===================\(likes)")
 			} else {
+				print("===================\(likes)")
 				likes.enumerated().forEach { index, item in
 					if item == UserDefaults.standard[.userId] {
 						likes.remove(at: index)
 					}
 				}
+				print("===================\(likes)")
 			}
 		}
 	}

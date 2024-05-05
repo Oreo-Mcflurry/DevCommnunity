@@ -118,6 +118,8 @@
 		0BFED81D2BE75EF200970D8C /* BaseEndEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81C2BE75EF200970D8C /* BaseEndEditingViewController.swift */; };
 		0BFED8202BE760DA00970D8C /* BaseRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81F2BE760DA00970D8C /* BaseRequestManager.swift */; };
 		0BFED8262BE7801300970D8C /* MoyaLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8252BE7801300970D8C /* MoyaLogger.swift */; };
+		0BFED8292BE7927000970D8C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0BFED8282BE7927000970D8C /* IQKeyboardManagerSwift */; };
+		0BFED82D2BE79AC200970D8C /* MoyaCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED82C2BE79AC200970D8C /* MoyaCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -221,6 +223,7 @@
 		0BFED81C2BE75EF200970D8C /* BaseEndEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEndEditingViewController.swift; sourceTree = "<group>"; };
 		0BFED81F2BE760DA00970D8C /* BaseRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestManager.swift; sourceTree = "<group>"; };
 		0BFED8252BE7801300970D8C /* MoyaLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLogger.swift; sourceTree = "<group>"; };
+		0BFED82C2BE79AC200970D8C /* MoyaCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +238,7 @@
 				0B019D932BC6BBB900E89BB4 /* Alamofire in Frameworks */,
 				0B5B4E7C2BD1675600F0F8E4 /* Differentiator in Frameworks */,
 				0B60E2182BE121C200779038 /* ReactiveMoya in Frameworks */,
+				0BFED8292BE7927000970D8C /* IQKeyboardManagerSwift in Frameworks */,
 				0B469D4C2BD649E300691995 /* SkeletonView in Frameworks */,
 				0B019D992BC6BBCF00E89BB4 /* Kingfisher in Frameworks */,
 				0BDE9FFC2BC8279500289075 /* TextFieldEffects in Frameworks */,
@@ -624,9 +628,8 @@
 		0B60E20F2BE116FD00779038 /* NewNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				0BFED8242BE7800300970D8C /* Logger */,
+				0BFED82A2BE79AAC00970D8C /* Plugin */,
 				0BFED81E2BE760C900970D8C /* Base */,
-				0BFED7FE2BE4D4C000970D8C /* Interceptor */,
 				0BFED7FB2BE4D07200970D8C /* Post */,
 				0B60E2102BE1170900779038 /* Auth */,
 			);
@@ -994,6 +997,24 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
+		0BFED82A2BE79AAC00970D8C /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED82B2BE79AB500970D8C /* Cache */,
+				0BFED7FE2BE4D4C000970D8C /* Interceptor */,
+				0BFED8242BE7800300970D8C /* Logger */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
+		0BFED82B2BE79AB500970D8C /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED82C2BE79AC200970D8C /* MoyaCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1024,6 +1045,7 @@
 				0B60E2122BE11CCC00779038 /* Moya */,
 				0B60E2172BE121C200779038 /* ReactiveMoya */,
 				0B60E2192BE121C200779038 /* RxMoya */,
+				0BFED8282BE7927000970D8C /* IQKeyboardManagerSwift */,
 			);
 			productName = "WhyIsn'tWorking";
 			productReference = 0B019D742BC6BB8600E89BB4 /* DevCommunity.app */;
@@ -1063,6 +1085,7 @@
 				0B5B4E7A2BD1675600F0F8E4 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				0B469D4A2BD649E300691995 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				0B60E2112BE11CCC00779038 /* XCRemoteSwiftPackageReference "Moya" */,
+				0BFED8272BE7927000970D8C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 0B019D752BC6BB8600E89BB4 /* Products */;
 			projectDirPath = "";
@@ -1175,6 +1198,7 @@
 				0B60E2232BE26CF900779038 /* PartyPostAddViewController.swift in Sources */,
 				0B019DAC2BC6BCBA00E89BB4 /* InputOutputViewModelProtocol.swift in Sources */,
 				0B5B4E172BCD62B600F0F8E4 /* EventsViewController.swift in Sources */,
+				0BFED82D2BE79AC200970D8C /* MoyaCache.swift in Sources */,
 				0B5B4E502BCE799A00F0F8E4 /* SignUpResultModel.swift in Sources */,
 				0B5B4E192BCD62D200F0F8E4 /* EventsViewModel.swift in Sources */,
 				0BDE9FF92BC826C300289075 /* SignUpViewModel.swift in Sources */,
@@ -1484,6 +1508,14 @@
 				minimumVersion = 1.7.0;
 			};
 		};
+		0BFED8272BE7927000970D8C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1551,6 +1583,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0BDE9FFA2BC8279500289075 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
 			productName = TextFieldEffects;
+		};
+		0BFED8282BE7927000970D8C /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0BFED8272BE7927000970D8C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -54,6 +54,6 @@ final class SignUpCompleteView: BaseUIView {
 		}
 
 		nextButton.isEnabled = true
-		nextButton.backgroundColor = .systemBlue
+		nextButton.backgroundColor = .accent
 	}
 }

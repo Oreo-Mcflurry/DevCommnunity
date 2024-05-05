@@ -48,7 +48,7 @@ final class SignInViewController: BaseEndEditingViewController {
 		output.outputIsEnabled
 			.drive(with: self) { owner, value in
 				owner.signInView.loginButton.isEnabled = value
-				owner.signInView.loginButton.backgroundColor = value ? UIColor.systemBlue : UIColor.lightGray
+				owner.signInView.loginButton.backgroundColor = value ? UIColor.accent : UIColor.lightGray
 			}.disposed(by: disposeBag)
 
 		output.outputTapSignupButton

@@ -19,6 +19,7 @@ final class SignUpViewCompleteViewController: BaseViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		navigationController?.navigationItem.hidesBackButton = true
 	}
 
 	override func configureBinding() {

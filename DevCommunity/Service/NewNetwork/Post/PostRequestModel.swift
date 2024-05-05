@@ -11,7 +11,7 @@ import RxSwift
 
 final class PostRequestManager: BaseRequestManager {
 
-	private var provider = MoyaProvider<PostRouter>(session: Session(interceptor: Interceptor.shared), plugins: [MoyaLogger()])
+	private var provider = MoyaProvider<PostRouter>(session: Session(interceptor: Interceptor.shared), plugins: [MoyaLogger(), MoyaCacheablePlugin()])
 
 	func getEventPosts() -> Single<Result<EventPostsResultModel, Error>> {
 		let query = PostsRequestModel(next: "", product_id: "DevCommunity")
@@ -39,5 +39,11 @@ final class PostRequestManager: BaseRequestManager {
 			}
 			return Disposables.create()
 		}
+	}
+}
+
+extension PostRequestManager: MoyaCacheable {
+	var cachePolicy: MoyaCacheablePolicy {
+		return .reloadIgnoringLocalCacheData
 	}
 }

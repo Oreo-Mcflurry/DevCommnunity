@@ -64,7 +64,7 @@ final class SignUpViewController: BaseEndEditingViewController {
 
 		output.outputDidBegin
 			.drive(with: self) { owner, value in
-				owner.signUpView.textFields[value].borderActiveColor = .systemBlue
+				owner.signUpView.textFields[value].borderActiveColor = .accent
 			}.disposed(by: disposeBag)
 
 		output.outputDidEnd

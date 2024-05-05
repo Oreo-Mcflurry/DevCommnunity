@@ -51,6 +51,12 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 
 		let outputHeartButton = BehaviorRelay(value: false)
 
+		input.inputViewDidAppear
+			.bind(with: self) { owner, value in
+				print("==============\(value.isLiked)")
+				outputHeartButton.accept(value.isLiked)
+			}.disposed(by: disposeBag)
+
 		Observable.just([DetailViewSectionModel(header: "", items: [PartyPost()], row: .skeleton)])
 		.bind(to: outputPartyPost)
 		.disposed(by: disposeBag)
@@ -80,7 +86,6 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 				return self.requestManager.getPartyPosts(query: query)
 			}
 			.subscribe(with: self) { owner, value in
-				
 				switch value {
 				case .success(let result):
 					if result.data.isEmpty {

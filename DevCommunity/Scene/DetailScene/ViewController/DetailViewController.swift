@@ -107,7 +107,7 @@ final class DetailViewController: BaseViewController {
 
 		output.outputHeartButton
 			.drive(with: self) { owner, value in
-				owner.eventPost.isLiked = value
+//				owner.eventPost.isLiked = value
 				owner.heartButton.image = value ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
 			}.disposed(by: disposeBag)
 
