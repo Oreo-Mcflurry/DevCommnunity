@@ -40,9 +40,9 @@ extension PostRouter: TargetType {
 	var task: Moya.Task {
 		switch self {
 		case .getPost(let query):
-			return .requestJSONEncodable(query)
+			return .requestParameters(parameters: query.queryItem, encoding: URLEncoding.queryString)
 		case .getPartyPost(let query):
-			return .requestJSONEncodable(query)
+			return .requestParameters(parameters: query.queryItem, encoding: URLEncoding.queryString)
 		case .like(_, let query):
 			return .requestJSONEncodable(query)
 		}

@@ -52,23 +52,13 @@ import RxSwift
 //}
 
 
-final class AuthRequestManager {
-	
-	private var provider = MoyaProvider<AuthRouter>(session: Session(interceptor: Interceptor.shared))
+final class AuthRequestManager: BaseRequestManager {
 
+	private var provider = MoyaProvider<AuthRouter>(session: Session(interceptor: Interceptor.shared), plugins: [MoyaLogger()])
 	func accessTokenRequest() -> Single<Result<AccessTokenRefreshModel,Error>> {
 		return Single<Result<AccessTokenRefreshModel,Error>>.create { single in
 			self.provider.request(.access) { response in
-				switch response {
-				case .success(let result):
-					do {
-						single(.success(.success(try result.map(AccessTokenRefreshModel.self))))
-					} catch {
-						single(.success(.failure(error)))
-					}
-				case .failure(let error):
-					single(.success(.failure(error)))
-				}
+				self.requestHandling(single, response: response)
 			}
 			return Disposables.create()
 		}
@@ -77,16 +67,7 @@ final class AuthRequestManager {
 	func loginRequest(_ query: LoginRequestModel) -> Single<Result<LoginResultModel,Error>> {
 		return Single<Result<LoginResultModel,Error>>.create { single in
 			self.provider.request(.login(query: query)) { response in
-				switch response {
-				case .success(let result):
-					do {
-						single(.success(.success(try result.map(LoginResultModel.self))))
-					} catch {
-						single(.success(.failure(error)))
-					}
-				case .failure(let error):
-					single(.success(.failure(error)))
-				}
+				self.requestHandling(single, response: response)
 			}
 			return Disposables.create()
 		}
@@ -95,16 +76,7 @@ final class AuthRequestManager {
 	func withDrawRequst() -> Single<Result<WithDrawResultModel, Error>> {
 		return Single<Result<WithDrawResultModel, Error>>.create { single in
 			self.provider.request(.withDraw) { response in
-				switch response {
-				case .success(let result):
-					do {
-						single(.success(.success(try result.map(WithDrawResultModel.self))))
-					} catch {
-						single(.success(.failure(error)))
-					}
-				case .failure(let error):
-					single(.success(.failure(error)))
-				}
+				self.requestHandling(single, response: response)
 			}
 			return Disposables.create()
 		}
@@ -112,17 +84,8 @@ final class AuthRequestManager {
 
 	func signUpRequest(_ data: SignUpRequetModel) -> Single<Result<SignUpResultModel, Error>> {
 		return Single<Result<SignUpResultModel, Error>>.create { single in
-			self.provider.request(.signUp(data: data)) { result in
-				switch result {
-				case .success(let result):
-					do {
-						single(.success(.success(try result.map(SignUpResultModel.self))))
-					} catch {
-						single(.success(.failure(error)))
-					}
-				case .failure(let error):
-					single(.success(.failure(error)))
-				}
+			self.provider.request(.signUp(data: data)) { response in
+				self.requestHandling(single, response: response)
 			}
 			return Disposables.create()
 		}

@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class SignUpViewCompleteViewModel: InputOutputViewModelProtocol {
-	private let requestManager = RequestManager()
+	private let requestManager = AuthRequestManager()
 	var requestModel: SignUpRequetModel?
 
 	private var isSuccess: Bool? = nil
@@ -22,7 +22,7 @@ final class SignUpViewCompleteViewModel: InputOutputViewModelProtocol {
 
 	struct Output {
 		let signUpComplte: Driver<Bool>
-		let outputError: Driver<RequestManager.APIError>
+		let outputError: Driver<BaseRequestManager.RequestError>
 		let outputTapNextButton: Driver<Bool?>
 	}
 
@@ -30,28 +30,38 @@ final class SignUpViewCompleteViewModel: InputOutputViewModelProtocol {
 
 	func transform(input: Input) -> Output {
 		let signUpComplete = BehaviorRelay(value: false)
-		let outputError = BehaviorRelay(value: RequestManager.APIError.urlError)
+		let outputError = BehaviorRelay(value: BaseRequestManager.RequestError.urlError)
 		let outputTapNextButton: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
 
 		input.inputDidAppear
 			.map { self.requestModel ?? SignUpRequetModel(email: "", password: "", nick: "", phoneNum: "")}
 			.flatMap {
-				self.requestManager.createSignUp(data: $0)
+				UserDefaults.standard.saveSignUpRequest($0)
+				return self.requestManager.signUpRequest($0)
 			}
-			.subscribe(with: self, onNext: { owner, _ in
+			.subscribe(with: self) { owner, value in
 				owner.isSuccess = true
 
-				let login = LoginRequestModel(email: UserDefaults.standard[.emailId], password: UserDefaults.standard[.password])
-				self.requestManager.createLogin(query: login)
-					.subscribe(with: self) { owner, _ in
-						signUpComplete.accept(true)
-					}.disposed(by: self.disposeBag)
-			}, onError: { owner, error in
-				owner.isSuccess = false
-				if let error = error as? RequestManager.APIError {
-					outputError.accept(error)
+				switch value {
+				case .success(_):
+					let login = LoginRequestModel(email: UserDefaults.standard[.emailId], password: UserDefaults.standard[.password])
+					self.requestManager.loginRequest(login)
+						.subscribe(with: self) { owner, loginResult in
+
+							switch loginResult {
+							case .success(let result):
+								UserDefaults.standard.saveLoginResult(result)
+								signUpComplete.accept(true)
+							case .failure(_):
+								outputError.accept(.urlError)
+							}
+						}.disposed(by: self.disposeBag)
+
+
+				case .failure(_):
+					outputError.accept(.urlError)
 				}
-			})
+			}
 			.disposed(by: disposeBag)
 
 		input.inputTapNextButton

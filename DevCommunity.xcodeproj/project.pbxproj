@@ -116,6 +116,8 @@
 		0BFED8162BE66F9D00970D8C /* AccountSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */; };
 		0BFED81B2BE71CF800970D8C /* BaseStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81A2BE71CF800970D8C /* BaseStepperView.swift */; };
 		0BFED81D2BE75EF200970D8C /* BaseEndEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81C2BE75EF200970D8C /* BaseEndEditingViewController.swift */; };
+		0BFED8202BE760DA00970D8C /* BaseRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81F2BE760DA00970D8C /* BaseRequestManager.swift */; };
+		0BFED8262BE7801300970D8C /* MoyaLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8252BE7801300970D8C /* MoyaLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +219,8 @@
 		0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingView.swift; sourceTree = "<group>"; };
 		0BFED81A2BE71CF800970D8C /* BaseStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStepperView.swift; sourceTree = "<group>"; };
 		0BFED81C2BE75EF200970D8C /* BaseEndEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEndEditingViewController.swift; sourceTree = "<group>"; };
+		0BFED81F2BE760DA00970D8C /* BaseRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestManager.swift; sourceTree = "<group>"; };
+		0BFED8252BE7801300970D8C /* MoyaLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -620,6 +624,8 @@
 		0B60E20F2BE116FD00779038 /* NewNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				0BFED8242BE7800300970D8C /* Logger */,
+				0BFED81E2BE760C900970D8C /* Base */,
 				0BFED7FE2BE4D4C000970D8C /* Interceptor */,
 				0BFED7FB2BE4D07200970D8C /* Post */,
 				0B60E2102BE1170900779038 /* Auth */,
@@ -972,6 +978,22 @@
 			path = BaseStepperView;
 			sourceTree = "<group>";
 		};
+		0BFED81E2BE760C900970D8C /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED81F2BE760DA00970D8C /* BaseRequestManager.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0BFED8242BE7800300970D8C /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED8252BE7801300970D8C /* MoyaLogger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1111,6 +1133,8 @@
 				0BFED8022BE4D6B800970D8C /* PostRequestModel.swift in Sources */,
 				0B5B4E6B2BCFA7EB00F0F8E4 /* SettingView.swift in Sources */,
 				0BFED7FD2BE4D08400970D8C /* PostRouter.swift in Sources */,
+				0BFED8202BE760DA00970D8C /* BaseRequestManager.swift in Sources */,
+				0BFED8262BE7801300970D8C /* MoyaLogger.swift in Sources */,
 				0B60E19C2BDF6A2600779038 /* LikeRequestModel.swift in Sources */,
 				0BCFF0612BCA455000CDC6E5 /* CheckBoxView.swift in Sources */,
 				0B60E2162BE11D7F00779038 /* AuthRouter.swift in Sources */,

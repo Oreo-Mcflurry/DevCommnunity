@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class SignInViewModel: InputOutputViewModelProtocol {
-	private let requestManager = RequestManager()
+	private let requestManager = AuthRequestManager()
 
 	struct Input {
 		let inputEmailText: ControlProperty<String?>
@@ -42,17 +42,17 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 		input.inputTapLoginButton
 			.map { LoginRequestModel(email: $0.0 ?? "", password: $0.1 ?? "") }
 			.flatMap {
-				self.requestManager.createLogin(query: $0)
-			}.subscribe(with: self, onNext: { _, data in
-				UserDefaults.standard[.userNickname] = data.nick
-				UserDefaults.standard[.emailId] = data.email
-				UserDefaults.standard[.accessToken] = data.accessToken
-				UserDefaults.standard[.refreshToken] = data.refreshToken
-				UserDefaults.standard[.userId] = data.user_id
-				outputTapLoginButton.accept(true)
-			}, onError: { _, _ in
-				outputTapLoginButton.accept(false)
-			}).disposed(by: disposeBag)
+				UserDefaults.standard.saveLoginRequest($0)
+				return self.requestManager.loginRequest($0)
+			}.subscribe(with: self) { _, value in
+				switch value {
+				case .success(let result):
+					UserDefaults.standard.saveLoginResult(result)
+					outputTapLoginButton.accept(true)
+				case .failure(_):
+					outputTapLoginButton.accept(false)
+				}
+			}.disposed(by: disposeBag)
 
 
 		return Output(outputIsEnabled: outputIsEnabled.asDriver(),

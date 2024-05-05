@@ -28,10 +28,17 @@ final class InitialViewModel: InputOutputViewModelProtocol {
 			.map {
 				LoginRequestModel(email: UserDefaults.standard[.emailId], password: UserDefaults.standard[.password])
 			}.flatMap { self.authManger.loginRequest($0) }
-			.subscribe(with: self) { _, _ in
-				outputLoginResult.accept(true)
-			} onError: { _, _ in
-				outputLoginResult.accept(false)
+			.subscribe(with: self) { _, value in
+				
+				switch value {
+				case .success(let result):
+					UserDefaults.standard.saveLoginResult(result)
+					outputLoginResult.accept(true)
+
+				case.failure(_):
+					outputLoginResult.accept(false)
+				}
+
 			}.disposed(by: disposeBag)
 
 

@@ -24,4 +24,21 @@ extension UserDefaults {
 			UserDefaults.standard.setValue(newValue, forKey: item.rawValue)
 		}
 	}
+
+	func saveLoginResult(_ data: LoginResultModel) {
+		UserDefaults.standard[.accessToken] = data.accessToken
+		UserDefaults.standard[.refreshToken] = data.refreshToken
+		UserDefaults.standard[.emailId] = data.email
+		UserDefaults.standard[.userNickname] = data.nick
+		UserDefaults.standard[.userId] = data.user_id
+	}
+
+	func saveLoginRequest(_ data: LoginRequestModel) {
+		UserDefaults.standard[.password] = data.password
+		UserDefaults.standard[.emailId] = data.email
+	}
+
+	func saveSignUpRequest(_ data: SignUpRequetModel) {
+		UserDefaults.standard[.accessToken] = data.phoneNum
+	}
 }

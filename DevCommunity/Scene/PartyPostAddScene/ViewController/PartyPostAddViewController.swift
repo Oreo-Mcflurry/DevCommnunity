@@ -21,6 +21,7 @@ final class PartyPostAddViewController: BaseEndEditingViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		navigationItem.title = "모집 글 작성"
+		navigationItem.title = "팀원 모집 게시물 작성"
+		navigationItem.rightBarButtonItem = postButton
 	}
 }

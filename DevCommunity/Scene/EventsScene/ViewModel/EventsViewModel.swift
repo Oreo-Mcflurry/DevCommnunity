@@ -12,7 +12,7 @@ import RxDataSources
 
 final class EventsViewModel: InputOutputViewModelProtocol {
 
-	private let requestManager = RequestManager()
+	private let requestManager = PostRequestManager()
 
 	struct Input {
 		let inputRefresh: ControlEvent<Void>
@@ -42,20 +42,18 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 			.disposed(by: disposeBag)
 
 		Observable.merge(input.inputRefresh.asObservable(), input.inputDidAppear)
-			.debug()
 			.flatMap { _ in
-				self.requestManager.getPosts(query: .event)
-					.catch { _ in
-						outputError.accept(Void())
-						return Observable.never()
-					}
+				self.requestManager.getEventPosts().asObservable()
 			}
 			.delay(.seconds(1), scheduler: MainScheduler.asyncInstance)
-			.debug()
-			.map { $0.data }
-			.map { self.groupPostsByMonth(posts: $0) }
 			.subscribe(with: self) { _, value in
-				outputRefresh.accept(value)
+				switch value {
+				case .success(let result):
+					outputRefresh.accept(self.groupPostsByMonth(posts: result.data))
+				case .failure(_):
+					outputError.accept(Void())
+				}
+
 			}
 			.disposed(by: disposeBag)
 

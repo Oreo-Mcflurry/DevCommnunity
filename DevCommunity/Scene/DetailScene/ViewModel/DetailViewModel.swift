@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class DetailViewModel: InputOutputViewModelProtocol {
-	private let requestManager = RequestManager()
+	private let requestManager = PostRequestManager()
 	private var next = ""
 	private var partyPost: DetailViewSectionModel = DetailViewSectionModel(header: "", items: [], row: .skeleton)
 
@@ -76,30 +76,38 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 
 		input.inputViewDidAppear
 			.flatMap { value in
-				let query = PostsRequestModel(next: self.next, limit: "5", product_id: value.requestProductID)
-				return self.requestManager.getPartyPost(query: .party(query: query))
-					.catch { _ in
-						outputError.accept(Void())
-						return Observable.never()
-					}
+				let query = PostsRequestModel(next: "", product_id: value.requestProductID)
+				return self.requestManager.getPartyPosts(query: query)
 			}
 			.subscribe(with: self) { owner, value in
-				owner.next = value.nextCursor
-				if value.data.isEmpty {
-					outputPartyPost.accept([DetailViewSectionModel(header: "", items: [PartyPost()], row: .empty)])
-				} else {
-					owner.partyPost = DetailViewSectionModel(header: "", items: value.data, row: .data)
-					outputPartyPost.accept([owner.partyPost])
+				
+				switch value {
+				case .success(let result):
+					if result.data.isEmpty {
+						outputPartyPost.accept([DetailViewSectionModel(header: "", items: [PartyPost()], row: .empty)])
+					} else {
+						owner.partyPost = DetailViewSectionModel(header: "", items: result.data, row: .data)
+						outputPartyPost.accept([owner.partyPost])
+					}
+				case .failure(_):
+					outputError.accept(Void())
 				}
+
 			}.disposed(by: disposeBag)
 
 		input.inputHeartButton
 			.flatMap {
 				let query = LikeRequestModel(like_status: !$0.isLiked)
-				return self.requestManager.requestLike(postID: $0.postID, query: query)
-					.catchAndReturn(LikeResultModel(like_status: false))
+				return self.requestManager.likePost(postID: $0.postID, query: query)
 			}
-			.map { $0.like_status }
+			.map {
+				switch $0 {
+				case .success(let result):
+					return result.like_status
+				case .failure(_):
+					return false
+				}
+			}
 			.bind(to: outputHeartButton)
 			.disposed(by: disposeBag)
 

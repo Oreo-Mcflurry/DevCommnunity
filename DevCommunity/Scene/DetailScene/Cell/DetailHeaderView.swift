@@ -92,6 +92,7 @@ final class DetailHeaderView: BaseTableHeaderView {
 	}
 
 	func configureUI(_ data: EventPost) {
+		print(data)
 		heroImageView.kf.setImage(with: data.imageURL)
 		organizerLabel.text = data.organizer
 		eventTitleLabel.text = data.title

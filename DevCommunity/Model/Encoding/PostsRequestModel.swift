@@ -14,22 +14,12 @@ struct PostsRequestModel: Encodable {
 }
 
 extension PostsRequestModel {
-	 var queryItems: [URLQueryItem]? {
-		  let encoder = JSONEncoder()
-		  guard let jsonData = try? encoder.encode(self) else {
-				return nil
-		  }
-
-		  guard let jsonObject = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
-				return nil
-		  }
-
-		  return jsonObject.compactMap { key, value in
-				guard let encodedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-					 return nil
-				}
-				return URLQueryItem(name: key, value: encodedValue)
-		  }
-	 }
+	var queryItem: [String: String] {
+		return [
+			"next": next,
+			"limit": limit,
+			"product_id": product_id
+		]
+	}
 }
 

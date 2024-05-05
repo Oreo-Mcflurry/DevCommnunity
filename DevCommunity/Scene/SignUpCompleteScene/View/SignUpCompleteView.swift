@@ -41,13 +41,13 @@ final class SignUpCompleteView: BaseUIView {
 		nextButton.layer.cornerRadius = 20
 	}
 
-	func configureUI(_ error: RequestManager.APIError? = nil) {
-		if let error {
-			let main = (error == .duplication) ? "이미 가입이 되어있습니다" : "알 수 없는 오류가 발생하였습니다"
+	func configureUI(_ error: BaseRequestManager.RequestError? = nil) {
+		if error != nil {
+//			let main = (error == .duplication) ? "이미 가입이 되어있습니다" : "알 수 없는 오류가 발생하였습니다"
+//			let sub = (error == .duplication) ? "돌아가서 로그인을 시도해주세요." : "다음에 다시 시도해주세요."
 
-			let sub = (error == .duplication) ? "돌아가서 로그인을 시도해주세요." : "다음에 다시 시도해주세요."
-			signUpLabelsView.mainLabel.text = main
-			signUpLabelsView.subLabel.text = sub
+			signUpLabelsView.mainLabel.text = "이미 가입이 되어있습니다"
+			signUpLabelsView.subLabel.text = "돌아가서 로그인을 시도해주세요."
 		} else {
 			signUpLabelsView.mainLabel.text = "회원가입에 성공하였습니다."
 			signUpLabelsView.subLabel.text = "\(UserDefaults.standard[.userNickname])님 환영합니다!."
