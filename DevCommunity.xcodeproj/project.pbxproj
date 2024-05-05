@@ -120,6 +120,8 @@
 		0BFED8262BE7801300970D8C /* MoyaLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8252BE7801300970D8C /* MoyaLogger.swift */; };
 		0BFED8292BE7927000970D8C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0BFED8282BE7927000970D8C /* IQKeyboardManagerSwift */; };
 		0BFED82D2BE79AC200970D8C /* MoyaCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED82C2BE79AC200970D8C /* MoyaCache.swift */; };
+		0BFED82F2BE79C5700970D8C /* WritePostRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED82E2BE79C5700970D8C /* WritePostRequestModel.swift */; };
+		0BFED8312BE7A52F00970D8C /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8302BE7A52F00970D8C /* DateFormatter+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,6 +226,8 @@
 		0BFED81F2BE760DA00970D8C /* BaseRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestManager.swift; sourceTree = "<group>"; };
 		0BFED8252BE7801300970D8C /* MoyaLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLogger.swift; sourceTree = "<group>"; };
 		0BFED82C2BE79AC200970D8C /* MoyaCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaCache.swift; sourceTree = "<group>"; };
+		0BFED82E2BE79C5700970D8C /* WritePostRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostRequestModel.swift; sourceTree = "<group>"; };
+		0BFED8302BE7A52F00970D8C /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +347,7 @@
 				0B60E1552BDA52BD00779038 /* RxSwift+Extension.swift */,
 				0BFED7DE2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift */,
 				0BFED80D2BE518D200970D8C /* UIViewController+Preview+Extension.swift */,
+				0BFED8302BE7A52F00970D8C /* DateFormatter+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -780,6 +785,7 @@
 				0B5B4E4D2BCE748B00F0F8E4 /* SignUpRequetModel.swift */,
 				0B5B4EA32BD258C200F0F8E4 /* PostsRequestModel.swift */,
 				0B60E19B2BDF6A2600779038 /* LikeRequestModel.swift */,
+				0BFED82E2BE79C5700970D8C /* WritePostRequestModel.swift */,
 			);
 			path = Encoding;
 			sourceTree = "<group>";
@@ -1120,9 +1126,11 @@
 				0BFED80E2BE518D200970D8C /* UIViewController+Preview+Extension.swift in Sources */,
 				0B019DC42BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift in Sources */,
 				0BDE9FDD2BC76EF100289075 /* CodeView.swift in Sources */,
+				0BFED82F2BE79C5700970D8C /* WritePostRequestModel.swift in Sources */,
 				0B5B4DF12BCBBD4E00F0F8E4 /* SignUpLabelsView.swift in Sources */,
 				0B469D722BD9F31300691995 /* TitleView.swift in Sources */,
 				0BFED8082BE5170500970D8C /* PartyJoinViewController.swift in Sources */,
+				0BFED8312BE7A52F00970D8C /* DateFormatter+Extension.swift in Sources */,
 				0BFED8102BE5BBA000970D8C /* Job.swift in Sources */,
 				0B60E1612BDB8B2C00779038 /* PartyTableViewCell.swift in Sources */,
 				0B60E1AC2BDF830700779038 /* DetailHeaderView.swift in Sources */,

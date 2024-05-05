@@ -53,7 +53,6 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 
 		input.inputViewDidAppear
 			.bind(with: self) { owner, value in
-				print("==============\(value.isLiked)")
 				outputHeartButton.accept(value.isLiked)
 			}.disposed(by: disposeBag)
 

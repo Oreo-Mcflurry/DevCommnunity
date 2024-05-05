@@ -139,6 +139,9 @@ final class PartyDetailView: BaseUIView {
 			let cell = PartyDetailViewStackCell()
 			cell.configureUI($0)
 
+			cell.snp.makeConstraints {
+				$0.width.lessThanOrEqualTo(140)
+			}
 			recruitmentImageStackView.addArrangedSubview(cell)
 		}
 	}

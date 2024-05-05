@@ -35,15 +35,11 @@ struct PartyPost: Decodable {
 	let title: String
 
 	var dateStart: Date {
-		let formatter = DateFormatter()
-		formatter.dateFormat = "yyyy-MM-dd"
-		return formatter.date(from: content1) ?? Date()
+		return DateFormatter.formatter.date(from: content1) ?? Date()
 	}
 
 	var dateEnd: Date {
-		let formatter = DateFormatter()
-		formatter.dateFormat = "yyyy-MM-dd"
-		return formatter.date(from: content2) ?? Date()
+		return DateFormatter.formatter.date(from: content2) ?? Date()
 	}
 
 	var dDay: String {

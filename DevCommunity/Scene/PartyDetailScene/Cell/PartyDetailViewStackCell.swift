@@ -47,7 +47,7 @@ final class PartyDetailViewStackCell: BaseUIView {
 		let jobCase = Job.getCase(data.job)
 
 		jobNameLabel.text = jobCase.rawValue
-		maxPartyLabel.text = "\(data.maxParty)명 모집 중"
+		maxPartyLabel.text = "\(data.maxParty)명 모집"
 		jobImageView.image = jobCase.image
 	}
 }

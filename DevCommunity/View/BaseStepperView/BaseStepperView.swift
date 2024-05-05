@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class BaseStepperView: BaseUIView {
-	private let mainLabel = UILabel()
+	let mainLabel = UILabel()
 	let stepper = UIStepper()
 
 	override func configureHierarchy() {

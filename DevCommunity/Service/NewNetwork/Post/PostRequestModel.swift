@@ -40,6 +40,15 @@ final class PostRequestManager: BaseRequestManager {
 			return Disposables.create()
 		}
 	}
+
+	func writePost(data: WritePostRequestModel) -> Single<Result<PartyPost, Error>> {
+		return Single<Result<PartyPost, Error>>.create { single in
+			self.provider.request(.writePost(data: data)) { response in
+				self.requestHandling(single, response: response)
+			}
+			return Disposables.create()
+		}
+	}
 }
 
 extension PostRequestManager: MoyaCacheable {

@@ -26,6 +26,8 @@ extension PostRouter: TargetType {
 			return "v1/posts"
 		case .like(let postID, _):
 			return "v1/posts/\(postID)/like"
+		case .writePost:
+			return "v1/posts"
 		}
 	}
 	
@@ -34,6 +36,8 @@ extension PostRouter: TargetType {
 		case .getPost, .getPartyPost:
 			return .get
 		case .like:
+			return .post
+		case .writePost:
 			return .post
 		}
 	}
@@ -46,6 +50,8 @@ extension PostRouter: TargetType {
 			return .requestParameters(parameters: query.queryItem, encoding: URLEncoding.queryString)
 		case .like(_, let query):
 			return .requestJSONEncodable(query)
+		case .writePost(let data):
+			return .requestJSONEncodable(data)
 		}
 	}
 	
@@ -56,7 +62,7 @@ extension PostRouter: TargetType {
 				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken],
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue
 			]
-		case .like:
+		case .like, .writePost:
 			return [
 				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken],
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue,

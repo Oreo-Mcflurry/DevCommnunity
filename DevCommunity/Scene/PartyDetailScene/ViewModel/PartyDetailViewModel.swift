@@ -10,7 +10,7 @@ import RxSwift
 
 final class PartyDetailViewModel: InputOutputViewModelProtocol {
 	struct Input {
-
+		
 	}
 
 	struct Output {

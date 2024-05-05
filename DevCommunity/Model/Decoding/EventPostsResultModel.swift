@@ -36,9 +36,7 @@ struct EventPost: Decodable {
 	let title: String
 
 	var dateStart: Date {
-		let formatter = DateFormatter()
-		formatter.dateFormat = "yyyy-MM-dd"
-		return formatter.date(from: content1) ?? Date()
+		return DateFormatter.formatter.date(from: content1) ?? Date()
 	}
 
 	var date: String {
@@ -80,19 +78,14 @@ struct EventPost: Decodable {
 			print(likes)
 			return likes.contains(UserDefaults.standard[.userId])
 		} set {
-			print("===================\(UserDefaults.standard[.userId]), \(newValue)")
 			if newValue {
-				print("===================\(likes)")
 				likes.append(UserDefaults.standard[.userId])
-				print("===================\(likes)")
 			} else {
-				print("===================\(likes)")
 				likes.enumerated().forEach { index, item in
 					if item == UserDefaults.standard[.userId] {
 						likes.remove(at: index)
 					}
 				}
-				print("===================\(likes)")
 			}
 		}
 	}

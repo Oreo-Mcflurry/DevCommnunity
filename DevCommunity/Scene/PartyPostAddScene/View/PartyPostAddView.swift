@@ -16,14 +16,14 @@ final class PartyPostAddView: BaseUIView {
 
 	private let defaultDiscriptionLabel = UILabel()
 	private let titleTextField = BaseTextField()
-	private let datePickerTextField = BaseTextField()
-	private let datePicker = UIDatePicker()
+	let datePickerTextField = BaseTextField()
+	let datePicker = UIDatePicker()
 
 	private let peopleDiscriptionLabel = UILabel()
-	private let iosStepper = BaseStepperView()
-	private let backStepper = BaseStepperView()
-	private let pmStepper = BaseStepperView()
-	private let uiuxStepper = BaseStepperView()
+	let iosStepper = BaseStepperView()
+	let backStepper = BaseStepperView()
+	let pmStepper = BaseStepperView()
+	let uiuxStepper = BaseStepperView()
 
 	private let introduceDiscriptionLabel = UILabel()
 	private let introduceTextView = UITextView()
@@ -115,6 +115,7 @@ final class PartyPostAddView: BaseUIView {
 		datePickerTextField.inputView = datePicker
 		datePickerTextField.text = "\(Date())"
 		datePickerTextField.placeholder = "마감일"
+		datePickerTextField.delegate = self
 
 		datePicker.minimumDate = Date()
 		datePicker.datePickerMode = .date
@@ -134,6 +135,31 @@ final class PartyPostAddView: BaseUIView {
 		introduceTextView.text = "소개글을 입력해주세요"
 		introduceTextView.textColor = .lightGray
 	}
+
+	func configureUI(_ data: EventPost) {
+		titleTextField.text = data.title
+	}
+
+	// Logic인거같은데..
+	func getWritePostRequestModel(_ id: String) -> WritePostRequestModel {
+		var content = ""
+		var content3: Int = 0
+		[iosStepper, backStepper, pmStepper, uiuxStepper].enumerated().forEach { index, item in
+			if item.stepper.value != 0 {
+				content += "#\(Job.allCases[index].rawValue);\(Int(item.stepper.value)) "
+			}
+			content3 += Int(item.stepper.value)
+		}
+
+		return WritePostRequestModel(product_id: id,
+											  content: content,
+											  content1: "\(DateFormatter.formatter.string(from: datePicker.date))",
+											  content2: "\(DateFormatter.formatter.string(from: datePicker.date))",
+											  content3: "\(content3)",
+											  content4: introduceTextView.text,
+											  content5: "",
+											  title: titleTextField.text!)
+	}
 }
 
 extension PartyPostAddView: UITextViewDelegate {
@@ -152,10 +178,12 @@ extension PartyPostAddView: UITextViewDelegate {
 	}
 }
 
-
-import SwiftUI
-#Preview(body: {
-	PartyPostAddViewController().toPreview()
-})
-
-
+extension PartyPostAddView: UITextFieldDelegate {
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		if textField == datePickerTextField {
+			return false
+		} else {
+			return true
+		}
+	}
+}
