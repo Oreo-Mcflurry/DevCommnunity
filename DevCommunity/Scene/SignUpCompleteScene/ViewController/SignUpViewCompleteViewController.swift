@@ -12,7 +12,6 @@ import RxCocoa
 final class SignUpViewCompleteViewController: BaseViewController {
 	private let signUpCompleteView = SignUpCompleteView()
 	var viewModel = SignUpViewCompleteViewModel()
-	private let disposeBag = DisposeBag()
 
 	override func loadView() {
 		self.view = signUpCompleteView

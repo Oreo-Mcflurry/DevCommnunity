@@ -20,6 +20,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let inputWebJoinButton: ControlEvent<Void>
 		let inputViewDidAppear: Observable<EventPost>
 		let inputDidSelect: ControlEvent<PartyPost>
+		let inputPostAddButon: Observable<EventPost>
 	}
 
 	struct Output {
@@ -33,6 +34,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputError: Driver<Void>
 		let outputPartyPost: Driver<[DetailViewSectionModel]>
 		let outputDidSelect: Driver<PartyPost>
+		let outputPostAddButon: Driver<EventPost>
 	}
 
 	var disposeBag = DisposeBag()
@@ -110,6 +112,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 						  outputWebJoinButton: input.inputWebJoinButton.asDriver(),
 						  outputError: outputError.asDriver(),
 						  outputPartyPost: outputPartyPost.asDriver(), 
-						  outputDidSelect: input.inputDidSelect.asDriver())
+						  outputDidSelect: input.inputDidSelect.asDriver(), 
+						  outputPostAddButon: input.inputPostAddButon.asDriver(onErrorJustReturn: EventPost()))
 	}
 }

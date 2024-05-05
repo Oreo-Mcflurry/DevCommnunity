@@ -114,8 +114,8 @@
 		0BFED8102BE5BBA000970D8C /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED80F2BE5BBA000970D8C /* Job.swift */; };
 		0BFED8142BE66F7A00970D8C /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8132BE66F7A00970D8C /* ProfileSettingView.swift */; };
 		0BFED8162BE66F9D00970D8C /* AccountSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */; };
-		0BFED8182BE70DE500970D8C /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8172BE70DE500970D8C /* CALayer+Extension.swift */; };
 		0BFED81B2BE71CF800970D8C /* BaseStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81A2BE71CF800970D8C /* BaseStepperView.swift */; };
+		0BFED81D2BE75EF200970D8C /* BaseEndEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81C2BE75EF200970D8C /* BaseEndEditingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,8 +215,8 @@
 		0BFED80F2BE5BBA000970D8C /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 		0BFED8132BE66F7A00970D8C /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
 		0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingView.swift; sourceTree = "<group>"; };
-		0BFED8172BE70DE500970D8C /* CALayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
 		0BFED81A2BE71CF800970D8C /* BaseStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStepperView.swift; sourceTree = "<group>"; };
+		0BFED81C2BE75EF200970D8C /* BaseEndEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEndEditingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,7 +335,6 @@
 				0B60E1552BDA52BD00779038 /* RxSwift+Extension.swift */,
 				0BFED7DE2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift */,
 				0BFED80D2BE518D200970D8C /* UIViewController+Preview+Extension.swift */,
-				0BFED8172BE70DE500970D8C /* CALayer+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -830,6 +829,7 @@
 				0BDE9FE52BC8120D00289075 /* BaseUIView.swift */,
 				0BDE9FE62BC8120D00289075 /* BaseViewController.swift */,
 				0B60E1AD2BDF837A00779038 /* BaseTableHeaderView.swift */,
+				0BFED81C2BE75EF200970D8C /* BaseEndEditingViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1097,7 +1097,6 @@
 				0B60E19A2BDF652F00779038 /* WebView.swift in Sources */,
 				0BDE9FF42BC826AD00289075 /* SignUpViewController.swift in Sources */,
 				0BFED81B2BE71CF800970D8C /* BaseStepperView.swift in Sources */,
-				0BFED8182BE70DE500970D8C /* CALayer+Extension.swift in Sources */,
 				0B019D782BC6BB8600E89BB4 /* AppDelegate.swift in Sources */,
 				0B60E1AE2BDF837A00779038 /* BaseTableHeaderView.swift in Sources */,
 				0BFED8002BE4D4CE00970D8C /* Interceptor.swift in Sources */,
@@ -1139,6 +1138,7 @@
 				0B60E1A62BDF7A2E00779038 /* PartyDetailView.swift in Sources */,
 				0BCFF0812BCAAC9B00CDC6E5 /* LoginRequestModel.swift in Sources */,
 				0BCFF07C2BCAAAA900CDC6E5 /* Router.swift in Sources */,
+				0BFED81D2BE75EF200970D8C /* BaseEndEditingViewController.swift in Sources */,
 				0B5B4E5B2BCEBAA200F0F8E4 /* InitialView.swift in Sources */,
 				0BCFF0732BCAA62C00CDC6E5 /* SignUpViewCompleteViewController.swift in Sources */,
 				0B60E2042BE0A5D700779038 /* PartyEmptyTableViewCell.swift in Sources */,

@@ -7,8 +7,11 @@
 
 import UIKit
 import Toast
+import RxSwift
 
 class BaseViewController: UIViewController {
+
+	let disposeBag = DisposeBag()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -16,7 +19,6 @@ class BaseViewController: UIViewController {
 		configureView()
 		configureBinding()
 	}
-	
 	func configureView() { }
 	func configureBinding() { }
 

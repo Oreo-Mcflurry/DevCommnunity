@@ -12,11 +12,10 @@ import RxCocoa
 
 import Alamofire
 
-final class SignInViewController: BaseViewController {
+final class SignInViewController: BaseEndEditingViewController {
 
 	private let signInView = SignInView()
 	private let signInViewModel = SignInViewModel()
-	private let disposeBag = DisposeBag()
 
 	override func loadView() {
 		self.view = signInView

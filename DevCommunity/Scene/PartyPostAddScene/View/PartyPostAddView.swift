@@ -46,7 +46,7 @@ final class PartyPostAddView: BaseUIView {
 		}
 
 		defaultDiscriptionLabel.snp.makeConstraints {
-			$0.top.equalTo(contentView).offset(20)
+			$0.top.equalTo(contentView)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
 		}
 

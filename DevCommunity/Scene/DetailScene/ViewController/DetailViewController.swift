@@ -15,7 +15,6 @@ final class DetailViewController: BaseViewController {
 	private let viewModel = DetailViewModel()
 	private let detailView = DetailView()
 	private let titleView = TitleView()
-	private let disposeBag = DisposeBag()
 	let tableHeaderView = DetailHeaderView()
 
 	var eventPost = EventPost()
@@ -65,12 +64,14 @@ final class DetailViewController: BaseViewController {
 
 		let inputViewDidAppear = self.rx.viewDidAppear.map { self.eventPost }
 		let inputHeartButton = self.heartButton.rx.tap.map { self.eventPost }
+		let inputPostAddButon = self.detailView.addButton.rx.tap.map { self.eventPost }
 
 		let input = DetailViewModel.Input(inputOffset: detailView.detailTableView.rx.contentOffset,
 													 inputHeartButton: inputHeartButton,
 													 inputWebJoinButton: webJoinButton.rx.tap,
 													 inputViewDidAppear: inputViewDidAppear,
-													 inputDidSelect: detailView.detailTableView.rx.modelSelected(PartyPost.self))
+													 inputDidSelect: detailView.detailTableView.rx.modelSelected(PartyPost.self),
+													 inputPostAddButon: inputPostAddButon)
 
 		let output = viewModel.transform(input: input)
 
@@ -119,6 +120,13 @@ final class DetailViewController: BaseViewController {
 				print(value)
 				let vc = PartyDetailViewController()
 				vc.partyPost = value
+				owner.navigationController?.pushViewController(vc, animated: true)
+			}.disposed(by: disposeBag)
+
+		output.outputPostAddButon
+			.drive(with: self) { owner, value in
+				let vc = PartyPostAddViewController()
+				vc.eventPost = value
 				owner.navigationController?.pushViewController(vc, animated: true)
 			}.disposed(by: disposeBag)
 	}

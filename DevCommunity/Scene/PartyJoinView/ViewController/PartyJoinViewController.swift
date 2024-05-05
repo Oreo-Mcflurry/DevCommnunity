@@ -9,10 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class PartyJoinViewController: BaseViewController {
+final class PartyJoinViewController: BaseEndEditingViewController {
 	private let partyJoinView = PartyJoinView()
 	private let viewModel = PartyPostAddViewModel()
-	private let disposeBag = DisposeBag()
 
 	override func loadView() {
 		self.view = partyJoinView

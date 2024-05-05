@@ -14,7 +14,6 @@ import SkeletonView
 final class EventsViewController: BaseViewController {
 	private let viewModel = EventsViewModel()
 	private let eventsView = EventsView()
-	private let disposeBag = DisposeBag()
 
 	override func loadView() {
 		self.view = eventsView

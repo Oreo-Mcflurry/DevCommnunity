@@ -12,7 +12,6 @@ import RxCocoa
 final class SignUpBottomSheetViewController: BaseViewController {
 	private let viewModel = SignUpBottomSheetViewModel()
 	private let signUpBottomSheet = SignUpBottomSheetView()
-	private let disposeBag = DisposeBag()
 	var inputNextButton = PublishRelay<Void>()
 
 	override func loadView() {

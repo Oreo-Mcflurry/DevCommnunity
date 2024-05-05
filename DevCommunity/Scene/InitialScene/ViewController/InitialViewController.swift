@@ -12,8 +12,7 @@ import RxCocoa
 final class InitialViewController: BaseViewController {
 	private let viewModel = InitialViewModel()
 	private let initView = InitialView()
-	private let disposeBag = DisposeBag()
-
+	
 	override func loadView() {
 		self.view = initView
 	}

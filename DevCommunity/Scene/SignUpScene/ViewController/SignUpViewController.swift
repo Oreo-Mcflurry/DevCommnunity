@@ -9,11 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class SignUpViewController: BaseViewController {
+final class SignUpViewController: BaseEndEditingViewController {
 
 	private let viewModel = SignUpViewModel()
 	private let signUpView = SignUpView()
-	private let disposeBag = DisposeBag()
 	private let inputNextButton = PublishRelay<Void>()
 
 	override func loadView() {
