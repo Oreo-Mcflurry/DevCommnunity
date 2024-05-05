@@ -17,7 +17,7 @@ final class PartyJoinView: BaseUIView {
 
 	private let defaultDiscriptionLabel = UILabel()
 	private let nickNameTextField = BaseTextField()
-	private let introduceTextField = BaseTextField()
+	let introduceTextField = BaseTextField()
 	private let selectDiscriptionLabel = UILabel()
 	let selectSegmentedControl = UISegmentedControl()
 
@@ -38,7 +38,7 @@ final class PartyJoinView: BaseUIView {
 		}
 
 		nextButton.snp.makeConstraints {
-			$0.bottom.equalTo(scrollView.snp.bottom).inset(20)
+			$0.bottom.equalTo(scrollView.snp.bottom).inset(30)
 			$0.horizontalEdges.equalTo(scrollView).inset(20)
 			$0.height.equalTo(40)
 		}
@@ -85,18 +85,17 @@ final class PartyJoinView: BaseUIView {
 		nickNameTextField.placeholder = "닉네임"
 		nickNameTextField.text = UserDefaults.standard[.userNickname]
 
-		introduceTextField.placeholder = "한줄 소개"
+		introduceTextField.placeholder = "한줄 소개 (10자 이상)"
 
 		selectDiscriptionLabel.text = "지원 직무"
 		selectDiscriptionLabel.font = .boldSystemFont(ofSize: 20)
+	}
 
-		selectSegmentedControl.insertSegment(withTitle: "Test", at: 0, animated: false)
-		selectSegmentedControl.insertSegment(withTitle: "Test1", at: 0, animated: false)
+	func configureUI(_ data: PartyPost) {
+		data.recruitmentTuple.reversed().forEach {
+			selectSegmentedControl.insertSegment(withTitle: "\($0.job)", at: 0, animated: false)
+		}
+
+		selectSegmentedControl.selectedSegmentIndex = Int.random(in: 0..<data.recruitmentTuple.count)
 	}
 }
-
-#if DEBUG
-#Preview(body: {
-	PartyJoinViewController().toPreview()
-})
-#endif

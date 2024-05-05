@@ -13,6 +13,7 @@ enum PostRouter {
 	case getPartyPost(query: PostsRequestModel)
 	case like(postID: String, query: LikeRequestModel)
 	case writePost(data: WritePostRequestModel)
+	case writeJoin(postID: String, data: JoinRequestModel)
 }
 
 extension PostRouter: TargetType {
@@ -28,6 +29,8 @@ extension PostRouter: TargetType {
 			return "v1/posts/\(postID)/like"
 		case .writePost:
 			return "v1/posts"
+		case .writeJoin(let postID, _):
+			return "v1/posts/\(postID)/comments"
 		}
 	}
 	
@@ -37,7 +40,7 @@ extension PostRouter: TargetType {
 			return .get
 		case .like:
 			return .post
-		case .writePost:
+		case .writePost, .writeJoin:
 			return .post
 		}
 	}
@@ -52,6 +55,8 @@ extension PostRouter: TargetType {
 			return .requestJSONEncodable(query)
 		case .writePost(let data):
 			return .requestJSONEncodable(data)
+		case .writeJoin(_, let data):
+			return .requestJSONEncodable(data)
 		}
 	}
 	
@@ -62,7 +67,7 @@ extension PostRouter: TargetType {
 				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken],
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue
 			]
-		case .like, .writePost:
+		case .like, .writePost, .writeJoin :
 			return [
 				HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken],
 				HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue,

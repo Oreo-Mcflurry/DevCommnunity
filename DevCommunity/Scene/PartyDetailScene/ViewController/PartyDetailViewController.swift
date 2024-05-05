@@ -23,4 +23,18 @@ final class PartyDetailViewController: BaseViewController {
 		partyDetailView.configureUI(partyPost)
 		navigationItem.title = "팀원 모집"
 	}
+
+	override func configureBinding() {
+		let input = PartyDetailViewModel.Input(inputBookMarkButton: partyDetailView.bookmarkButton.rx.tap,
+															inputJoinButton: partyDetailView.joinButton.rx.tap)
+
+		let output = partyDetailViewModel.transform(input: input)
+
+		output.outputJoinButton
+			.drive(with: self) { owner, _ in
+				let vc = PartyJoinViewController()
+				vc.partyPost = owner.partyPost
+				owner.navigationController?.pushViewController(vc, animated: true)
+			}.disposed(by: disposeBag)
+	}
 }

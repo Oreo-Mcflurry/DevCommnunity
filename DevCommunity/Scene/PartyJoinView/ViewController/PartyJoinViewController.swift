@@ -11,7 +11,8 @@ import RxCocoa
 
 final class PartyJoinViewController: BaseEndEditingViewController {
 	private let partyJoinView = PartyJoinView()
-	private let viewModel = PartyPostAddViewModel()
+	private let viewModel = PartyJoinViewModel()
+	var partyPost = PartyPost()
 
 	override func loadView() {
 		self.view = partyJoinView
@@ -19,5 +20,19 @@ final class PartyJoinViewController: BaseEndEditingViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		partyJoinView.configureUI(partyPost)
+	}
+
+	override func configureBinding() {
+		let input = PartyJoinViewModel.Input(inputIntroduceText: partyJoinView.introduceTextField.rx.text)
+
+		let output = viewModel.transform(input: input)
+
+		output.nextButtonIsEnabled
+			.drive(with: self) { owner, value in
+				owner.partyJoinView.nextButton.isEnabled = value
+
+				owner.partyJoinView.nextButton.backgroundColor = value ? .accent : .lightGray
+			}.disposed(by: disposeBag)
 	}
 }

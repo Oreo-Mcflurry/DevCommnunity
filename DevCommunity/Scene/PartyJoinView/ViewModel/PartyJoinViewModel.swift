@@ -11,16 +11,24 @@ import RxCocoa
 
 final class PartyJoinViewModel: InputOutputViewModelProtocol {
 	struct Input {
-
+		let inputIntroduceText: ControlProperty<String?>
 	}
 
 	struct Output {
-
+		let nextButtonIsEnabled: Driver<Bool>
 	}
 
 	var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
-		return Output()
+		let nextButtonIsEnabled = BehaviorRelay(value: false)
+		
+		input.inputIntroduceText
+			.orEmpty
+			.bind(with: self) { _, value in
+				nextButtonIsEnabled.accept(value.count >= 10)
+			}.disposed(by: disposeBag)
+
+		return Output(nextButtonIsEnabled: nextButtonIsEnabled.asDriver())
 	}
 }
