@@ -95,7 +95,18 @@ final class PartyJoinView: BaseUIView {
 		data.recruitmentTuple.reversed().forEach {
 			selectSegmentedControl.insertSegment(withTitle: "\($0.job)", at: 0, animated: false)
 		}
-
 		selectSegmentedControl.selectedSegmentIndex = Int.random(in: 0..<data.recruitmentTuple.count)
+	}
+
+	func getJoinRequestModel() -> JoinRequestModel {
+		var content = ""
+
+		[nickNameTextField, introduceTextField].forEach {
+			content += "\($0.text!);"
+		}
+
+		content += selectSegmentedControl.titleForSegment(at: selectSegmentedControl.selectedSegmentIndex) ?? ""
+
+		return JoinRequestModel(content: content)
 	}
 }

@@ -50,7 +50,7 @@ final class PostRequestManager: BaseRequestManager {
 		}
 	}
 
-	func writePost(postID: String, data: JoinRequestModel) -> Single<Result<WriteJoinResultModel, Error>> {
+	func writeJoinPost(postID: String, data: JoinRequestModel) -> Single<Result<WriteJoinResultModel, Error>> {
 		return Single<Result<WriteJoinResultModel, Error>>.create { single in
 			self.provider.request(.writeJoin(postID: postID, data: data)) { response in
 				self.requestHandling(single, response: response)

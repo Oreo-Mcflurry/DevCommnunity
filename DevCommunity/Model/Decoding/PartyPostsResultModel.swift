@@ -32,6 +32,7 @@ struct PartyPost: Decodable {
 	private let likes: [String]
 	private let likes2: [String]
 	private let hashTags: [String]
+	private var comments: [Comments]
 	let title: String
 
 	var dateStart: Date {
@@ -56,10 +57,6 @@ struct PartyPost: Decodable {
 		return likes.contains(UserDefaults.standard[.userId])
 	}
 
-	var isJoined: Bool {
-		return likes2.contains(UserDefaults.standard[.userId])
-	}
-
 	var recruitmentString: [String] {
 		return hashTags.map { $0.split(separator: ";").joined(separator: " ") + "명" }
 	}
@@ -73,6 +70,21 @@ struct PartyPost: Decodable {
 		let data = formatter.date(from: createdAt) ?? Date()
 		formatter.dateFormat = "MM/dd hh:mm"
 		return formatter.string(from: data)
+	}
+
+	var isCreator: Bool {
+		return creator.userID == UserDefaults.standard[.userId]
+	}
+
+	var isJoined: Bool {
+		get {
+			return !comments.filter { $0.creator.userID == UserDefaults.standard[.userId] }.isEmpty
+		} set {
+			if newValue {
+				comments.append(Comments(comment_id: "", content: "", creator: Creator(userID: UserDefaults.standard[.userId], nick: UserDefaults.standard[.userNickname])))
+			}
+		}
+
 	}
 
 	enum CodingKeys: String, CodingKey {
@@ -90,6 +102,7 @@ struct PartyPost: Decodable {
 		case likes2 = "likes2"
 		case hashTags = "hashTags"
 		case title = "title"
+		case comments = "comments"
 	}
 
 	init(from decoder: any Decoder) throws {
@@ -108,6 +121,7 @@ struct PartyPost: Decodable {
 		self.likes2 = try container.decodeIfPresent([String].self, forKey: .likes2) ?? []
 		self.hashTags = try container.decodeIfPresent([String].self, forKey: .hashTags) ?? []
 		self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
+		self.comments = try container.decodeIfPresent([Comments].self, forKey: .comments) ?? []
 	}
 
 	init() {
@@ -117,6 +131,7 @@ struct PartyPost: Decodable {
 		self.content1 =  ""
 		self.content2 = ""
 		self.content3 = ""
+		self.comments = []
 		self.discriptionText = ""
 		self.createdAt = ""
 		self.creator = Creator(userID: "", nick: "")
@@ -126,6 +141,12 @@ struct PartyPost: Decodable {
 		self.hashTags = []
 		self.title = ""
 	}
+}
+
+struct Comments: Decodable {
+	let comment_id: String
+	let content: String
+	let creator: Creator
 }
 
 extension PartyPost: IdentifiableType, Equatable {
