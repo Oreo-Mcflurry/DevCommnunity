@@ -29,7 +29,7 @@ struct PartyPost: Decodable {
 	private let createdAt: String
 	let creator: Creator
 	let files: [String]
-	private let likes: [String]
+	private var likes: [String]
 	private let likes2: [String]
 	private let hashTags: [String]
 	private var comments: [Comments]
@@ -53,10 +53,6 @@ struct PartyPost: Decodable {
 		return "\(Int(content3) ?? 0)명 모집"
 	}
 
-	var isBookmarked: Bool {
-		return likes.contains(UserDefaults.standard[.userId])
-	}
-
 	var recruitmentString: [String] {
 		return hashTags.map { $0.split(separator: ";").joined(separator: " ") + "명" }
 	}
@@ -74,6 +70,22 @@ struct PartyPost: Decodable {
 
 	var isCreator: Bool {
 		return creator.userID == UserDefaults.standard[.userId]
+	}
+
+	var isBookmarked: Bool {
+		get {
+			return likes.contains(UserDefaults.standard[.userId])
+		} set {
+			if newValue {
+				likes.append(UserDefaults.standard[.userId])
+			} else {
+				likes.enumerated().forEach { index, item in
+					if item == UserDefaults.standard[.userId] {
+						likes.remove(at: index)
+					}
+				}
+			}
+		}
 	}
 
 	var isJoined: Bool {

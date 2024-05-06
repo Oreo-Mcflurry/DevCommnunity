@@ -40,14 +40,17 @@ final class DetailViewController: BaseViewController {
 
 	override func configureBinding() {
 
+		let inputViewDidAppear = self.rx.viewDidAppear.map { self.eventPost }
+		let inputHeartButton = self.heartButton.rx.tap.map { self.eventPost }
+		let inputPostAddButon = self.detailView.addButton.rx.tap.map { self.eventPost }
+		let inputBookMarkCellButton = PublishRelay<PartyPost>()
+
 		let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel> (animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
 
 			if data[indexPath.section].row == .empty {
 				guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyEmptyTableViewCell.identifier, for: indexPath) as? PartyEmptyTableViewCell else { fatalError() }
 				tableView.visibleCells.forEach { $0.hideSkeleton() }
 				tableView.separatorStyle = .none
-				cell.selectionStyle = .none
-				cell.isUserInteractionEnabled = false
 				return cell
 			}
 
@@ -55,6 +58,9 @@ final class DetailViewController: BaseViewController {
 
 			if data[indexPath.section].row == .data {
 				cell.configureUI(item)
+				cell.bookmarkButton.rx.tap.map { item }
+					.bind(to: inputBookMarkCellButton)
+					.disposed(by: cell.disposeBag)
 			} else {
 				cell.configureSkeleton()
 			}
@@ -62,16 +68,13 @@ final class DetailViewController: BaseViewController {
 			return cell
 		}
 
-		let inputViewDidAppear = self.rx.viewDidAppear.map { self.eventPost }
-		let inputHeartButton = self.heartButton.rx.tap.map { self.eventPost }
-		let inputPostAddButon = self.detailView.addButton.rx.tap.map { self.eventPost }
-
 		let input = DetailViewModel.Input(inputOffset: detailView.detailTableView.rx.contentOffset,
 													 inputHeartButton: inputHeartButton,
 													 inputWebJoinButton: webJoinButton.rx.tap,
 													 inputViewDidAppear: inputViewDidAppear,
 													 inputDidSelect: detailView.detailTableView.rx.modelSelected(PartyPost.self),
-													 inputPostAddButon: inputPostAddButon)
+													 inputPostAddButon: inputPostAddButon, 
+													 inputBookMarkCellButton: inputBookMarkCellButton)
 
 		let output = viewModel.transform(input: input)
 
@@ -99,15 +102,12 @@ final class DetailViewController: BaseViewController {
 
 		output.outputWebJoinButton
 			.drive(with: self) { owner, _ in
-				let vc = WebViewController()
-				print(owner.eventPost.webURL)
-				vc.url = owner.eventPost.webURL
+				let vc = WebViewController(url: owner.eventPost.webURL)
 				owner.navigationController?.pushViewController(vc, animated: true)
 			}.disposed(by: disposeBag)
 
 		output.outputHeartButton
 			.drive(with: self) { owner, value in
-//				owner.eventPost.isLiked = value
 				owner.heartButton.image = value ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
 			}.disposed(by: disposeBag)
 

@@ -13,7 +13,6 @@ final class PartyJoinViewController: BaseEndEditingViewController {
 	private let partyJoinView = PartyJoinView()
 	private let viewModel = PartyJoinViewModel()
 	var partyPost = PartyPost()
-	var tapJoinCompleteButton: PublishRelay<Void>!
 
 	override func loadView() {
 		self.view = partyJoinView
@@ -42,7 +41,6 @@ final class PartyJoinViewController: BaseEndEditingViewController {
 		output.outputNextButton
 			.drive(with: self) { owner, value in
 				if value {
-					owner.tapJoinCompleteButton.accept(Void())
 					owner.navigationController?.popViewController(animated: true)
 				} else {
 					owner.showToast(.serverError)

@@ -21,6 +21,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let inputViewDidAppear: Observable<EventPost>
 		let inputDidSelect: ControlEvent<PartyPost>
 		let inputPostAddButon: Observable<EventPost>
+		let inputBookMarkCellButton: PublishRelay<PartyPost>
 	}
 
 	struct Output {
@@ -35,6 +36,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputPartyPost: Driver<[DetailViewSectionModel]>
 		let outputDidSelect: Driver<PartyPost>
 		let outputPostAddButon: Driver<EventPost>
+		let outputBookMarkCellButton: Driver<Bool>
 	}
 
 	var disposeBag = DisposeBag()
@@ -50,6 +52,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputError = BehaviorRelay(value: Void())
 
 		let outputHeartButton = BehaviorRelay(value: false)
+		let outputBookMarkCellButton = BehaviorRelay(value: false)
 
 		input.inputViewDidAppear
 			.flatMap {self.requestManager.getEventOnePost(postID: $0.postID) }
@@ -121,6 +124,24 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 			.bind(to: outputHeartButton)
 			.disposed(by: disposeBag)
 
+		input.inputBookMarkCellButton
+			.flatMap {
+				let query = LikeRequestModel(like_status: !$0.isBookmarked)
+				return self.requestManager.likePost(postID: $0.postID, query: query)
+			}
+			.map {
+				switch $0 {
+				case .success(let result):
+					return result.like_status
+				case .failure(_):
+					return false
+				}
+			}
+			.bind(with: self) { owner, value in
+				outputBookMarkCellButton.accept(value)
+				outputPartyPost.accept([owner.partyPost])
+			}.disposed(by: disposeBag)
+
 		return Output(outputHeroImageOpacity: outputHeroImageOpacity.asDriver(),
 						  outputOffset: outputOffset.asDriver(),
 						  outputHeroImageTransform: outputHeroImageTransform.asDriver(),
@@ -131,7 +152,8 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 						  outputError: outputError.asDriver(),
 						  outputPartyPost: outputPartyPost.asDriver(), 
 						  outputDidSelect: input.inputDidSelect.asDriver(), 
-						  outputPostAddButon: input.inputPostAddButon.asDriver(onErrorJustReturn: EventPost()))
+						  outputPostAddButon: input.inputPostAddButon.asDriver(onErrorJustReturn: EventPost()),
+						  outputBookMarkCellButton: outputBookMarkCellButton.asDriver())
 	}
 
 	private func filterPost(_ data: [PartyPost]) -> [PartyPost] {

@@ -29,7 +29,7 @@ final class InitialViewModel: InputOutputViewModelProtocol {
 			.subscribe(with: self) { _, value in
 				print(value)
 				switch value {
-				case .success(let result):
+				case .success(_):
 					outputLoginResult.accept(true)
 				case.failure(_):
 					outputLoginResult.accept(false)
@@ -38,6 +38,6 @@ final class InitialViewModel: InputOutputViewModelProtocol {
 			}.disposed(by: disposeBag)
 
 
-		return Output(outputLoginResult: outputLoginResult.asDriver(onErrorJustReturn: false).debug())
+		return Output(outputLoginResult: outputLoginResult.asDriver(onErrorJustReturn: false))
 	}
 }

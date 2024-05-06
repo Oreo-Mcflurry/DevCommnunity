@@ -13,7 +13,6 @@ final class PartyDetailViewController: BaseViewController {
 	private let partyDetailView = PartyDetailView()
 	private let partyDetailViewModel = PartyDetailViewModel()
 	var partyPost = PartyPost()
-	let tapJoinCompleteButton: PublishRelay<Void> = PublishRelay()
 
 	override func loadView() {
 		self.view = partyDetailView
@@ -26,9 +25,11 @@ final class PartyDetailViewController: BaseViewController {
 	}
 
 	override func configureBinding() {
-		let input = PartyDetailViewModel.Input(inputBookMarkButton: partyDetailView.bookmarkButton.rx.tap,
-															inputJoinButton: partyDetailView.joinButton.rx.tap, 
-															inputviewDidAppear: self.rx.viewDidAppear.map { self.partyPost })
+		let inputBookMarkButton = partyDetailView.bookmarkButton.rx.tap.map { self.partyPost }
+		let inputviewDidAppear = self.rx.viewDidAppear.map { self.partyPost }
+		let input = PartyDetailViewModel.Input(inputBookMarkButton: inputBookMarkButton,
+															inputJoinButton: partyDetailView.joinButton.rx.tap,
+															inputviewDidAppear: inputviewDidAppear)
 
 		let output = partyDetailViewModel.transform(input: input)
 
@@ -36,7 +37,6 @@ final class PartyDetailViewController: BaseViewController {
 			.drive(with: self) { owner, _ in
 				let vc = PartyJoinViewController()
 				vc.partyPost = owner.partyPost
-				vc.tapJoinCompleteButton = owner.tapJoinCompleteButton
 				owner.navigationController?.pushViewController(vc, animated: true)
 			}.disposed(by: disposeBag)
 
@@ -52,12 +52,9 @@ final class PartyDetailViewController: BaseViewController {
 				owner.partyDetailView.joinButton.setTitle(value, for: .normal)
 			}.disposed(by: disposeBag)
 
-//		tapJoinCompleteButton
-//			.bind(with: self) { owner, _ in
-//				owner.partyDetailView.joinButton.isEnabled = false
-//				owner.partyDetailView.joinButton.backgroundColor = .lightGray
-//				owner.partyDetailView.joinButton.setTitle("이미 가입되어 있습니다", for: .normal)
-//				owner.partyPost.isJoined = true
-//			}.disposed(by: disposeBag)
+		output.outputBookMarkButton
+			.drive(with: self) { owner, value in
+				owner.partyDetailView.bookmarkButton.setImage(value ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"), for: .normal)
+			}.disposed(by: disposeBag)
 	}
 }

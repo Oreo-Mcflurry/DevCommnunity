@@ -47,5 +47,8 @@ final class PartyEmptyTableViewCell: BaseTableViewCell {
 		emptySubLabel.numberOfLines = 2
 		emptySubLabel.textAlignment = .center
 		emptySubLabel.textColor = .gray
+
+		selectionStyle = .none
+		isUserInteractionEnabled = false
 	}
 }

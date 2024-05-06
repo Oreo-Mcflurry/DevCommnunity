@@ -8,14 +8,17 @@
 import UIKit
 import SnapKit
 import SkeletonView
+import RxSwift
 
 final class PartyTableViewCell: BaseTableViewCell {
 	private let dDayLabel = UILabel()
 	private let partyMaxLabel = UILabel()
 	private let titleLabel = UILabel()
-	private let bookmarkButton = UIButton()
+	let bookmarkButton = UIButton()
 	private let discriptionLabel = UILabel()
 	private let recruitmentsStackView = UIStackView()
+
+	let disposeBag = DisposeBag()
 
 	override func configureHierarchy() {
 		[dDayLabel, partyMaxLabel, titleLabel, bookmarkButton, discriptionLabel, recruitmentsStackView].forEach { self.contentView.addSubview($0) }
