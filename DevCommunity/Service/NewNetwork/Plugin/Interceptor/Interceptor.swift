@@ -51,10 +51,9 @@ extension Interceptor: RequestInterceptor {
 					case .failure(let error):
 						completion(.doNotRetryWithError(error))
 					}
-				case .failure(_): break;
+				case .failure(let error):
+					completion(.doNotRetryWithError(error))
 				}
 			}.disposed(by: disposeBag)
-
-		completion(.retry)
 	}
 }

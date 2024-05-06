@@ -10,7 +10,7 @@
 //import RxSwift
 //import RxCocoa
 //import Kingfisher
-//
+
 //class RequestManager {
 //
 //	enum APIError: Error {
@@ -53,7 +53,6 @@
 //				AF.request(urlRequest)
 //					.validate(statusCode: 200..<300)
 //					.responseDecodable(of: T.self) { response in
-////						debugPrint(response)
 //						switch response.result {
 //						case .success(let result):
 //							single(.success(result))

@@ -380,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				0BCFF07A2BCAAAA200CDC6E5 /* Router */,
-				0B019DB22BC6CC0300E89BB4 /* HTTPHeader.swift */,
 				0B019DB42BC6CC0300E89BB4 /* NetworkManager.swift */,
 			);
 			path = Network;
@@ -996,6 +995,7 @@
 		0BFED81E2BE760C900970D8C /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				0B019DB22BC6CC0300E89BB4 /* HTTPHeader.swift */,
 				0BFED81F2BE760DA00970D8C /* BaseRequestManager.swift */,
 			);
 			path = Base;
