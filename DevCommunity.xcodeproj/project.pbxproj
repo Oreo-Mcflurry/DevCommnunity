@@ -127,6 +127,7 @@
 		0BFED83B2BE9136000970D8C /* PayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED83A2BE9136000970D8C /* PayRouter.swift */; };
 		0BFED83D2BE913EF00970D8C /* PayValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED83C2BE913EF00970D8C /* PayValidationModel.swift */; };
 		0BFED83F2BE9145C00970D8C /* PayRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED83E2BE9145C00970D8C /* PayRequestModel.swift */; };
+		0BFED8422BE9161600970D8C /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = 0BFED8412BE9161600970D8C /* iamport-ios */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -245,6 +246,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BFED8422BE9161600970D8C /* iamport-ios in Frameworks */,
 				0B60E21A2BE121C200779038 /* RxMoya in Frameworks */,
 				0B019D9C2BC6BBE100E89BB4 /* RxCocoa in Frameworks */,
 				0B5B4E7E2BD1675600F0F8E4 /* RxDataSources in Frameworks */,
@@ -1075,6 +1077,7 @@
 				0B60E2172BE121C200779038 /* ReactiveMoya */,
 				0B60E2192BE121C200779038 /* RxMoya */,
 				0BFED8282BE7927000970D8C /* IQKeyboardManagerSwift */,
+				0BFED8412BE9161600970D8C /* iamport-ios */,
 			);
 			productName = "WhyIsn'tWorking";
 			productReference = 0B019D742BC6BB8600E89BB4 /* DevCommunity.app */;
@@ -1115,6 +1118,7 @@
 				0B469D4A2BD649E300691995 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				0B60E2112BE11CCC00779038 /* XCRemoteSwiftPackageReference "Moya" */,
 				0BFED8272BE7927000970D8C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				0BFED8402BE9161600970D8C /* XCRemoteSwiftPackageReference "iamport-ios" */,
 			);
 			productRefGroup = 0B019D752BC6BB8600E89BB4 /* Products */;
 			projectDirPath = "";
@@ -1552,6 +1556,14 @@
 				minimumVersion = 7.0.2;
 			};
 		};
+		0BFED8402BE9161600970D8C /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iamport/iamport-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1624,6 +1636,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0BFED8272BE7927000970D8C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		0BFED8412BE9161600970D8C /* iamport-ios */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0BFED8402BE9161600970D8C /* XCRemoteSwiftPackageReference "iamport-ios" */;
+			productName = "iamport-ios";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
