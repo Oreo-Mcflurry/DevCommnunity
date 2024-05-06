@@ -124,6 +124,9 @@
 		0BFED8312BE7A52F00970D8C /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8302BE7A52F00970D8C /* DateFormatter+Extension.swift */; };
 		0BFED8332BE7B09F00970D8C /* JoinRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8322BE7B09F00970D8C /* JoinRequestModel.swift */; };
 		0BFED8352BE7B13F00970D8C /* WriteJoinResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8342BE7B13F00970D8C /* WriteJoinResultModel.swift */; };
+		0BFED83B2BE9136000970D8C /* PayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED83A2BE9136000970D8C /* PayRouter.swift */; };
+		0BFED83D2BE913EF00970D8C /* PayValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED83C2BE913EF00970D8C /* PayValidationModel.swift */; };
+		0BFED83F2BE9145C00970D8C /* PayRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED83E2BE9145C00970D8C /* PayRequestModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -232,6 +235,9 @@
 		0BFED8302BE7A52F00970D8C /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		0BFED8322BE7B09F00970D8C /* JoinRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestModel.swift; sourceTree = "<group>"; };
 		0BFED8342BE7B13F00970D8C /* WriteJoinResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteJoinResultModel.swift; sourceTree = "<group>"; };
+		0BFED83A2BE9136000970D8C /* PayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayRouter.swift; sourceTree = "<group>"; };
+		0BFED83C2BE913EF00970D8C /* PayValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayValidationModel.swift; sourceTree = "<group>"; };
+		0BFED83E2BE9145C00970D8C /* PayRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -636,6 +642,7 @@
 		0B60E20F2BE116FD00779038 /* NewNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				0BFED8392BE9134F00970D8C /* Pay */,
 				0BFED82A2BE79AAC00970D8C /* Plugin */,
 				0BFED81E2BE760C900970D8C /* Base */,
 				0BFED7FB2BE4D07200970D8C /* Post */,
@@ -790,6 +797,7 @@
 				0B60E19B2BDF6A2600779038 /* LikeRequestModel.swift */,
 				0BFED82E2BE79C5700970D8C /* WritePostRequestModel.swift */,
 				0BFED8322BE7B09F00970D8C /* JoinRequestModel.swift */,
+				0BFED83C2BE913EF00970D8C /* PayValidationModel.swift */,
 			);
 			path = Encoding;
 			sourceTree = "<group>";
@@ -1027,6 +1035,15 @@
 			path = Cache;
 			sourceTree = "<group>";
 		};
+		0BFED8392BE9134F00970D8C /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED83A2BE9136000970D8C /* PayRouter.swift */,
+				0BFED83E2BE9145C00970D8C /* PayRequestModel.swift */,
+			);
+			path = Pay;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1131,6 +1148,7 @@
 				0BFED7DF2BE3747800970D8C /* Alamofire+Interceptor+Extension.swift in Sources */,
 				0BFED80E2BE518D200970D8C /* UIViewController+Preview+Extension.swift in Sources */,
 				0B019DC42BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift in Sources */,
+				0BFED83B2BE9136000970D8C /* PayRouter.swift in Sources */,
 				0BDE9FDD2BC76EF100289075 /* CodeView.swift in Sources */,
 				0BFED82F2BE79C5700970D8C /* WritePostRequestModel.swift in Sources */,
 				0B5B4DF12BCBBD4E00F0F8E4 /* SignUpLabelsView.swift in Sources */,
@@ -1146,6 +1164,7 @@
 				0B469D522BD64CA200691995 /* DetailViewController.swift in Sources */,
 				0BCFF0752BCAA66600CDC6E5 /* SignUpViewCompleteViewModel.swift in Sources */,
 				0B60E1562BDA52BD00779038 /* RxSwift+Extension.swift in Sources */,
+				0BFED83D2BE913EF00970D8C /* PayValidationModel.swift in Sources */,
 				0B5B4E5D2BCEBAC700F0F8E4 /* InitialViewModel.swift in Sources */,
 				0B5B4EA22BD251D400F0F8E4 /* PartyPostsResultModel.swift in Sources */,
 				0B5B4E4C2BCE610600F0F8E4 /* EventPostsResultModel.swift in Sources */,
@@ -1197,6 +1216,7 @@
 				0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */,
 				0B5B4E812BD1F50F00F0F8E4 /* EventsPostsSectionModel.swift in Sources */,
 				0BDE9FED2BC8126D00289075 /* SignInView.swift in Sources */,
+				0BFED83F2BE9145C00970D8C /* PayRequestModel.swift in Sources */,
 				0B469D542BD64CB400691995 /* DetailView.swift in Sources */,
 				0B60E1A62BDF7A2E00779038 /* PartyDetailView.swift in Sources */,
 				0BCFF0812BCAAC9B00CDC6E5 /* LoginRequestModel.swift in Sources */,
