@@ -34,32 +34,26 @@ struct SettingView: View {
 			}
 
 			Section {
-				NavigationLink {
-
-				} label: {
+				Link(destination: URL(string: "https://docs.google.com/forms/d/e/1FAIpQLSdwZLnGi8e1rXIKHodpHZ1jc_J9jAIC4lFS2JPF9TDMXHHGyQ/viewform")!, label: {
 					Label(
 						title: { Text("문의하기") },
 						icon: { Image(systemName: "headphones").foregroundStyle(.indigo) }
 					)
-				}
+				})
 
-				NavigationLink {
-
-				} label: {
+				Link(destination: URL(string: "https://inhoyoo-ios.notion.site/DevCommunity-a8cfe60799e6437a82c34246b8bb3819?pvs=4")!, label: {
 					Label(
 						title: { Text("이용 약관") },
 						icon: { Image(systemName: "pencil").foregroundStyle(.red) }
 					)
-				}
+				})
 
-				NavigationLink {
-
-				} label: {
+				Link(destination: URL(string: "https://inhoyoo-ios.notion.site/DevCommunity-2b299eb278ab46978f6d48f149cf3fe5?pvs=4")!, label: {
 					Label(
 						title: { Text("개인정보 처리방침") },
 						icon: { Image(systemName: "hand.raised.fill").foregroundStyle(.orange) }
 					)
-				}
+				})
 
 			} header: {
 				Text("서비스 이용")

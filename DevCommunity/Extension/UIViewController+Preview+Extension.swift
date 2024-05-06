@@ -8,9 +8,8 @@
 import UIKit
 import SwiftUI
 
-#if DEBUG
 extension UIViewController {
-	 private struct Preview: UIViewControllerRepresentable {
+	 private struct SwiftUIView: UIViewControllerRepresentable {
 				let viewController: UIViewController
 
 				func makeUIViewController(context: Context) -> UIViewController {
@@ -21,8 +20,7 @@ extension UIViewController {
 				}
 		  }
 
-		  func toPreview() -> some View {
-				Preview(viewController: self)
+		  func toSwiftUIView() -> some View {
+				SwiftUIView(viewController: self)
 		  }
 }
-#endif

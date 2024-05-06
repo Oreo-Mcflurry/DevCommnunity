@@ -10,8 +10,17 @@ import SnapKit
 import WebKit
 
 final class WebViewController: BaseViewController {
-	var url: URL!
+	var url: URL
 
+	init(url: URL) {
+		self.url = url
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
 	private let webView = WebView()
 
 	override func loadView() {
