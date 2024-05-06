@@ -22,19 +22,15 @@ final class InitialViewModel: InputOutputViewModelProtocol {
 	var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
-		let outputLoginResult = BehaviorRelay(value: false)
+		let outputLoginResult = PublishRelay<Bool>()
 
 		input.inputDidAppear
-			.map {
-				LoginRequestModel(email: UserDefaults.standard[.emailId], password: UserDefaults.standard[.password])
-			}.flatMap { self.authManger.loginRequest($0) }
+			.flatMap { self.authManger.accessTokenRequest() }
 			.subscribe(with: self) { _, value in
-				
+				print(value)
 				switch value {
 				case .success(let result):
-					UserDefaults.standard.saveLoginResult(result)
 					outputLoginResult.accept(true)
-
 				case.failure(_):
 					outputLoginResult.accept(false)
 				}
@@ -42,6 +38,6 @@ final class InitialViewModel: InputOutputViewModelProtocol {
 			}.disposed(by: disposeBag)
 
 
-		return Output(outputLoginResult: outputLoginResult.asDriver())
+		return Output(outputLoginResult: outputLoginResult.asDriver(onErrorJustReturn: false).debug())
 	}
 }
