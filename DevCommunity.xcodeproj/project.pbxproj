@@ -113,7 +113,6 @@
 		0BFED80E2BE518D200970D8C /* UIViewController+Preview+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED80D2BE518D200970D8C /* UIViewController+Preview+Extension.swift */; };
 		0BFED8102BE5BBA000970D8C /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED80F2BE5BBA000970D8C /* Job.swift */; };
 		0BFED8142BE66F7A00970D8C /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8132BE66F7A00970D8C /* ProfileSettingView.swift */; };
-		0BFED8162BE66F9D00970D8C /* AccountSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */; };
 		0BFED81B2BE71CF800970D8C /* BaseStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81A2BE71CF800970D8C /* BaseStepperView.swift */; };
 		0BFED81D2BE75EF200970D8C /* BaseEndEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81C2BE75EF200970D8C /* BaseEndEditingViewController.swift */; };
 		0BFED8202BE760DA00970D8C /* BaseRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED81F2BE760DA00970D8C /* BaseRequestManager.swift */; };
@@ -227,7 +226,6 @@
 		0BFED80D2BE518D200970D8C /* UIViewController+Preview+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Preview+Extension.swift"; sourceTree = "<group>"; };
 		0BFED80F2BE5BBA000970D8C /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 		0BFED8132BE66F7A00970D8C /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
-		0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingView.swift; sourceTree = "<group>"; };
 		0BFED81A2BE71CF800970D8C /* BaseStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStepperView.swift; sourceTree = "<group>"; };
 		0BFED81C2BE75EF200970D8C /* BaseEndEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEndEditingViewController.swift; sourceTree = "<group>"; };
 		0BFED81F2BE760DA00970D8C /* BaseRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestManager.swift; sourceTree = "<group>"; };
@@ -325,7 +323,6 @@
 				0BDE9FE72BC8120D00289075 /* Base */,
 				0B019DAF2BC6BD0800E89BB4 /* SignUpScene */,
 				0B019DAE2BC6BCEB00E89BB4 /* SignInScene */,
-				0BFED8152BE66F9D00970D8C /* AccountSettingView.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -1228,7 +1225,6 @@
 				0B60E2272BE26D3200779038 /* PartyPostAddViewModel.swift in Sources */,
 				0BDE9FEA2BC8120E00289075 /* BaseUIView.swift in Sources */,
 				0BFED8472BE91C2600970D8C /* IamportPaymentView.swift in Sources */,
-				0BFED8162BE66F9D00970D8C /* AccountSettingView.swift in Sources */,
 				0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */,
 				0B5B4E812BD1F50F00F0F8E4 /* EventsPostsSectionModel.swift in Sources */,
 				0BDE9FED2BC8126D00289075 /* SignInView.swift in Sources */,

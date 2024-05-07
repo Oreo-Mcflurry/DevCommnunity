@@ -96,7 +96,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 			.subscribe(with: self) { owner, value in
 				switch value {
 				case .success(let result):
-					if result.data.isEmpty {
+					if owner.filterPost(result.data).isEmpty {
 						outputPartyPost.accept([DetailViewSectionModel(header: "", items: [PartyPost()], row: .empty)])
 					} else {
 						owner.partyPost = DetailViewSectionModel(header: "", items: owner.filterPost(result.data), row: .data)
@@ -158,7 +158,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 
 	private func filterPost(_ data: [PartyPost]) -> [PartyPost] {
 		return data.filter { $0.dateEnd >= Date() }.sorted { lhs, rhs in
-			lhs.dateEnd < rhs.dateEnd
+			lhs.dateEnd <= rhs.dateEnd
 		}
 	}
 }
