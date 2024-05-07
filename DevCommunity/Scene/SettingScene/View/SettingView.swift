@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import iamport_ios
+import WebKit
 
 struct SettingView: View {
 	var body: some View {
@@ -54,6 +56,15 @@ struct SettingView: View {
 						icon: { Image(systemName: "hand.raised.fill").foregroundStyle(.orange) }
 					)
 				})
+
+				NavigationLink {
+					IamportPaymentView()
+				} label: {
+					Label(
+						title: { Text("광고 제거 구매 (100원)") },
+						icon: { Image(systemName: "person.fill").foregroundStyle(.cyan) }
+					)
+				}
 
 			} header: {
 				Text("서비스 이용")

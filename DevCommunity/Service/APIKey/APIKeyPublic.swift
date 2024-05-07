@@ -10,4 +10,5 @@
 //enum APIKey: String {
 //	case sesacKey = "Key"
 //	case baseURL = "baseURL"
+// case portoneUserCode = "portoneUserCode"
 //}

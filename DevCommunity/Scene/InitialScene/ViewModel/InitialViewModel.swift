@@ -29,7 +29,8 @@ final class InitialViewModel: InputOutputViewModelProtocol {
 			.subscribe(with: self) { _, value in
 				print(value)
 				switch value {
-				case .success(_):
+				case .success(let result):
+					UserDefaults.standard[.accessToken] = result.accessToken
 					outputLoginResult.accept(true)
 				case.failure(_):
 					outputLoginResult.accept(false)

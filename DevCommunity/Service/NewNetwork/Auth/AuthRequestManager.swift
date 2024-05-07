@@ -54,7 +54,7 @@ import RxSwift
 
 final class AuthRequestManager: BaseRequestManager {
 
-	private var provider = MoyaProvider<AuthRouter>(session: Session(interceptor: Interceptor.shared), plugins: [MoyaLogger()])
+	private var provider = MoyaProvider<AuthRouter>(session: Session(), plugins: [MoyaLogger()])
 	func accessTokenRequest() -> Single<Result<AccessTokenRefreshModel,Error>> {
 		return Single<Result<AccessTokenRefreshModel,Error>>.create { single in
 			self.provider.request(.access) { response in

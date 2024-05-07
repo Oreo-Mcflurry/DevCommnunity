@@ -128,6 +128,7 @@
 		0BFED83D2BE913EF00970D8C /* PayValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED83C2BE913EF00970D8C /* PayValidationModel.swift */; };
 		0BFED83F2BE9145C00970D8C /* PayRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED83E2BE9145C00970D8C /* PayRequestModel.swift */; };
 		0BFED8422BE9161600970D8C /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = 0BFED8412BE9161600970D8C /* iamport-ios */; };
+		0BFED8472BE91C2600970D8C /* IamportPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8462BE91C2600970D8C /* IamportPaymentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -239,6 +240,7 @@
 		0BFED83A2BE9136000970D8C /* PayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayRouter.swift; sourceTree = "<group>"; };
 		0BFED83C2BE913EF00970D8C /* PayValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayValidationModel.swift; sourceTree = "<group>"; };
 		0BFED83E2BE9145C00970D8C /* PayRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayRequestModel.swift; sourceTree = "<group>"; };
+		0BFED8462BE91C2600970D8C /* IamportPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IamportPaymentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +309,7 @@
 		0B019DA72BC6BC9E00E89BB4 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0BFED8452BE91C1900970D8C /* IamportPaymentViewScene */,
 				0BFED8112BE66F6100970D8C /* ProfileSettingView */,
 				0BFED8032BE516D900970D8C /* PartyJoinView */,
 				0B60E21E2BE26CD600779038 /* PartyPostAddScene */,
@@ -1046,6 +1049,14 @@
 			path = Pay;
 			sourceTree = "<group>";
 		};
+		0BFED8452BE91C1900970D8C /* IamportPaymentViewScene */ = {
+			isa = PBXGroup;
+			children = (
+				0BFED8462BE91C2600970D8C /* IamportPaymentView.swift */,
+			);
+			path = IamportPaymentViewScene;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1216,6 +1227,7 @@
 				0BFED8352BE7B13F00970D8C /* WriteJoinResultModel.swift in Sources */,
 				0B60E2272BE26D3200779038 /* PartyPostAddViewModel.swift in Sources */,
 				0BDE9FEA2BC8120E00289075 /* BaseUIView.swift in Sources */,
+				0BFED8472BE91C2600970D8C /* IamportPaymentView.swift in Sources */,
 				0BFED8162BE66F9D00970D8C /* AccountSettingView.swift in Sources */,
 				0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */,
 				0B5B4E812BD1F50F00F0F8E4 /* EventsPostsSectionModel.swift in Sources */,
