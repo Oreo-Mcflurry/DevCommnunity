@@ -8,10 +8,12 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 final class PartyDetailViewController: BaseViewController {
 	private let partyDetailView = PartyDetailView()
 	private let partyDetailViewModel = PartyDetailViewModel()
+	private let tableHeaderView = PartyDetailHeaderView()
 	var partyPost = PartyPost()
 
 	override func loadView() {
@@ -20,11 +22,14 @@ final class PartyDetailViewController: BaseViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		partyDetailView.configureUI(partyPost)
 		navigationItem.title = "팀원 모집"
+		partyDetailView.partyTableView.delegate = self
 	}
 
 	override func configureBinding() {
+//		let dataSource = RxTableViewSectionedAnimatedDataSource<JoinPostSectionModel> (animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
+//		}
+
 		let inputBookMarkButton = partyDetailView.bookmarkButton.rx.tap.map { self.partyPost }
 		let inputviewDidAppear = self.rx.viewDidAppear.map { self.partyPost }
 		let input = PartyDetailViewModel.Input(inputBookMarkButton: inputBookMarkButton,
@@ -58,3 +63,11 @@ final class PartyDetailViewController: BaseViewController {
 			}.disposed(by: disposeBag)
 	}
 }
+
+extension PartyDetailViewController: UITableViewDelegate {
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		tableHeaderView.configureUI(partyPost)
+		return tableHeaderView
+	}
+}
+

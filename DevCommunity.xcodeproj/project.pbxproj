@@ -75,6 +75,10 @@
 		0B60E2232BE26CF900779038 /* PartyPostAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2222BE26CF900779038 /* PartyPostAddViewController.swift */; };
 		0B60E2252BE26D1900779038 /* PartyPostAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2242BE26D1900779038 /* PartyPostAddView.swift */; };
 		0B60E2272BE26D3200779038 /* PartyPostAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2262BE26D3200779038 /* PartyPostAddViewModel.swift */; };
+		0B687FB62BECBE9900458F56 /* JoinPostSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FB52BECBE9900458F56 /* JoinPostSectionModel.swift */; };
+		0B687FB82BECBF1700458F56 /* AppliedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FB72BECBF1700458F56 /* AppliedInfo.swift */; };
+		0B687FBA2BECBF4200458F56 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FB92BECBF4200458F56 /* Creator.swift */; };
+		0B687FBC2BECC2A700458F56 /* AppliedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FBB2BECC2A700458F56 /* AppliedTableViewCell.swift */; };
 		0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */; };
 		0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */; };
 		0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */; };
@@ -128,6 +132,7 @@
 		0BFED83F2BE9145C00970D8C /* PayRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED83E2BE9145C00970D8C /* PayRequestModel.swift */; };
 		0BFED8422BE9161600970D8C /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = 0BFED8412BE9161600970D8C /* iamport-ios */; };
 		0BFED8472BE91C2600970D8C /* IamportPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8462BE91C2600970D8C /* IamportPaymentView.swift */; };
+		0BFED84A2BEA1E4700970D8C /* PartyDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8492BEA1E4700970D8C /* PartyDetailHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +194,10 @@
 		0B60E2222BE26CF900779038 /* PartyPostAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPostAddViewController.swift; sourceTree = "<group>"; };
 		0B60E2242BE26D1900779038 /* PartyPostAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPostAddView.swift; sourceTree = "<group>"; };
 		0B60E2262BE26D3200779038 /* PartyPostAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPostAddViewModel.swift; sourceTree = "<group>"; };
+		0B687FB52BECBE9900458F56 /* JoinPostSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPostSectionModel.swift; sourceTree = "<group>"; };
+		0B687FB72BECBF1700458F56 /* AppliedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedInfo.swift; sourceTree = "<group>"; };
+		0B687FB92BECBF4200458F56 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
+		0B687FBB2BECC2A700458F56 /* AppliedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedTableViewCell.swift; sourceTree = "<group>"; };
 		0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewController.swift; sourceTree = "<group>"; };
 		0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetView.swift; sourceTree = "<group>"; };
 		0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewModel.swift; sourceTree = "<group>"; };
@@ -239,6 +248,7 @@
 		0BFED83C2BE913EF00970D8C /* PayValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayValidationModel.swift; sourceTree = "<group>"; };
 		0BFED83E2BE9145C00970D8C /* PayRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayRequestModel.swift; sourceTree = "<group>"; };
 		0BFED8462BE91C2600970D8C /* IamportPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IamportPaymentView.swift; sourceTree = "<group>"; };
+		0BFED8492BEA1E4700970D8C /* PartyDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyDetailHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -550,6 +560,7 @@
 			children = (
 				0B5B4E802BD1F50F00F0F8E4 /* EventsPostsSectionModel.swift */,
 				0B60E1AF2BDF86BF00779038 /* DetailViewSectionModel.swift */,
+				0B687FB52BECBE9900458F56 /* JoinPostSectionModel.swift */,
 			);
 			path = SectionModel;
 			sourceTree = "<group>";
@@ -815,6 +826,8 @@
 				0B60E19D2BDF6C2B00779038 /* LikeResultModel.swift */,
 				0BFED7EC2BE45FCE00970D8C /* WithDrawResultModel.swift */,
 				0BFED8342BE7B13F00970D8C /* WriteJoinResultModel.swift */,
+				0B687FB72BECBF1700458F56 /* AppliedInfo.swift */,
+				0B687FB92BECBF4200458F56 /* Creator.swift */,
 			);
 			path = Decoding;
 			sourceTree = "<group>";
@@ -914,6 +927,8 @@
 			isa = PBXGroup;
 			children = (
 				0BFED7DC2BE362E400970D8C /* PartyDetailViewStackCell.swift */,
+				0BFED8492BEA1E4700970D8C /* PartyDetailHeaderView.swift */,
+				0B687FBB2BECC2A700458F56 /* AppliedTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1174,6 +1189,7 @@
 				0B5B4E592BCEBA9A00F0F8E4 /* InitialViewController.swift in Sources */,
 				0BDE9FF72BC826B900289075 /* SignUpView.swift in Sources */,
 				0B469D522BD64CA200691995 /* DetailViewController.swift in Sources */,
+				0B687FB82BECBF1700458F56 /* AppliedInfo.swift in Sources */,
 				0BCFF0752BCAA66600CDC6E5 /* SignUpViewCompleteViewModel.swift in Sources */,
 				0B60E1562BDA52BD00779038 /* RxSwift+Extension.swift in Sources */,
 				0BFED83D2BE913EF00970D8C /* PayValidationModel.swift in Sources */,
@@ -1186,6 +1202,7 @@
 				0BDE9FE92BC8120E00289075 /* BaseTableViewCell.swift in Sources */,
 				0BDE9FEB2BC8120E00289075 /* BaseViewController.swift in Sources */,
 				0B60E19A2BDF652F00779038 /* WebView.swift in Sources */,
+				0B687FB62BECBE9900458F56 /* JoinPostSectionModel.swift in Sources */,
 				0BDE9FF42BC826AD00289075 /* SignUpViewController.swift in Sources */,
 				0BFED81B2BE71CF800970D8C /* BaseStepperView.swift in Sources */,
 				0B019D782BC6BB8600E89BB4 /* AppDelegate.swift in Sources */,
@@ -1197,6 +1214,7 @@
 				0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */,
 				0BDE9FEF2BC812AB00289075 /* SignInViewModel.swift in Sources */,
 				0B60E2252BE26D1900779038 /* PartyPostAddView.swift in Sources */,
+				0B687FBA2BECBF4200458F56 /* Creator.swift in Sources */,
 				0BCFF0792BCAA9CD00CDC6E5 /* AlamofireTargetType.swift in Sources */,
 				0B5B4E0F2BCD4BA700F0F8E4 /* AccessTokenRefreshModel.swift in Sources */,
 				0BFED8022BE4D6B800970D8C /* PostRequestModel.swift in Sources */,
@@ -1215,6 +1233,7 @@
 				0BFED7ED2BE45FCE00970D8C /* WithDrawResultModel.swift in Sources */,
 				0BDE9FE82BC8120E00289075 /* BaseCollectionViewCell.swift in Sources */,
 				0BCFF0832BCAADE300CDC6E5 /* LoginResultModel.swift in Sources */,
+				0B687FBC2BECC2A700458F56 /* AppliedTableViewCell.swift in Sources */,
 				0B019DBA2BC6CC0300E89BB4 /* NetworkManager.swift in Sources */,
 				0B019DC22BC6CC9200E89BB4 /* APIKeyPublic.swift in Sources */,
 				0B60E1B02BDF86BF00779038 /* DetailViewSectionModel.swift in Sources */,
@@ -1256,6 +1275,7 @@
 				0B5B4EA02BD24FF000F0F8E4 /* EventsTableViewCell.swift in Sources */,
 				0B469D572BD64CC000691995 /* DetailViewModel.swift in Sources */,
 				0B60E1972BDF64DE00779038 /* WebViewController.swift in Sources */,
+				0BFED84A2BEA1E4700970D8C /* PartyDetailHeaderView.swift in Sources */,
 				0B60E1B32BE067F600779038 /* Row.swift in Sources */,
 				0B5B4E4E2BCE748B00F0F8E4 /* SignUpRequetModel.swift in Sources */,
 			);

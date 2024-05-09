@@ -50,7 +50,7 @@ final class SignUpCompleteView: BaseUIView {
 			signUpLabelsView.subLabel.text = "돌아가서 로그인을 시도해주세요."
 		} else {
 			signUpLabelsView.mainLabel.text = "회원가입에 성공하였습니다."
-			signUpLabelsView.subLabel.text = "\(UserDefaults.standard[.userNickname])님 환영합니다!."
+			signUpLabelsView.subLabel.text = "\(UserDefaults.standard[.userNickname])님 환영합니다!"
 		}
 
 		nextButton.isEnabled = true

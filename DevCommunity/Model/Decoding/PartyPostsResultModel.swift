@@ -32,9 +32,66 @@ struct PartyPost: Decodable {
 	private var likes: [String]
 	private let likes2: [String]
 	private let hashTags: [String]
-	private var comments: [Comments]
+	private var appliedInfo: [AppliedInfo]
 	let title: String
 
+	enum CodingKeys: String, CodingKey {
+		case postID = "post_id"
+		case productID = "product_id"
+		case content = "content"
+		case content1 = "content1"
+		case content2 = "content2"
+		case content3 = "content3"
+		case mainText = "content4"
+		case createdAt = "createdAt"
+		case creator = "creator"
+		case files = "files"
+		case likes = "likes"
+		case likes2 = "likes2"
+		case hashTags = "hashTags"
+		case title = "title"
+		case appliedInfo = "comments"
+	}
+
+	init(from decoder: any Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.postID = try container.decodeIfPresent(String.self, forKey: .postID) ?? ""
+		self.productID = try container.decodeIfPresent(String.self, forKey: .productID) ?? ""
+		self.content = try container.decodeIfPresent(String.self, forKey: .content) ?? ""
+		self.content1 = try container.decodeIfPresent(String.self, forKey: .content1) ?? ""
+		self.content2 = try container.decodeIfPresent(String.self, forKey: .content2) ?? ""
+		self.content3 = try container.decodeIfPresent(String.self, forKey: .content3) ?? ""
+		self.discriptionText = try container.decodeIfPresent(String.self, forKey: .mainText) ?? ""
+		self.createdAt = try container.decodeIfPresent(String.self, forKey: .createdAt) ?? ""
+		self.creator = try container.decodeIfPresent(Creator.self, forKey: .creator) ?? Creator(userID: "", nick: "")
+		self.files = try container.decodeIfPresent([String].self, forKey: .files) ?? []
+		self.likes = try container.decodeIfPresent([String].self, forKey: .likes) ?? []
+		self.likes2 = try container.decodeIfPresent([String].self, forKey: .likes2) ?? []
+		self.hashTags = try container.decodeIfPresent([String].self, forKey: .hashTags) ?? []
+		self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
+		self.appliedInfo = try container.decodeIfPresent([AppliedInfo].self, forKey: .appliedInfo) ?? []
+	}
+
+	init() {
+		self.postID = UUID().uuidString
+		self.productID = ""
+		self.content = ""
+		self.content1 =  ""
+		self.content2 = ""
+		self.content3 = ""
+		self.appliedInfo = []
+		self.discriptionText = ""
+		self.createdAt = ""
+		self.creator = Creator(userID: "", nick: "")
+		self.files = []
+		self.likes = []
+		self.likes2 = []
+		self.hashTags = []
+		self.title = ""
+	}
+}
+
+extension PartyPost {
 	var dateStart: Date {
 		return DateFormatter.formatter.date(from: content1) ?? Date()
 	}
@@ -90,75 +147,14 @@ struct PartyPost: Decodable {
 
 	var isJoined: Bool {
 		get {
-			return !comments.filter { $0.creator.userID == UserDefaults.standard[.userId] }.isEmpty
+			return !appliedInfo.filter { $0.creator.userID == UserDefaults.standard[.userId] }.isEmpty
 		} set {
 			if newValue {
-				comments.append(Comments(comment_id: "", content: "", creator: Creator(userID: UserDefaults.standard[.userId], nick: UserDefaults.standard[.userNickname])))
+				appliedInfo.append(AppliedInfo(comment_id: "", content: "", creator: Creator(userID: UserDefaults.standard[.userId], nick: UserDefaults.standard[.userNickname])))
 			}
 		}
-
 	}
 
-	enum CodingKeys: String, CodingKey {
-		case postID = "post_id"
-		case productID = "product_id"
-		case content = "content"
-		case content1 = "content1"
-		case content2 = "content2"
-		case content3 = "content3"
-		case mainText = "content4"
-		case createdAt = "createdAt"
-		case creator = "creator"
-		case files = "files"
-		case likes = "likes"
-		case likes2 = "likes2"
-		case hashTags = "hashTags"
-		case title = "title"
-		case comments = "comments"
-	}
-
-	init(from decoder: any Decoder) throws {
-		let container = try decoder.container(keyedBy: CodingKeys.self)
-		self.postID = try container.decodeIfPresent(String.self, forKey: .postID) ?? ""
-		self.productID = try container.decodeIfPresent(String.self, forKey: .productID) ?? ""
-		self.content = try container.decodeIfPresent(String.self, forKey: .content) ?? ""
-		self.content1 = try container.decodeIfPresent(String.self, forKey: .content1) ?? ""
-		self.content2 = try container.decodeIfPresent(String.self, forKey: .content2) ?? ""
-		self.content3 = try container.decodeIfPresent(String.self, forKey: .content3) ?? ""
-		self.discriptionText = try container.decodeIfPresent(String.self, forKey: .mainText) ?? ""
-		self.createdAt = try container.decodeIfPresent(String.self, forKey: .createdAt) ?? ""
-		self.creator = try container.decodeIfPresent(Creator.self, forKey: .creator) ?? Creator(userID: "", nick: "")
-		self.files = try container.decodeIfPresent([String].self, forKey: .files) ?? []
-		self.likes = try container.decodeIfPresent([String].self, forKey: .likes) ?? []
-		self.likes2 = try container.decodeIfPresent([String].self, forKey: .likes2) ?? []
-		self.hashTags = try container.decodeIfPresent([String].self, forKey: .hashTags) ?? []
-		self.title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
-		self.comments = try container.decodeIfPresent([Comments].self, forKey: .comments) ?? []
-	}
-
-	init() {
-		self.postID = UUID().uuidString
-		self.productID = ""
-		self.content = ""
-		self.content1 =  ""
-		self.content2 = ""
-		self.content3 = ""
-		self.comments = []
-		self.discriptionText = ""
-		self.createdAt = ""
-		self.creator = Creator(userID: "", nick: "")
-		self.files = []
-		self.likes = []
-		self.likes2 = []
-		self.hashTags = []
-		self.title = ""
-	}
-}
-
-struct Comments: Decodable {
-	let comment_id: String
-	let content: String
-	let creator: Creator
 }
 
 extension PartyPost: IdentifiableType, Equatable {

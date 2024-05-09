@@ -11,5 +11,5 @@ struct PayValidationModel: Codable {
 	let imp_uid: String
 	let post_id: String
 	let productName: String
-	let price: Int = 100
+	var price: Int = 100
 }
