@@ -8,7 +8,7 @@
 import Foundation
 
 extension UserDefaults {
-	enum UserDefaultsStringKeys: String {
+	enum UserDefaultsStringKeys: String, CaseIterable {
 		case emailId
 		case password
 		case accessToken
@@ -42,5 +42,11 @@ extension UserDefaults {
 		UserDefaults.standard[.emailId] = data.email
 		UserDefaults.standard[.password] = data.password
 		UserDefaults.standard[.userNickname] = data.nick
+	}
+
+	func deleteAll() {
+		for item in UserDefaultsStringKeys.allCases {
+			UserDefaults.standard[item] = ""
+		}
 	}
 }

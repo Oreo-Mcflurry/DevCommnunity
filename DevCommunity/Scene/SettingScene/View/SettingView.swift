@@ -23,7 +23,7 @@ struct SettingView: View {
 				}
 
 				NavigationLink {
-
+					AccountSettingView()
 				} label: {
 					Label(
 						title: { Text("계정 관리") },
