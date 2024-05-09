@@ -5,14 +5,9 @@
 //  Created by A_Mcflurry on 5/4/24.
 //
 
-import SwiftUI
+import UIKit
+import SnapKit
 
-struct ProfileSettingView: View {
-	var body: some View {
-		Text("")
-	}
-}
+class ProfileSettingView: BaseUIView {
 
-#Preview {
-	ProfileSettingView()
 }
