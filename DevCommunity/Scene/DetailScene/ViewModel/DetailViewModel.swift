@@ -39,7 +39,7 @@ final class DetailViewModel: InputOutputViewModelProtocol {
 		let outputBookMarkCellButton: Driver<Bool>
 	}
 
-	var disposeBag = DisposeBag()
+	private(set) var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
 		let outputHeroImageOpacity: BehaviorRelay<Float> = BehaviorRelay(value: 0.0)

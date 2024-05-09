@@ -26,7 +26,7 @@ final class PartyDetailViewModel: InputOutputViewModelProtocol {
 		let outputApplied: Driver<[AppliedPostSectionModel]>
 	}
 
-	var disposeBag = DisposeBag()
+	private(set) var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
 		let outputBookMarkButton = BehaviorRelay(value: false)

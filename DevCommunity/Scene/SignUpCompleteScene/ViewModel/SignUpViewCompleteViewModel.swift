@@ -26,7 +26,7 @@ final class SignUpViewCompleteViewModel: InputOutputViewModelProtocol {
 		let outputTapNextButton: Driver<Bool?>
 	}
 
-	var disposeBag = DisposeBag()
+	private(set) var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
 		let signUpComplete = BehaviorRelay(value: false)

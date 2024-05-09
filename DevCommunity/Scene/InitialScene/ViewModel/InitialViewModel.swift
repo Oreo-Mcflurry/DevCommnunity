@@ -19,7 +19,7 @@ final class InitialViewModel: InputOutputViewModelProtocol {
 		let outputLoginResult: Driver<Bool>
 	}
 
-	var disposeBag = DisposeBag()
+	private(set) var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
 		let outputLoginResult = PublishRelay<Bool>()

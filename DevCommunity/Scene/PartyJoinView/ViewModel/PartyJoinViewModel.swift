@@ -22,7 +22,7 @@ final class PartyJoinViewModel: InputOutputViewModelProtocol {
 		let outputNextButton: Driver<Bool>
 	}
 
-	var disposeBag = DisposeBag()
+	private(set) var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
 		let outputNextButtonIsEnabled = BehaviorRelay(value: false)

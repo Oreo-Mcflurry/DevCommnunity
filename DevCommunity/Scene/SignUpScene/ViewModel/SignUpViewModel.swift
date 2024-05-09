@@ -41,7 +41,7 @@ final class SignUpViewModel: InputOutputViewModelProtocol {
 		let outputNextButton: Driver<Void>
 	}
 
-	var disposeBag = DisposeBag()
+	private(set) var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
 		let outputMainLabelText = BehaviorRelay(value: "")

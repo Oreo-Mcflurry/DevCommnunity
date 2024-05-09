@@ -28,7 +28,7 @@ final class EventsViewModel: InputOutputViewModelProtocol {
 		let outputDidSelect: Driver<(EventPost, IndexPath)>
 	}
 
-	var disposeBag = DisposeBag()
+	private(set) var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
 		let outputRefresh: BehaviorRelay<[EventsPostsSectionModel]> = BehaviorRelay(value: [])

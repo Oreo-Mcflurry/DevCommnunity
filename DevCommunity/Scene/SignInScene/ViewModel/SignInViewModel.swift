@@ -25,7 +25,7 @@ final class SignInViewModel: InputOutputViewModelProtocol {
 		let outputTapSignupButton: Driver<Void>
 	}
 
-	var disposeBag = DisposeBag()
+	private(set) var disposeBag = DisposeBag()
 
 	func transform(input: Input) -> Output {
 		let outputIsEnabled = BehaviorRelay(value: false)
