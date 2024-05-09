@@ -50,7 +50,7 @@ final class PartyDetailHeaderView: BaseTableHeaderView {
 		}
 
 		recruitmentImageStackView.snp.makeConstraints {
-			$0.top.equalTo(recruitDiscriptionLabel.snp.bottom).offset(10)
+			$0.top.equalTo(recruitDiscriptionLabel.snp.bottom).offset(20)
 			$0.leading.equalTo(contentView).offset(20)
 			$0.trailing.lessThanOrEqualTo(contentView).inset(20)
 			$0.height.equalTo(100)
