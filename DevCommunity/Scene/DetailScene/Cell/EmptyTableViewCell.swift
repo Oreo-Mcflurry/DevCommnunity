@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class PartyEmptyTableViewCell: BaseTableViewCell {
+final class EmptyTableViewCell: BaseTableViewCell {
 	private let emptyMainLabel = UILabel()
 	private let emptyImageLabel = UILabel()
 	private let emptySubLabel = UILabel()
@@ -50,5 +50,9 @@ final class PartyEmptyTableViewCell: BaseTableViewCell {
 
 		selectionStyle = .none
 		isUserInteractionEnabled = false
+	}
+
+	func configureUI() {
+		emptySubLabel.text = "지원자가 없네요.\n친구들에게 홍보해보세요!!"
 	}
 }

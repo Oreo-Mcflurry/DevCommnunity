@@ -36,7 +36,7 @@ final class DetailView: BaseUIView {
 	override func configureView() {
 		detailTableView.register(DetailHeaderView.self, forHeaderFooterViewReuseIdentifier: DetailHeaderView.identifier)
 		detailTableView.register(PartyTableViewCell.self, forCellReuseIdentifier: PartyTableViewCell.identifier)
-		detailTableView.register(PartyEmptyTableViewCell.self, forCellReuseIdentifier: PartyEmptyTableViewCell.identifier)
+		detailTableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: EmptyTableViewCell.identifier)
 		detailTableView.contentInsetAdjustmentBehavior = .never
 		detailTableView.sectionFooterHeight = 0
 		detailTableView.backgroundColor = .white

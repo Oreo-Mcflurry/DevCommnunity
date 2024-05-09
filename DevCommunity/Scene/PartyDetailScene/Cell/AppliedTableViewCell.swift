@@ -10,7 +10,7 @@ import SnapKit
 
 final class AppliedTableViewCell: BaseTableViewCell {
 	private let nickNameLabel = UILabel()
-	private let jobLabel = BasePaddingLabel(padding: 7)
+	private let jobLabel = UILabel()
 	private let introduceLabel = UILabel()
 
 	override func configureHierarchy() {
@@ -19,12 +19,12 @@ final class AppliedTableViewCell: BaseTableViewCell {
 
 	override func configureLayout() {
 		nickNameLabel.snp.makeConstraints {
-			$0.top.equalTo(contentView).offset(10)
+			$0.top.equalTo(contentView).offset(20)
 			$0.leading.equalTo(contentView).inset(20)
 		}
 
 		jobLabel.snp.makeConstraints {
-			$0.top.equalTo(contentView).offset(10)
+			$0.top.equalTo(contentView).offset(20)
 			$0.leading.equalTo(nickNameLabel.snp.trailing).offset(10)
 			$0.trailing.lessThanOrEqualTo(contentView).inset(20)
 		}
@@ -32,12 +32,13 @@ final class AppliedTableViewCell: BaseTableViewCell {
 		introduceLabel.snp.makeConstraints {
 			$0.top.equalTo(jobLabel.snp.bottom).offset(10)
 			$0.horizontalEdges.equalTo(contentView).inset(20)
-			$0.bottom.equalTo(contentView).inset(10)
+			$0.bottom.equalTo(contentView)
 		}
 	}
 
 	override func configureView() {
 		nickNameLabel.font = .boldSystemFont(ofSize: 17)
+		jobLabel.textColor = .lightGray
 		introduceLabel.numberOfLines = 3
 	}
 

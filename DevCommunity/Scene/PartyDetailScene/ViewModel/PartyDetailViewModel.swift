@@ -23,6 +23,7 @@ final class PartyDetailViewModel: InputOutputViewModelProtocol {
 		let outputJoinButton: Driver<Void>
 		let outputIsJoined: Driver<Bool>
 		let outputJoinButtonText: Driver<String>
+		let outputApplied: Driver<[AppliedPostSectionModel]>
 	}
 
 	var disposeBag = DisposeBag()
@@ -31,6 +32,7 @@ final class PartyDetailViewModel: InputOutputViewModelProtocol {
 		let outputBookMarkButton = BehaviorRelay(value: false)
 		let outputIsJoined = BehaviorRelay(value: false)
 		let outputJoinButtonText = BehaviorRelay(value: "")
+		let outputApplied: BehaviorRelay<[AppliedPostSectionModel]> = BehaviorRelay(value: [])
 
 		input.inputviewDidAppear
 			.flatMap { self.requestManager.getOnePost(postID: $0.postID) }
@@ -42,6 +44,12 @@ final class PartyDetailViewModel: InputOutputViewModelProtocol {
 					outputIsJoined.accept(result.isJoined || result.isCreator)
 					let text = result.isJoined ? "이미 가입되어 있습니다" : result.isCreator ? "만든이는 가입할 수 없습니다" : "참가신청"
 					outputJoinButtonText.accept(text)
+
+					if result.appliedInfo.isEmpty {
+						outputApplied.accept([AppliedPostSectionModel(header: "", items: [], row: .empty)])
+					} else {
+						outputApplied.accept([AppliedPostSectionModel(header: "", items: result.appliedInfo, row: .data)])
+					}
 				case .failure(_):
 					break
 				}
@@ -66,6 +74,7 @@ final class PartyDetailViewModel: InputOutputViewModelProtocol {
 		return Output(outputBookMarkButton: outputBookMarkButton.asDriver(),
 						  outputJoinButton: input.inputJoinButton.asDriver(),
 						  outputIsJoined: outputIsJoined.asDriver(),
-						  outputJoinButtonText: outputJoinButtonText.asDriver())
+						  outputJoinButtonText: outputJoinButtonText.asDriver(), 
+						  outputApplied: outputApplied.asDriver())
 	}
 }

@@ -16,9 +16,10 @@ final class PartyDetailHeaderView: BaseTableHeaderView {
 	private let discriptionLabel = UILabel()
 	private let recruitDiscriptionLabel = UILabel()
 	private let recruitmentImageStackView = UIStackView()
+	private let appliedDiscriptionLabel = UILabel()
 
 	override func configureHierarchy() {
-		[titleLabel, uploadDateLabel, dDayLabel, partyMaxLabel, discriptionLabel, recruitDiscriptionLabel, recruitmentImageStackView].forEach { contentView.addSubview($0) }
+		[titleLabel, uploadDateLabel, dDayLabel, partyMaxLabel, discriptionLabel, recruitDiscriptionLabel, recruitmentImageStackView, appliedDiscriptionLabel].forEach { contentView.addSubview($0) }
 	}
 
 	override func configureLayout() {
@@ -52,7 +53,13 @@ final class PartyDetailHeaderView: BaseTableHeaderView {
 			$0.top.equalTo(recruitDiscriptionLabel.snp.bottom).offset(10)
 			$0.leading.equalTo(contentView).offset(20)
 			$0.trailing.lessThanOrEqualTo(contentView).inset(20)
-			$0.bottom.equalTo(contentView).inset(20)
+			$0.height.equalTo(100)
+		}
+
+		appliedDiscriptionLabel.snp.makeConstraints {
+			$0.top.equalTo(recruitmentImageStackView.snp.bottom).offset(20)
+			$0.horizontalEdges.equalTo(contentView).inset(20)
+			$0.bottom.equalTo(contentView)
 		}
 	}
 
@@ -75,6 +82,9 @@ final class PartyDetailHeaderView: BaseTableHeaderView {
 		recruitmentImageStackView.spacing = 10
 		recruitmentImageStackView.alignment = .leading
 		recruitmentImageStackView.distribution = .fillEqually
+
+		appliedDiscriptionLabel.text = "지원 현황"
+		appliedDiscriptionLabel.font = .boldSystemFont(ofSize: 20)
 	}
 
 	func configureUI(_ data: PartyPost) {

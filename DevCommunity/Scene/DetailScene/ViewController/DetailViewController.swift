@@ -48,7 +48,7 @@ final class DetailViewController: BaseViewController {
 		let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel> (animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
 
 			if data[indexPath.section].row == .empty {
-				guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyEmptyTableViewCell.identifier, for: indexPath) as? PartyEmptyTableViewCell else { fatalError() }
+				guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier, for: indexPath) as? EmptyTableViewCell else { fatalError() }
 				tableView.visibleCells.forEach { $0.hideSkeleton() }
 				tableView.separatorStyle = .none
 				return cell

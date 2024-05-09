@@ -8,20 +8,20 @@
 import Foundation
 import RxDataSources
 
-struct JoinPostSectionModel: SectionModelProtocol {
+struct AppliedPostSectionModel: SectionModelProtocol {
 	var header: String
 	var items: [AppliedInfo]
 	var row: Row
 }
 
-extension JoinPostSectionModel: AnimatableSectionModelType {
+extension AppliedPostSectionModel: AnimatableSectionModelType {
 	typealias Identity = String
 
 	var identity: String {
 		return header
 	}
 
-	init(original: JoinPostSectionModel, items: [AppliedInfo]) {
+	init(original: AppliedPostSectionModel, items: [AppliedInfo]) {
 		self = original
 		self.items = items
 	}

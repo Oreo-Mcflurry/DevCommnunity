@@ -32,7 +32,7 @@ struct PartyPost: Decodable {
 	private var likes: [String]
 	private let likes2: [String]
 	private let hashTags: [String]
-	private var appliedInfo: [AppliedInfo]
+	var appliedInfo: [AppliedInfo]
 	let title: String
 
 	enum CodingKeys: String, CodingKey {

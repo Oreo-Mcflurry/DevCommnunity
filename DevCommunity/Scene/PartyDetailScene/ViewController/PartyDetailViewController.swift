@@ -27,8 +27,18 @@ final class PartyDetailViewController: BaseViewController {
 	}
 
 	override func configureBinding() {
-//		let dataSource = RxTableViewSectionedAnimatedDataSource<JoinPostSectionModel> (animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
-//		}
+		let dataSource = RxTableViewSectionedAnimatedDataSource<AppliedPostSectionModel> (animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
+
+			if data[indexPath.section].row == .empty {
+				guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier, for: indexPath) as? EmptyTableViewCell else { fatalError() }
+				cell.configureUI()
+				return cell
+			} else {
+				guard let cell = tableView.dequeueReusableCell(withIdentifier: AppliedTableViewCell.identifier, for: indexPath) as? AppliedTableViewCell else { fatalError() }
+				cell.configureUI(item)
+				return cell
+			}
+		}
 
 		let inputBookMarkButton = partyDetailView.bookmarkButton.rx.tap.map { self.partyPost }
 		let inputviewDidAppear = self.rx.viewDidAppear.map { self.partyPost }
@@ -61,6 +71,10 @@ final class PartyDetailViewController: BaseViewController {
 			.drive(with: self) { owner, value in
 				owner.partyDetailView.bookmarkButton.setImage(value ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"), for: .normal)
 			}.disposed(by: disposeBag)
+
+		output.outputApplied
+			.drive(self.partyDetailView.partyTableView.rx.items(dataSource: dataSource))
+			.disposed(by: disposeBag)
 	}
 }
 

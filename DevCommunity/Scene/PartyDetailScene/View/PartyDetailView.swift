@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class PartyDetailView: BaseUIView {
-	let partyTableView = UITableView()
+	let partyTableView = UITableView(frame: .zero, style: .grouped)
 
 	private let bottomView = UIView()
 	let bookmarkButton = UIButton()
@@ -45,7 +45,10 @@ final class PartyDetailView: BaseUIView {
 	}
 
 	override func configureView() {
-		partyTableView.alwaysBounceVertical = true
+		partyTableView.sectionFooterHeight = 0
+		partyTableView.backgroundColor = .white
+		partyTableView.allowsSelection = false
+		partyTableView.separatorStyle = .none
 
 		bottomView.layer.borderColor = UIColor.lightGray.cgColor
 		bottomView.layer.borderWidth = 1
@@ -57,6 +60,8 @@ final class PartyDetailView: BaseUIView {
 		joinButton.backgroundColor = .accent
 		joinButton.layer.cornerRadius = 10
 
-		partyTableView.register(PartyDetailHeaderView.self, forCellReuseIdentifier: PartyDetailHeaderView.identifier)
+		partyTableView.register(PartyDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: PartyDetailHeaderView.identifier)
+		partyTableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: EmptyTableViewCell.identifier)
+		partyTableView.register(AppliedTableViewCell.self, forCellReuseIdentifier: AppliedTableViewCell.identifier)
 	}
 }

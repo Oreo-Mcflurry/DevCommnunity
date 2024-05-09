@@ -67,7 +67,7 @@
 		0B60E1B02BDF86BF00779038 /* DetailViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1AF2BDF86BF00779038 /* DetailViewSectionModel.swift */; };
 		0B60E1B32BE067F600779038 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1B22BE067F600779038 /* Row.swift */; };
 		0B60E1B52BE0683500779038 /* SectionModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E1B42BE0683500779038 /* SectionModelProtocol.swift */; };
-		0B60E2042BE0A5D700779038 /* PartyEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2032BE0A5D700779038 /* PartyEmptyTableViewCell.swift */; };
+		0B60E2042BE0A5D700779038 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2032BE0A5D700779038 /* EmptyTableViewCell.swift */; };
 		0B60E2132BE11CCC00779038 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 0B60E2122BE11CCC00779038 /* Moya */; };
 		0B60E2162BE11D7F00779038 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2152BE11D7F00779038 /* AuthRouter.swift */; };
 		0B60E2182BE121C200779038 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 0B60E2172BE121C200779038 /* ReactiveMoya */; };
@@ -75,10 +75,11 @@
 		0B60E2232BE26CF900779038 /* PartyPostAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2222BE26CF900779038 /* PartyPostAddViewController.swift */; };
 		0B60E2252BE26D1900779038 /* PartyPostAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2242BE26D1900779038 /* PartyPostAddView.swift */; };
 		0B60E2272BE26D3200779038 /* PartyPostAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2262BE26D3200779038 /* PartyPostAddViewModel.swift */; };
-		0B687FB62BECBE9900458F56 /* JoinPostSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FB52BECBE9900458F56 /* JoinPostSectionModel.swift */; };
+		0B687FB62BECBE9900458F56 /* AppliedPostSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FB52BECBE9900458F56 /* AppliedPostSectionModel.swift */; };
 		0B687FB82BECBF1700458F56 /* AppliedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FB72BECBF1700458F56 /* AppliedInfo.swift */; };
 		0B687FBA2BECBF4200458F56 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FB92BECBF4200458F56 /* Creator.swift */; };
 		0B687FBC2BECC2A700458F56 /* AppliedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FBB2BECC2A700458F56 /* AppliedTableViewCell.swift */; };
+		0B687FF72BED108800458F56 /* AccountSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FF62BED108800458F56 /* AccountSettingView.swift */; };
 		0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */; };
 		0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */; };
 		0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */; };
@@ -189,15 +190,16 @@
 		0B60E1AF2BDF86BF00779038 /* DetailViewSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewSectionModel.swift; sourceTree = "<group>"; };
 		0B60E1B22BE067F600779038 /* Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
 		0B60E1B42BE0683500779038 /* SectionModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModelProtocol.swift; sourceTree = "<group>"; };
-		0B60E2032BE0A5D700779038 /* PartyEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		0B60E2032BE0A5D700779038 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		0B60E2152BE11D7F00779038 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		0B60E2222BE26CF900779038 /* PartyPostAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPostAddViewController.swift; sourceTree = "<group>"; };
 		0B60E2242BE26D1900779038 /* PartyPostAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPostAddView.swift; sourceTree = "<group>"; };
 		0B60E2262BE26D3200779038 /* PartyPostAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPostAddViewModel.swift; sourceTree = "<group>"; };
-		0B687FB52BECBE9900458F56 /* JoinPostSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPostSectionModel.swift; sourceTree = "<group>"; };
+		0B687FB52BECBE9900458F56 /* AppliedPostSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedPostSectionModel.swift; sourceTree = "<group>"; };
 		0B687FB72BECBF1700458F56 /* AppliedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedInfo.swift; sourceTree = "<group>"; };
 		0B687FB92BECBF4200458F56 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
 		0B687FBB2BECC2A700458F56 /* AppliedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedTableViewCell.swift; sourceTree = "<group>"; };
+		0B687FF62BED108800458F56 /* AccountSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingView.swift; sourceTree = "<group>"; };
 		0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewController.swift; sourceTree = "<group>"; };
 		0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetView.swift; sourceTree = "<group>"; };
 		0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewModel.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 		0B019DA72BC6BC9E00E89BB4 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0B687FF82BED108C00458F56 /* AccountSettingScene */,
 				0BFED8452BE91C1900970D8C /* IamportPaymentViewScene */,
 				0BFED8112BE66F6100970D8C /* ProfileSettingView */,
 				0BFED8032BE516D900970D8C /* PartyJoinView */,
@@ -560,7 +563,7 @@
 			children = (
 				0B5B4E802BD1F50F00F0F8E4 /* EventsPostsSectionModel.swift */,
 				0B60E1AF2BDF86BF00779038 /* DetailViewSectionModel.swift */,
-				0B687FB52BECBE9900458F56 /* JoinPostSectionModel.swift */,
+				0B687FB52BECBE9900458F56 /* AppliedPostSectionModel.swift */,
 			);
 			path = SectionModel;
 			sourceTree = "<group>";
@@ -578,7 +581,7 @@
 			children = (
 				0B60E1602BDB8B2C00779038 /* PartyTableViewCell.swift */,
 				0B60E1AB2BDF830700779038 /* DetailHeaderView.swift */,
-				0B60E2032BE0A5D700779038 /* PartyEmptyTableViewCell.swift */,
+				0B60E2032BE0A5D700779038 /* EmptyTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -705,6 +708,22 @@
 				0B60E2262BE26D3200779038 /* PartyPostAddViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B687FF82BED108C00458F56 /* AccountSettingScene */ = {
+			isa = PBXGroup;
+			children = (
+				0B687FF92BED109200458F56 /* View */,
+			);
+			path = AccountSettingScene;
+			sourceTree = "<group>";
+		};
+		0B687FF92BED109200458F56 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B687FF62BED108800458F56 /* AccountSettingView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		0BCFF0552BCA42F500CDC6E5 /* SignUpBottomSheet */ = {
@@ -1202,7 +1221,7 @@
 				0BDE9FE92BC8120E00289075 /* BaseTableViewCell.swift in Sources */,
 				0BDE9FEB2BC8120E00289075 /* BaseViewController.swift in Sources */,
 				0B60E19A2BDF652F00779038 /* WebView.swift in Sources */,
-				0B687FB62BECBE9900458F56 /* JoinPostSectionModel.swift in Sources */,
+				0B687FB62BECBE9900458F56 /* AppliedPostSectionModel.swift in Sources */,
 				0BDE9FF42BC826AD00289075 /* SignUpViewController.swift in Sources */,
 				0BFED81B2BE71CF800970D8C /* BaseStepperView.swift in Sources */,
 				0B019D782BC6BB8600E89BB4 /* AppDelegate.swift in Sources */,
@@ -1240,6 +1259,7 @@
 				0BFED7FA2BE4B80100970D8C /* CustomTargetType.swift in Sources */,
 				0B60E1A82BDF7A4A00779038 /* PartyDetailViewModel.swift in Sources */,
 				0B469D592BD6828100691995 /* BasePaddingLabel.swift in Sources */,
+				0B687FF72BED108800458F56 /* AccountSettingView.swift in Sources */,
 				0BFED8352BE7B13F00970D8C /* WriteJoinResultModel.swift in Sources */,
 				0B60E2272BE26D3200779038 /* PartyPostAddViewModel.swift in Sources */,
 				0BDE9FEA2BC8120E00289075 /* BaseUIView.swift in Sources */,
@@ -1255,7 +1275,7 @@
 				0BFED81D2BE75EF200970D8C /* BaseEndEditingViewController.swift in Sources */,
 				0B5B4E5B2BCEBAA200F0F8E4 /* InitialView.swift in Sources */,
 				0BCFF0732BCAA62C00CDC6E5 /* SignUpViewCompleteViewController.swift in Sources */,
-				0B60E2042BE0A5D700779038 /* PartyEmptyTableViewCell.swift in Sources */,
+				0B60E2042BE0A5D700779038 /* EmptyTableViewCell.swift in Sources */,
 				0B60E1A42BDF7A1500779038 /* PartyDetailViewController.swift in Sources */,
 				0BCFF0772BCAA68000CDC6E5 /* SignUpCompleteView.swift in Sources */,
 				0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */,
