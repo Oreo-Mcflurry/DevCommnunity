@@ -33,7 +33,7 @@ extension Interceptor: RequestInterceptor {
 			return
 		}
 
-		if response.statusCode != 401 {
+		if response.statusCode != 401 || response.statusCode != 418 {
 			completion(.doNotRetryWithError(error))
 			return
 		}
