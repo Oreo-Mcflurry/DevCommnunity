@@ -12,6 +12,18 @@ struct AppliedInfo: Decodable {
 	let comment_id: String
 	let content: String
 	let creator: Creator
+
+	init() {
+		self.comment_id = ""
+		self.content = ""
+		self.creator = Creator(userID: "", nick: "")
+	}
+
+	init(comment_id: String, content: String, creator: Creator) {
+		self.comment_id = comment_id
+		self.content = content
+		self.creator = creator
+	}
 }
 
 extension AppliedInfo {

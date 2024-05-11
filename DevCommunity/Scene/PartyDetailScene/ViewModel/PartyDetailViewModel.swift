@@ -46,7 +46,7 @@ final class PartyDetailViewModel: InputOutputViewModelProtocol {
 					outputJoinButtonText.accept(text)
 
 					if result.appliedInfo.isEmpty {
-						outputApplied.accept([AppliedPostSectionModel(header: "", items: [], row: .empty)])
+						outputApplied.accept([AppliedPostSectionModel(header: "", items: [AppliedInfo()], row: .empty)])
 					} else {
 						outputApplied.accept([AppliedPostSectionModel(header: "", items: result.appliedInfo, row: .data)])
 					}

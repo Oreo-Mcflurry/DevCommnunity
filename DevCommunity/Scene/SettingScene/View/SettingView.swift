@@ -82,7 +82,7 @@ struct SettingView: View {
 
 	private var managingProfileView: some View {
 		NavigationLink {
-
+			ProfileSettingViewController().toSwiftUIView()
 		} label: {
 			Label(
 				title: { Text("프로필 관리") },

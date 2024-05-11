@@ -15,6 +15,7 @@ extension UserDefaults {
 		case refreshToken
 		case userId
 		case userNickname
+		case phoneNum
 	}
 
 	subscript(_ item: UserDefaultsStringKeys) -> String {
@@ -42,6 +43,17 @@ extension UserDefaults {
 		UserDefaults.standard[.emailId] = data.email
 		UserDefaults.standard[.password] = data.password
 		UserDefaults.standard[.userNickname] = data.nick
+		UserDefaults.standard[.phoneNum] = data.phoneNum
+	}
+
+	func saveProfileSettingRequest(_ data: ProfileEditModel) {
+		UserDefaults.standard[.userNickname] = data.nickname
+		UserDefaults.standard[.password] = data.phoneNum
+	}
+
+	func saveProfileResult(_ data: ProfileResultModel) {
+		UserDefaults.standard[.userNickname] = data.nick
+		UserDefaults.standard[.password] = data.phoneNum
 	}
 
 	func deleteAll() {

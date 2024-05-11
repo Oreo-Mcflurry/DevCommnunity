@@ -82,6 +82,10 @@
 		0B687FF72BED108800458F56 /* AccountSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B687FF62BED108800458F56 /* AccountSettingView.swift */; };
 		0B6880012BED886300458F56 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6880002BED886300458F56 /* ProfileSettingViewController.swift */; };
 		0B6880032BED886900458F56 /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6880022BED886900458F56 /* ProfileSettingViewModel.swift */; };
+		0B6880062BED8A4500458F56 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6880052BED8A4500458F56 /* ProfileRouter.swift */; };
+		0B6880082BED8A6100458F56 /* ProfileRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6880072BED8A6100458F56 /* ProfileRequestManager.swift */; };
+		0B68800A2BED8ABB00458F56 /* ProfileEditRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6880092BED8ABB00458F56 /* ProfileEditRequestModel.swift */; };
+		0B6880132BEF3B1D00458F56 /* ProfileResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6880122BEF3B1D00458F56 /* ProfileResultModel.swift */; };
 		0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */; };
 		0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */; };
 		0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */; };
@@ -113,7 +117,7 @@
 		0BFED7FA2BE4B80100970D8C /* CustomTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7F92BE4B80100970D8C /* CustomTargetType.swift */; };
 		0BFED7FD2BE4D08400970D8C /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7FC2BE4D08400970D8C /* PostRouter.swift */; };
 		0BFED8002BE4D4CE00970D8C /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED7FF2BE4D4CE00970D8C /* Interceptor.swift */; };
-		0BFED8022BE4D6B800970D8C /* PostRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8012BE4D6B800970D8C /* PostRequestModel.swift */; };
+		0BFED8022BE4D6B800970D8C /* PostRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8012BE4D6B800970D8C /* PostRequestManager.swift */; };
 		0BFED8082BE5170500970D8C /* PartyJoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8072BE5170500970D8C /* PartyJoinViewController.swift */; };
 		0BFED80A2BE5172500970D8C /* PartyJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED8092BE5172500970D8C /* PartyJoinView.swift */; };
 		0BFED80C2BE5174000970D8C /* PartyJoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFED80B2BE5174000970D8C /* PartyJoinViewModel.swift */; };
@@ -204,6 +208,10 @@
 		0B687FF62BED108800458F56 /* AccountSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingView.swift; sourceTree = "<group>"; };
 		0B6880002BED886300458F56 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		0B6880022BED886900458F56 /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
+		0B6880052BED8A4500458F56 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		0B6880072BED8A6100458F56 /* ProfileRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequestManager.swift; sourceTree = "<group>"; };
+		0B6880092BED8ABB00458F56 /* ProfileEditRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditRequestModel.swift; sourceTree = "<group>"; };
+		0B6880122BEF3B1D00458F56 /* ProfileResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResultModel.swift; sourceTree = "<group>"; };
 		0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewController.swift; sourceTree = "<group>"; };
 		0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetView.swift; sourceTree = "<group>"; };
 		0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewModel.swift; sourceTree = "<group>"; };
@@ -234,7 +242,7 @@
 		0BFED7F92BE4B80100970D8C /* CustomTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTargetType.swift; sourceTree = "<group>"; };
 		0BFED7FC2BE4D08400970D8C /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		0BFED7FF2BE4D4CE00970D8C /* Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
-		0BFED8012BE4D6B800970D8C /* PostRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestModel.swift; sourceTree = "<group>"; };
+		0BFED8012BE4D6B800970D8C /* PostRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestManager.swift; sourceTree = "<group>"; };
 		0BFED8072BE5170500970D8C /* PartyJoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyJoinViewController.swift; sourceTree = "<group>"; };
 		0BFED8092BE5172500970D8C /* PartyJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyJoinView.swift; sourceTree = "<group>"; };
 		0BFED80B2BE5174000970D8C /* PartyJoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyJoinViewModel.swift; sourceTree = "<group>"; };
@@ -662,6 +670,7 @@
 		0B60E20F2BE116FD00779038 /* NewNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				0B6880042BED8A3300458F56 /* Profile */,
 				0BFED8392BE9134F00970D8C /* Pay */,
 				0BFED82A2BE79AAC00970D8C /* Plugin */,
 				0BFED81E2BE760C900970D8C /* Base */,
@@ -744,6 +753,23 @@
 				0B6880022BED886900458F56 /* ProfileSettingViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B6880042BED8A3300458F56 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0B6880052BED8A4500458F56 /* ProfileRouter.swift */,
+				0B6880072BED8A6100458F56 /* ProfileRequestManager.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		0B68800B2BED8C3400458F56 /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				0B6880092BED8ABB00458F56 /* ProfileEditRequestModel.swift */,
+			);
+			path = Codable;
 			sourceTree = "<group>";
 		};
 		0BCFF0552BCA42F500CDC6E5 /* SignUpBottomSheet */ = {
@@ -833,6 +859,7 @@
 		0BCFF07D2BCAAC8900CDC6E5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B68800B2BED8C3400458F56 /* Codable */,
 				0B5B4E7F2BD1F4FC00F0F8E4 /* SectionModel */,
 				0BCFF07F2BCAAC9400CDC6E5 /* Decoding */,
 				0BCFF07E2BCAAC8F00CDC6E5 /* Encoding */,
@@ -867,6 +894,7 @@
 				0BFED8342BE7B13F00970D8C /* WriteJoinResultModel.swift */,
 				0B687FB72BECBF1700458F56 /* AppliedInfo.swift */,
 				0B687FB92BECBF4200458F56 /* Creator.swift */,
+				0B6880122BEF3B1D00458F56 /* ProfileResultModel.swift */,
 			);
 			path = Decoding;
 			sourceTree = "<group>";
@@ -985,7 +1013,7 @@
 			isa = PBXGroup;
 			children = (
 				0BFED7FC2BE4D08400970D8C /* PostRouter.swift */,
-				0BFED8012BE4D6B800970D8C /* PostRequestModel.swift */,
+				0BFED8012BE4D6B800970D8C /* PostRequestManager.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -1221,6 +1249,7 @@
 				0BFED82F2BE79C5700970D8C /* WritePostRequestModel.swift in Sources */,
 				0B5B4DF12BCBBD4E00F0F8E4 /* SignUpLabelsView.swift in Sources */,
 				0B469D722BD9F31300691995 /* TitleView.swift in Sources */,
+				0B6880132BEF3B1D00458F56 /* ProfileResultModel.swift in Sources */,
 				0BFED8082BE5170500970D8C /* PartyJoinViewController.swift in Sources */,
 				0BFED8312BE7A52F00970D8C /* DateFormatter+Extension.swift in Sources */,
 				0BFED8332BE7B09F00970D8C /* JoinRequestModel.swift in Sources */,
@@ -1259,10 +1288,13 @@
 				0BCFF0792BCAA9CD00CDC6E5 /* AlamofireTargetType.swift in Sources */,
 				0B5B4E0F2BCD4BA700F0F8E4 /* AccessTokenRefreshModel.swift in Sources */,
 				0B6880012BED886300458F56 /* ProfileSettingViewController.swift in Sources */,
-				0BFED8022BE4D6B800970D8C /* PostRequestModel.swift in Sources */,
+				0B6880062BED8A4500458F56 /* ProfileRouter.swift in Sources */,
+				0BFED8022BE4D6B800970D8C /* PostRequestManager.swift in Sources */,
 				0B5B4E6B2BCFA7EB00F0F8E4 /* SettingView.swift in Sources */,
 				0BFED7FD2BE4D08400970D8C /* PostRouter.swift in Sources */,
 				0BFED8202BE760DA00970D8C /* BaseRequestManager.swift in Sources */,
+				0B68800A2BED8ABB00458F56 /* ProfileEditRequestModel.swift in Sources */,
+				0B6880082BED8A6100458F56 /* ProfileRequestManager.swift in Sources */,
 				0BFED8262BE7801300970D8C /* MoyaLogger.swift in Sources */,
 				0B60E19C2BDF6A2600779038 /* LikeRequestModel.swift in Sources */,
 				0BCFF0612BCA455000CDC6E5 /* CheckBoxView.swift in Sources */,
