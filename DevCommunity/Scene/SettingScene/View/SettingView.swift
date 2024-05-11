@@ -35,7 +35,7 @@ struct SettingView: View {
 
 	private var iamportPayView: some View {
 		NavigationLink {
-			IamportPaymentView()
+			IamportPaymentViewController().toSwiftUIView()
 		} label: {
 			Label(
 				title: { Text("광고 제거 구매 (100원)") },

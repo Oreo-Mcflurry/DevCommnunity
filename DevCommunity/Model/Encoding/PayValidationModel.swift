@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PayValidationModel: Codable {
+struct PayValidationModel: Encodable {
 	let imp_uid: String
 	let post_id: String
 	let productName: String
