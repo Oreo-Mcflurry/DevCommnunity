@@ -32,6 +32,11 @@ final class ProfileSettingViewModel: InputOutputViewModelProtocol {
 		let outputSaveButtonClicked = PublishRelay<Void>()
 		let outputSaveButtonEnabled = BehaviorRelay(value: false)
 
+		Observable.combineLatest(input.inputNickNameTextField.orEmpty, input.inputPhoneNumTextField.orEmpty)
+			.map { $0.0.count >= 2 && (Int($0.1) != nil && $0.1.count == 11) }
+			.bind(to: outputSaveButtonEnabled)
+			.disposed(by: disposeBag)
+
 		input.inputViewDidAppear
 			.flatMap { self.requestManager.getMyProfile() }
 			.subscribe(with: self) { owner, value in
@@ -40,14 +45,9 @@ final class ProfileSettingViewModel: InputOutputViewModelProtocol {
 					UserDefaults.standard.saveProfileResult(result)
 					outputViewDidAppear.accept(result)
 				case .failure(_):
-					break;
+					outputViewDidAppear.accept(ProfileResultModel(nick: UserDefaults.standard[.userNickname], phoneNum: UserDefaults.standard[.phoneNum]))
 				}
 			}.disposed(by: disposeBag)
-
-		Observable.combineLatest(input.inputNickNameTextField.orEmpty, input.inputPhoneNumTextField.orEmpty)
-			.map { $0.0.count >= 2 && (Int($0.1) != nil && $0.1.count == 11) }
-			.bind(to: outputSaveButtonEnabled)
-			.disposed(by: disposeBag)
 
 		input.inputSaveButtonClicked
 			.map { ($0.0 ?? "", $0.1 ?? "") }
@@ -59,9 +59,9 @@ final class ProfileSettingViewModel: InputOutputViewModelProtocol {
 				switch value {
 				case .success(let result):
 					UserDefaults.standard.saveProfileSettingRequest(result)
-					outputSaveButtonClicked.accept(Void())
+					fallthrough
 				case .failure(_):
-					break
+					outputSaveButtonClicked.accept(Void())
 				}
 			}.disposed(by: disposeBag)
 

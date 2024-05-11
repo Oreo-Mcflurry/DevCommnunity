@@ -11,12 +11,13 @@ import SnapKit
 class ProfileSettingView: BaseUIView {
 	private let scrollView = UIScrollView()
 	private let contentView = UIView()
+	let saveButton = UIButton()
 
 	let nickNameTextField = BaseTextField()
 	let phoneNumberTextField = BaseTextField()
 
 	override func configureHierarchy() {
-		[scrollView].forEach { addSubview($0) }
+		[scrollView, saveButton].forEach { addSubview($0) }
 		[contentView].forEach { scrollView.addSubview($0) }
 		[nickNameTextField, phoneNumberTextField].forEach { contentView.addSubview($0) }
 	}
@@ -29,6 +30,12 @@ class ProfileSettingView: BaseUIView {
 		contentView.snp.makeConstraints {
 			$0.verticalEdges.equalTo(scrollView)
 			$0.width.equalTo(scrollView)
+		}
+
+		saveButton.snp.makeConstraints {
+			$0.bottom.equalTo(scrollView.snp.bottom).inset(30)
+			$0.horizontalEdges.equalTo(scrollView).inset(20)
+			$0.height.equalTo(40)
 		}
 
 		nickNameTextField.snp.makeConstraints {
@@ -49,8 +56,10 @@ class ProfileSettingView: BaseUIView {
 		scrollView.alwaysBounceVertical = true
 
 		nickNameTextField.placeholder = "닉네임"
-		nickNameTextField.text = UserDefaults.standard[.userNickname]
 		phoneNumberTextField.placeholder = "전화번호"
-		nickNameTextField.text = UserDefaults.standard[.phoneNum]
+
+		saveButton.setTitle("저장", for: .normal)
+		saveButton.backgroundColor = .lightGray
+		saveButton.layer.cornerRadius = 10
 	}
 }

@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(frame: windowScene.coordinateSpace.bounds)
 		window?.windowScene = windowScene
-		window?.rootViewController = UINavigationController(rootViewController: InitialViewController()) // RootViewController
+		window?.rootViewController = UINavigationController(rootViewController: InitialViewController())
 		window?.makeKeyAndVisible()
 	}
 
@@ -27,8 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 
 	func sceneDidBecomeActive(_ scene: UIScene) {
-		// Called when the scene has moved from an inactive state to an active state.
-		// Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+
 	}
 
 	func sceneWillResignActive(_ scene: UIScene) {
@@ -50,3 +49,58 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+
+//class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+//
+//	 var window: UIWindow?
+//
+//	 var errorWindow: UIWindow?
+//
+//	 func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+//
+//		  guard let scene = (scene as? UIWindowScene) else { return }
+//
+//		  window = UIWindow(windowScene: scene)
+//
+//		  let vc = InitailViewController()
+//
+//		  window?.rootViewController = vc
+//		  window?.makeKeyAndVisible()
+//
+//		  NetworkMonitorManager.shared.startMonitoring() { [weak self] connectionStatus in
+//				switch connectionStatus {
+//				case .satisfied:
+//					 self?.removeNetworkErrorWindow()
+//				case .unsatisfied:
+//					 self?.loadNetworkErrorWindow(on: scene)
+//				default:
+//					 break
+//				}
+//		  }
+//	 }
+//
+//	 private func loadNetworkErrorWindow(on scene: UIScene) {
+//		  if let windowScene = scene as? UIWindowScene {
+//				let window = UIWindow(windowScene: windowScene)
+//				window.windowLevel = .statusBar
+//				window.makeKeyAndVisible()
+//
+//				let noNetworkView = NoNetworkView(frame: window.frame)
+//				window.addSubview(noNetworkView)
+//				self.errorWindow = window
+//		  }
+//	 }
+//
+//	 private func removeNetworkErrorWindow() {
+//		  errorWindow?.resignKey()
+//		  errorWindow?.isHidden = true
+//		  errorWindow = nil
+//	 }
+//
+//	 func sceneDidDisconnect(_ scene: UIScene) {
+//		  // Called as the scene is being released by the system.
+//		  // This occurs shortly after the scene enters the background, or when its session is discarded.
+//		  // Release any resources associated with this scene that can be re-created the next time the scene connects.
+//		  // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+//		  NetworkMonitorManager.shared.stopMonitoring()
+//	 }

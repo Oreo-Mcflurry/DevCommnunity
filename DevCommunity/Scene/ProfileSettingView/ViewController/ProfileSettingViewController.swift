@@ -12,12 +12,10 @@ import RxCocoa
 final class ProfileSettingViewController: BaseViewController {
 	private let profileSettingView: ProfileSettingView
 	private let viewModel: ProfileSettingViewModel
-	private var saveBarButton: UIBarButtonItem
 
 	init() {
 		self.profileSettingView = ProfileSettingView()
 		self.viewModel = ProfileSettingViewModel()
-		self.saveBarButton = UIBarButtonItem(title: "저장", style: .plain, target: ProfileSettingViewController.self, action: nil)
 		super.init(nibName: nil, bundle: nil)
 	}
 	
@@ -34,7 +32,9 @@ final class ProfileSettingViewController: BaseViewController {
 	}
 
 	override func configureBinding() {
-		let inputSaveButtonClicked = Observable.combineLatest(profileSettingView.nickNameTextField.rx.text, profileSettingView.phoneNumberTextField.rx.text)
+		let inputSaveButtonClicked = profileSettingView.saveButton.rx.tap.asObservable().withLatestFrom(
+			Observable.combineLatest(profileSettingView.nickNameTextField.rx.text, profileSettingView.phoneNumberTextField.rx.text)
+		)
 
 		let input = ProfileSettingViewModel.Input(inputViewDidAppear: self.rx.viewDidAppear,
 																inputSaveButtonClicked: inputSaveButtonClicked,
@@ -42,12 +42,6 @@ final class ProfileSettingViewController: BaseViewController {
 																inputPhoneNumTextField: profileSettingView.phoneNumberTextField.rx.text)
 
 		let output = viewModel.transform(input: input)
-
-		output.outputSaveButtonEnabled
-			.drive(with: self) { owner, value in
-				owner.saveBarButton.isEnabled = value
-				owner.saveBarButton.tintColor = value ? .accent : .gray
-			}.disposed(by: disposeBag)
 
 		output.outputSaveButtonClicked
 			.drive(with: self) { owner, _ in
@@ -60,5 +54,11 @@ final class ProfileSettingViewController: BaseViewController {
 				owner.profileSettingView.phoneNumberTextField.text = value.phoneNum
 			}.disposed(by: disposeBag)
 
+		output.outputSaveButtonEnabled
+			.drive(with: self) { owner, value in
+				print("==========\(value)")
+				owner.profileSettingView.saveButton.isEnabled = value
+				owner.profileSettingView.saveButton.backgroundColor = value ? .accent : .lightGray
+			}.disposed(by: disposeBag)
 	}
 }
