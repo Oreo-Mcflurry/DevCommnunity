@@ -22,14 +22,24 @@ final class IamportPaymentViewController: BaseViewController {
 		super.viewDidLoad()
 	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		self.tabBarController?.tabBar.isHidden = true
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		self.tabBarController?.tabBar.isHidden = false
+	}
+
 	override func configureBinding() {
 		let inputIamportResult = PublishRelay<IamportResponse>()
-		let input = IamportPaymentViewModel.Input(inputViewDidLoad: self.rx.viewDidLoad,
+		let input = IamportPaymentViewModel.Input(inputViewDidAppear: self.rx.viewDidAppear,
 																inputIamportResult: inputIamportResult)
 
 		let output = viewModel.transform(input: input)
 
-		output.outputViewDidLoad
+		output.outputViewDidAppear
 			.drive(with: self) { owner, value in
 				Iamport.shared.payment(viewController: owner,
 											  userCode: APIKey.portoneUserCode.rawValue,

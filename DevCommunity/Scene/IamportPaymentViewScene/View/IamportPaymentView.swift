@@ -32,3 +32,4 @@ final class IamportPaymentView: BaseUIView {
 		paymentLabelsView.subLabel.text = data.1
 	}
 }
+
