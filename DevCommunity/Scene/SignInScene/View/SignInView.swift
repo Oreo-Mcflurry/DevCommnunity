@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class SignInView: BaseUIView {
-	private let signUpLabelsView = SignUpLabelsView()
+	private let signUpLabelsView = BaseLabelsView()
 	let emailTextField = BaseTextField()
 	let passwordTextField = BaseTextField()
 	let loginButton = UIButton()

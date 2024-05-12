@@ -12,7 +12,7 @@ final class SignUpView: BaseUIView {
 	private let scrollView = UIScrollView()
 	private let contentView = UIView()
 
-	let signUpLabelsView = SignUpLabelsView()
+	let signUpLabelsView = BaseLabelsView()
 	private let signUpStackView = UIStackView()
 
 	let textFields = [BaseTextField(), BaseTextField(), BaseTextField(), BaseTextField()]

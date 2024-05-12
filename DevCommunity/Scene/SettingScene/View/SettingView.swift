@@ -35,7 +35,7 @@ struct SettingView: View {
 
 	private var iamportPayView: some View {
 		NavigationLink {
-			IamportPaymentViewController().toSwiftUIView()
+			NavigationLazyView(IamportPaymentViewController().toSwiftUIView())
 		} label: {
 			Label(
 				title: { Text("광고 제거 구매 (100원)") },
@@ -82,7 +82,7 @@ struct SettingView: View {
 
 	private var managingProfileView: some View {
 		NavigationLink {
-			ProfileSettingViewController().toSwiftUIView()
+			NavigationLazyView(ProfileSettingViewController().toSwiftUIView())
 		} label: {
 			Label(
 				title: { Text("프로필 관리") },
@@ -93,7 +93,7 @@ struct SettingView: View {
 
 	private var managingAccountView: some View {
 		NavigationLink {
-			AccountSettingView()
+			NavigationLazyView(AccountSettingView())
 		} label: {
 			Label(
 				title: { Text("계정 관리") },

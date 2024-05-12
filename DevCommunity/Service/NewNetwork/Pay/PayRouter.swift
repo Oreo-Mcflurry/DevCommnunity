@@ -10,6 +10,7 @@ import Moya
 
 enum PayRouter {
 	case payValidation(query: PayValidationModel)
+	case isUserBought
 }
 
 extension PayRouter: TargetType {
@@ -18,17 +19,29 @@ extension PayRouter: TargetType {
 	}
 
 	var path: String {
-		return "v1/payments/validation"
+		switch self {
+		case .payValidation:
+			return "v1/payments/validation"
+		case .isUserBought:
+			return "v1/payments/me"
+		}
 	}
 
 	var method: Moya.Method {
-		return .post
+		switch self {
+		case .payValidation:
+			return .post
+		case .isUserBought:
+			return .get
+		}
 	}
 
 	var task: Moya.Task {
 		switch self {
 		case .payValidation(let query):
 			return .requestJSONEncodable(query)
+		case .isUserBought:
+			return .requestParameters(parameters: [:], encoding: URLEncoding.queryString)
 		}
 	}
 

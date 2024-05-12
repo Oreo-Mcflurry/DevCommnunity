@@ -13,33 +13,28 @@ final class PayRequestManager: BaseRequestManager {
 
 	private var provider = MoyaProvider<PayRouter>(session: Session(interceptor: Interceptor.shared), plugins: [MoyaLogger(), MoyaCacheablePlugin()])
 
-	func getPayValidation(query: PayValidationModel) -> Single<PayStatusCode> {
-		return Single<PayStatusCode>.create { single in
+	func getPayValidation(query: PayValidationModel) -> Single<Int> {
+		return Single<Int>.create { single in
 			self.provider.request(.payValidation(query: query)) { response in
 				switch response {
+
 				case .success(let result):
-					single(.success(PayStatusCode.getPayEnum(result.statusCode)))
+					single(.success(result.statusCode))
 				case .failure(_):
-					single(.success(.error))
+					single(.success(400))
 				}
 			}
 			return Disposables.create()
 		}
 	}
 
-	enum PayStatusCode {
-		case success
-		case error
-		case alreadyPay
-
-		static func getPayEnum(_ statusCode: Int) -> PayStatusCode {
-			if statusCode == 200 {
-				return .success
-			} else if statusCode == 409 {
-				return .alreadyPay
-			} else {
-				return .error
+	func getIsUserBought() -> Single<Result<BoughtResultModel, Error>> {
+		return Single<Result<BoughtResultModel, Error>>.create { single in
+			self.provider.request(.isUserBought) { response in
+				debugPrint(response)
+				self.requestHandling(single, response: response)
 			}
+			return Disposables.create()
 		}
 	}
 }

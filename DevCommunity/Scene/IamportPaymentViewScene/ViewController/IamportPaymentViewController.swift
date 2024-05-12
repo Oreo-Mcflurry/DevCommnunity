@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import iamport_ios
 
-class IamportPaymentViewController: BaseViewController {
+final class IamportPaymentViewController: BaseViewController {
 	private let iamportPaymentView = IamportPaymentView()
 	private let viewModel = IamportPaymentViewModel()
 
@@ -31,13 +31,18 @@ class IamportPaymentViewController: BaseViewController {
 
 		output.outputViewDidLoad
 			.drive(with: self) { owner, value in
-				Iamport.shared.payment(viewController: self,
+				Iamport.shared.payment(viewController: owner,
 											  userCode: APIKey.portoneUserCode.rawValue,
 											  payment: value) { response in
 					if let response {
 						inputIamportResult.accept(response)
 					}
 				}
+			}.disposed(by: disposeBag)
+
+		output.outputDiscriptionLabel
+			.drive(with: self) { owner, data in
+				owner.iamportPaymentView.configureUI(data)
 			}.disposed(by: disposeBag)
 	}
 }

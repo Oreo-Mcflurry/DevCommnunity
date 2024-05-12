@@ -34,7 +34,7 @@
 		0B469D572BD64CC000691995 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D562BD64CC000691995 /* DetailViewModel.swift */; };
 		0B469D592BD6828100691995 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D582BD6828100691995 /* BasePaddingLabel.swift */; };
 		0B469D722BD9F31300691995 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D712BD9F31300691995 /* TitleView.swift */; };
-		0B5B4DF12BCBBD4E00F0F8E4 /* SignUpLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4DF02BCBBD4E00F0F8E4 /* SignUpLabelsView.swift */; };
+		0B5B4DF12BCBBD4E00F0F8E4 /* BaseLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4DF02BCBBD4E00F0F8E4 /* BaseLabelsView.swift */; };
 		0B5B4E0F2BCD4BA700F0F8E4 /* AccessTokenRefreshModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E0E2BCD4BA700F0F8E4 /* AccessTokenRefreshModel.swift */; };
 		0B5B4E172BCD62B600F0F8E4 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E162BCD62B600F0F8E4 /* EventsViewController.swift */; };
 		0B5B4E192BCD62D200F0F8E4 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B4E182BCD62D200F0F8E4 /* EventsViewModel.swift */; };
@@ -89,6 +89,9 @@
 		0B6880182BEF55E600458F56 /* IamportPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6880172BEF55E600458F56 /* IamportPaymentViewModel.swift */; };
 		0B68801A2BEF55E900458F56 /* IamportPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6880192BEF55E900458F56 /* IamportPaymentView.swift */; };
 		0B68801C2BEF5E0200458F56 /* PayValidationResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68801B2BEF5E0200458F56 /* PayValidationResultModel.swift */; };
+		0B68801E2BF0A7E400458F56 /* PayStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68801D2BF0A7E400458F56 /* PayStatusCode.swift */; };
+		0B6880202BF0A85100458F56 /* BoughtResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68801F2BF0A85100458F56 /* BoughtResultModel.swift */; };
+		0B6880232BF0AE4700458F56 /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6880222BF0AE4700458F56 /* NavigationLazyView.swift */; };
 		0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */; };
 		0BCFF05D2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */; };
 		0BCFF05F2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */; };
@@ -168,7 +171,7 @@
 		0B469D562BD64CC000691995 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		0B469D582BD6828100691995 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		0B469D712BD9F31300691995 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
-		0B5B4DF02BCBBD4E00F0F8E4 /* SignUpLabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpLabelsView.swift; sourceTree = "<group>"; };
+		0B5B4DF02BCBBD4E00F0F8E4 /* BaseLabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabelsView.swift; sourceTree = "<group>"; };
 		0B5B4E0E2BCD4BA700F0F8E4 /* AccessTokenRefreshModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenRefreshModel.swift; sourceTree = "<group>"; };
 		0B5B4E162BCD62B600F0F8E4 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		0B5B4E182BCD62D200F0F8E4 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
@@ -218,6 +221,9 @@
 		0B6880172BEF55E600458F56 /* IamportPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IamportPaymentViewModel.swift; sourceTree = "<group>"; };
 		0B6880192BEF55E900458F56 /* IamportPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IamportPaymentView.swift; sourceTree = "<group>"; };
 		0B68801B2BEF5E0200458F56 /* PayValidationResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayValidationResultModel.swift; sourceTree = "<group>"; };
+		0B68801D2BF0A7E400458F56 /* PayStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayStatusCode.swift; sourceTree = "<group>"; };
+		0B68801F2BF0A85100458F56 /* BoughtResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoughtResultModel.swift; sourceTree = "<group>"; };
+		0B6880222BF0AE4700458F56 /* NavigationLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLazyView.swift; sourceTree = "<group>"; };
 		0BCFF0562BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewController.swift; sourceTree = "<group>"; };
 		0BCFF05C2BCA443A00CDC6E5 /* SignUpBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetView.swift; sourceTree = "<group>"; };
 		0BCFF05E2BCA446D00CDC6E5 /* SignUpBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomSheetViewModel.swift; sourceTree = "<group>"; };
@@ -478,7 +484,7 @@
 		0B5B4DEF2BCBBD3E00F0F8E4 /* SignUpLabelsView */ = {
 			isa = PBXGroup;
 			children = (
-				0B5B4DF02BCBBD4E00F0F8E4 /* SignUpLabelsView.swift */,
+				0B5B4DF02BCBBD4E00F0F8E4 /* BaseLabelsView.swift */,
 			);
 			path = SignUpLabelsView;
 			sourceTree = "<group>";
@@ -669,6 +675,7 @@
 			children = (
 				0B60E1B22BE067F600779038 /* Row.swift */,
 				0BFED80F2BE5BBA000970D8C /* Job.swift */,
+				0B68801D2BF0A7E400458F56 /* PayStatusCode.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -802,6 +809,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		0B6880212BF0AE3A00458F56 /* NavigationLazyView */ = {
+			isa = PBXGroup;
+			children = (
+				0B6880222BF0AE4700458F56 /* NavigationLazyView.swift */,
+			);
+			path = NavigationLazyView;
+			sourceTree = "<group>";
+		};
 		0BCFF0552BCA42F500CDC6E5 /* SignUpBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -926,6 +941,7 @@
 				0B687FB92BECBF4200458F56 /* Creator.swift */,
 				0B6880122BEF3B1D00458F56 /* ProfileResultModel.swift */,
 				0B68801B2BEF5E0200458F56 /* PayValidationResultModel.swift */,
+				0B68801F2BF0A85100458F56 /* BoughtResultModel.swift */,
 			);
 			path = Decoding;
 			sourceTree = "<group>";
@@ -1002,6 +1018,7 @@
 		0BDE9FFD2BC8296300289075 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0B6880212BF0AE3A00458F56 /* NavigationLazyView */,
 				0BFED8192BE71CDF00970D8C /* BaseStepperView */,
 				0B469D702BD9F30800691995 /* TitleView */,
 				0B469D6F2BD88C5C00691995 /* BasePaddingLabel */,
@@ -1280,7 +1297,7 @@
 				0BFED83B2BE9136000970D8C /* PayRouter.swift in Sources */,
 				0BDE9FDD2BC76EF100289075 /* CodeView.swift in Sources */,
 				0BFED82F2BE79C5700970D8C /* WritePostRequestModel.swift in Sources */,
-				0B5B4DF12BCBBD4E00F0F8E4 /* SignUpLabelsView.swift in Sources */,
+				0B5B4DF12BCBBD4E00F0F8E4 /* BaseLabelsView.swift in Sources */,
 				0B469D722BD9F31300691995 /* TitleView.swift in Sources */,
 				0B6880132BEF3B1D00458F56 /* ProfileResultModel.swift in Sources */,
 				0BFED8082BE5170500970D8C /* PartyJoinViewController.swift in Sources */,
@@ -1299,6 +1316,7 @@
 				0B5B4E5D2BCEBAC700F0F8E4 /* InitialViewModel.swift in Sources */,
 				0B5B4EA22BD251D400F0F8E4 /* PartyPostsResultModel.swift in Sources */,
 				0B5B4E4C2BCE610600F0F8E4 /* EventPostsResultModel.swift in Sources */,
+				0B6880232BF0AE4700458F56 /* NavigationLazyView.swift in Sources */,
 				0B5B4EA42BD258C300F0F8E4 /* PostsRequestModel.swift in Sources */,
 				0BFED8142BE66F7A00970D8C /* ProfileSettingView.swift in Sources */,
 				0B469D472BD3E72000691995 /* KingFisher+Extension.swift in Sources */,
@@ -1315,6 +1333,7 @@
 				0BFED80A2BE5172500970D8C /* PartyJoinView.swift in Sources */,
 				0BFED80C2BE5174000970D8C /* PartyJoinViewModel.swift in Sources */,
 				0BCFF0572BCA430500CDC6E5 /* SignUpBottomSheetViewController.swift in Sources */,
+				0B6880202BF0A85100458F56 /* BoughtResultModel.swift in Sources */,
 				0BDE9FEF2BC812AB00289075 /* SignInViewModel.swift in Sources */,
 				0B60E2252BE26D1900779038 /* PartyPostAddView.swift in Sources */,
 				0B687FBA2BECBF4200458F56 /* Creator.swift in Sources */,
@@ -1354,6 +1373,7 @@
 				0BFED8352BE7B13F00970D8C /* WriteJoinResultModel.swift in Sources */,
 				0B68801A2BEF55E900458F56 /* IamportPaymentView.swift in Sources */,
 				0B60E2272BE26D3200779038 /* PartyPostAddViewModel.swift in Sources */,
+				0B68801E2BF0A7E400458F56 /* PayStatusCode.swift in Sources */,
 				0BDE9FEA2BC8120E00289075 /* BaseUIView.swift in Sources */,
 				0BFED8472BE91C2600970D8C /* IamportPaymentViewController.swift in Sources */,
 				0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */,

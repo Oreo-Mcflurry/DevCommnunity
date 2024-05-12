@@ -10,7 +10,7 @@ import SnapKit
 import SwiftUI
 
 final class SignUpCompleteView: BaseUIView {
-	private let signUpLabelsView = SignUpLabelsView()
+	private let signUpLabelsView = BaseLabelsView()
 	let nextButton = UIButton()
 
 

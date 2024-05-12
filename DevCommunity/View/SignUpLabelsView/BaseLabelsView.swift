@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SignUpLabelsView: BaseUIView {
+final class BaseLabelsView: BaseUIView {
 	let mainLabel = UILabel()
 	let subLabel = UILabel()
 
