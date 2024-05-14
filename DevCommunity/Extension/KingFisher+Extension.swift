@@ -23,16 +23,3 @@ extension KingfisherManager {
 		]
 	}
 }
-
-extension KingfisherWrapper where Base: KFCrossPlatformImageView {
-	@discardableResult
-	func setHeaderAndImage(with resource: Resource?) -> DownloadTask? {
-		KingfisherManager.shared.setHeaders()
-		return setImage(
-			 with: resource,
-			 placeholder: nil,
-			 options: nil,
-			 progressBlock: nil,
-			 completionHandler: nil)
-	}
-}

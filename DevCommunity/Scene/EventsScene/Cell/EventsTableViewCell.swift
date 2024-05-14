@@ -79,7 +79,7 @@ final class EventsTableViewCell: BaseTableViewCell {
 
 	func configureCell(_ data: EventPost) {
 		self.hideSkeleton()
-		eventsImageView.kf.setHeaderAndImage(with: data.imageURL)
+		eventsImageView.kf.setImage(with: data.imageURL)
 		organizerLabel.text = data.organizer
 		eventTitleLabel.text = data.title
 		dDayLabel.text = data.dDay
