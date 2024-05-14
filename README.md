@@ -50,141 +50,143 @@
 #### 이전 코드
 ~~~swift
 func getPosts(query: PostsKind) -> Observable<EventPostsResultModel> {
-	let request = PostsRequestModel(next: "", product_id: query.requestValue)
-	return Observable.create { observer -> Disposable in
-		self.callRequest(.getPost(query: request), type: EventPostsResultModel.self)
-			.subscribe { event in
-				switch event {
-				case .success(let result):
-					observer.onNext(result)
+    let request = PostsRequestModel(next: "", product_id: query.requestValue)
+    return Observable.create { observer -> Disposable in
+        self.callRequest(.getPost(query: request), type: EventPostsResultModel.self)
+            .subscribe { event in
+                switch event {
+                case .success(let result):
+                    observer.onNext(result)
 
-				case .failure(_):
-					self.refreshAccessToken {
-						self.callRequest(.getPost(query: request), type: EventPostsResultModel.self)
-							.subscribe(with: self) { _, result in
-								observer.onNext(result)
-							} onFailure: { _, error in
-								observer.onError(error)
-							}.disposed(by: self.disposeBag)
-					}
-				}
-			}
-	}
+                case .failure(_):
+                    self.refreshAccessToken {
+                        self.callRequest(.getPost(query: request), type: EventPostsResultModel.self)
+                            .subscribe(with: self) { _, result in
+                                observer.onNext(result)
+                            } onFailure: { _, error in
+                                observer.onError(error)
+                            }.disposed(by: self.disposeBag)
+                    }
+                }
+            }
+    }
 }
 ~~~
 
 #### 수정 후 코드
 ~~~swift
 extension Interceptor: RequestInterceptor {
-	func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, any Error>) -> Void) {
-		return completion(.success(urlRequest))
-	}
+    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, any Error>) -> Void) {
+        return completion(.success(urlRequest))
+    }
 
-	func retry(_ request: Request, for session: Session, dueTo error: any Error, completion: @escaping (RetryResult) -> Void) {
-		let requestManager = AuthRequestManager()
+    func retry(_ request: Request, for session: Session, dueTo error: any Error, completion: @escaping (RetryResult) -> Void) {
+        let requestManager = AuthRequestManager()
 
-		guard let response = request.response else {
-			completion(.doNotRetryWithError(error))
-			return
-		}
+        guard let response = request.response else {
+            completion(.doNotRetryWithError(error))
+            return
+        }
 
-		if response.statusCode != 401 || response.statusCode != 418 {
-			completion(.doNotRetryWithError(error))
-			return
-		}
+        if response.statusCode != 401 || response.statusCode != 418 {
+            completion(.doNotRetryWithError(error))
+            return
+        }
 
-		requestManager.accessTokenRequest()
-			.subscribe { response in
-				switch response {
-				case .success(let result):
-					switch result {
-					case .success(let accessToken):
-						UserDefaults.standard[.accessToken] = accessToken.accessToken
-						completion(.retry)
-					case .failure(let error):
-						completion(.doNotRetryWithError(error))
-					}
-				case .failure(let error):
-					completion(.doNotRetryWithError(error))
-				}
-			}.disposed(by: disposeBag)
-	}
+        requestManager.accessTokenRequest()
+            .subscribe { response in
+                switch response {
+                case .success(let result):
+                    switch result {
+                    case .success(let accessToken):
+                        UserDefaults.standard[.accessToken] = accessToken.accessToken
+                        completion(.retry)
+                    case .failure(let error):
+                        completion(.doNotRetryWithError(error))
+                    }
+                case .failure(let error):
+                    completion(.doNotRetryWithError(error))
+                }
+            }.disposed(by: disposeBag)
+    }
 }
+
 ~~~
 
 - 자동 로그인을 구현하기 위해 최초 앱 진입시 RefreshToken으로 AccessToken을 발급받고, RefreshToken이 만료 되었을때 다시 로그인하도록 처리하였음
 
 ~~~swift
 output.outputLoginResult
-	.drive(with: self) { owner, value in
-		let vc = value ? TabbarViewController() : UINavigationController(rootViewController: SignInViewController())
-		owner.view?.window?.rootViewController = vc
-	}.disposed(by: disposeBag)
+    .drive(with: self) { owner, value in
+        let vc = value ? TabbarViewController() : UINavigationController(rootViewController: SignInViewController())
+        owner.view?.window?.rootViewController = vc
+    }.disposed(by: disposeBag)
+
 ~~~
 
 - NavigationLink에서 Destination을 미리 초기화 해서 갖고 있어 뷰에 들어올때마다 실행되어야하는 메서드들이 실행이 안되었고, NavigationLazyView라는 뷰를 만들어 Lazy한 Navigation을 구현
 #### 이전 코드
 ~~~swift
 private var iamportPayView: some View {
-	NavigationLink {
-		IamportPaymentViewController().toSwiftUIView()
-	} label: {
-		Label(
-			title: { Text("광고 제거 구매 (100원)") },
-			icon: { Image(systemName: "person.fill").foregroundStyle(.cyan) }
-		)
-	}
+    NavigationLink {
+        IamportPaymentViewController().toSwiftUIView()
+    } label: {
+        Label(
+            title: { Text("광고 제거 구매 (100원)") },
+            icon: { Image(systemName: "person.fill").foregroundStyle(.cyan) }
+        )
+    }
 }
 ~~~
 
 #### 수정 후 코드
 ~~~swift
 struct NavigationLazyView<T: View>: View {
-	let build: () -> T
-	init(_ build: @autoclosure @escaping () -> T) {
-		self.build = build
-	}
-	var body: some View {
-		build()
-	}
+    let build: () -> T
+    init(_ build: @autoclosure @escaping () -> T) {
+        self.build = build
+    }
+    var body: some View {
+        build()
+    }
 }
 
 private var iamportPayView: some View {
-	NavigationLink {
-		NavigationLazyView(IamportPaymentViewController().toSwiftUIView())
-	} label: {
-		Label(
-			title: { Text("광고 제거 구매 (100원)") },
-			icon: { Image(systemName: "person.fill").foregroundStyle(.cyan) }
-		)
-	}
+    NavigationLink {
+        NavigationLazyView(IamportPaymentViewController().toSwiftUIView())
+    } label: {
+        Label(
+            title: { Text("광고 제거 구매 (100원)") },
+            icon: { Image(systemName: "person.fill").foregroundStyle(.cyan) }
+        )
+    }
 }
 ~~~
 
 - 자연스러운 애니메이션과 사용자 경험 향상을 위하여 SkeletionView와 RxDataSource를 사용였음.
 
 ~~~swift
-let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel> (animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
+let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
 
-	if data[indexPath.section].row == .empty {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier, for: indexPath) as? EmptyTableViewCell else { fatalError() }
-		tableView.visibleCells.forEach { $0.hideSkeleton() }
-		tableView.separatorStyle = .none
-		return cell
-	}
+    if data[indexPath.section].row == .empty {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier, for: indexPath) as? EmptyTableViewCell else { fatalError() }
+        tableView.visibleCells.forEach { $0.hideSkeleton() }
+        tableView.separatorStyle = .none
+        return cell
+    }
 
-	guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyTableViewCell.identifier, for: indexPath) as? PartyTableViewCell else { fatalError() }
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyTableViewCell.identifier, for: indexPath) as? PartyTableViewCell else { fatalError() }
 
-	if data[indexPath.section].row == .data {
-		cell.configureUI(item)
-		cell.bookmarkButton.rx.tap.map { item }
-			.bind(to: inputBookMarkCellButton)
-			.disposed(by: cell.disposeBag)
-	} else {
-		cell.configureSkeleton()
-	}
+    if data[indexPath.section].row == .data {
+        cell.configureUI(item)
+        cell.bookmarkButton.rx.tap.map { item }
+            .bind(to: inputBookMarkCellButton)
+            .disposed(by: cell.disposeBag)
+    } else {
+        cell.configureSkeleton()
+    }
 
-	return cell
+    return cell
 }
 ~~~
 
