@@ -42,10 +42,8 @@ extension Interceptor: RequestInterceptor {
 			.subscribe { response in
 				switch response {
 				case .success(let result):
-
 					switch result {
 					case .success(let accessToken):
-						// 이런걸 빼려고 리팩토링 하는데 얘는 도저히 이걸 어디서 뺄 각이 안보입니다... ㅠㅜㅠㅠㅠㅠㅠ
 						UserDefaults.standard[.accessToken] = accessToken.accessToken
 						completion(.retry)
 					case .failure(let error):
