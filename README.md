@@ -46,7 +46,7 @@
 
 ### 🌠 Trouble Shooting
 
-- Access Token이 만료 되었을 때, 기존에는 각 Requst 메서드마다 실패시 토큰을 다시 발급받도록 하였는데, Moya의 Interceptor를 적용하여 효율적으로 리프레시 토큰을 관리.
+### 1.  Access Token이 만료 되었을 때, 기존에는 각 Requst 메서드마다 실패시 토큰을 다시 발급받도록 하였는데, Moya의 Interceptor를 적용하여 효율적으로 리프레시 토큰을 관리.
 #### 이전 코드
 ~~~swift
 func getPosts(query: PostsKind) -> Observable<EventPostsResultModel> {
@@ -113,7 +113,7 @@ extension Interceptor: RequestInterceptor {
 
 ~~~
 
-- 자동 로그인을 구현하기 위해 최초 앱 진입시 RefreshToken으로 AccessToken을 발급받고, RefreshToken이 만료 되었을때 다시 로그인하도록 처리하였음
+### 2. 자동 로그인을 구현하기 위해 최초 앱 진입시 RefreshToken으로 AccessToken을 발급받고, RefreshToken이 만료 되었을때 다시 로그인하도록 처리하였음
 
 ~~~swift
 output.outputLoginResult
@@ -124,7 +124,7 @@ output.outputLoginResult
 
 ~~~
 
-- NavigationLink에서 Destination을 미리 초기화 해서 갖고 있어 뷰에 들어올때마다 실행되어야하는 메서드들이 실행이 안되었고, NavigationLazyView라는 뷰를 만들어 Lazy한 Navigation을 구현
+### 3. NavigationLink에서 Destination을 미리 초기화 해서 갖고 있어 뷰에 들어올때마다 실행되어야하는 메서드들이 실행이 안되었고, NavigationLazyView라는 뷰를 만들어 Lazy한 Navigation을 구현
 #### 이전 코드
 ~~~swift
 private var iamportPayView: some View {
@@ -163,7 +163,7 @@ private var iamportPayView: some View {
 }
 ~~~
 
-- 자연스러운 애니메이션과 사용자 경험 향상을 위하여 SkeletionView와 RxDataSource를 사용였음.
+### 4. 자연스러운 애니메이션과 사용자 경험 향상을 위하여 SkeletionView와 RxDataSource를 사용였음.
 
 ~~~swift
 let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
