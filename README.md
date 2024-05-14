@@ -252,7 +252,7 @@ let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel>(
 | 로그인 뷰 | <img src="https://github.com/Oreo-Mcflurry/DevCommnunity/assets/96654328/ab2a7683-7730-4313-9569-e577d9e1ece9" width="188" height="408"> |
 | 회원가입 뷰 | <img src="https://github.com/Oreo-Mcflurry/DevCommnunity/assets/96654328/eb702933-68b0-4766-831c-f77d7f5d2e49" width="188" height="408"> |
 | 메인 뷰 | <img src="https://github.com/Oreo-Mcflurry/DevCommnunity/assets/96654328/27802b62-4cba-4448-bdd5-392378ea274a" width="188" height="408"> |
-| 행사 상세 뷰 | <img src="https://github.com/Oreo-Mcflurry/DevCommnunity/assets/96654328/e7578e8f-2918-43cf-a2ef-c113f245e0c6" width="188" height="408"> |
+| 행사 상세 뷰 | <img src="https://github.com/Oreo-Mcflurry/DevCommnunity/assets/96654328/b3c960d9-424a-4e48-a0e8-88113a5aa5ba" width="188" height="408"> |
 | 팀원 구인글 작성 뷰 | <img src="https://github.com/Oreo-Mcflurry/DevCommnunity/assets/96654328/3593f0be-ff68-4e8d-8658-c51be08c1253" width="188" height="408"> |
 | 팀원 구인글 참가 뷰 | <img src="https://github.com/Oreo-Mcflurry/DevCommnunity/assets/96654328/3a564d36-33bc-4b8e-834f-5aa0e0804148" width="188" height="408"> |
 | 광고 제거 구매 뷰 | <img src="https://github.com/Oreo-Mcflurry/DevCommnunity/assets/96654328/04b6f647-c65d-414e-895c-752bca89c26a" width="188" height="408"> |
