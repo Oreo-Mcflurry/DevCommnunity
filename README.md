@@ -52,7 +52,7 @@ protocol InputOutputViewModelProtocol {
 
 ~~~
 
-- RxDataSource와 SkeletonUI를 활용해 사용자 경험 향상
+- RxDataSource와 SkeletonUI를 활용해 자연스러운 애니메이션으로 사용자 경험 향상
 ~~~swift
 let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
 
