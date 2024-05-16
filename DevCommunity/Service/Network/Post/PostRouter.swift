@@ -63,7 +63,7 @@ extension PostRouter: TargetType {
 		case .writeJoin(_, let data):
 			return .requestJSONEncodable(data)
 		case .getOnePartyPost:
-			return .requestParameters(parameters: [:], encoding: URLEncoding.queryString)
+			return .requestPlain
 		}
 	}
 	

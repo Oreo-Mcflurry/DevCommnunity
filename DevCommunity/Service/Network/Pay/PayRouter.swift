@@ -41,7 +41,7 @@ extension PayRouter: TargetType {
 		case .payValidation(let query):
 			return .requestJSONEncodable(query)
 		case .isUserBought:
-			return .requestParameters(parameters: [:], encoding: URLEncoding.queryString)
+			return .requestPlain
 		}
 	}
 
