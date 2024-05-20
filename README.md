@@ -20,7 +20,7 @@
 ### 🥕 기능
 
 - 로그인 / 회원가입
-- 개발자 행사 정보 받아오기
+- 개발자 행사 정보 받아오기   
 - 같이 할 팀원 구하기
 - 참가 신청
 - 결제 기능
@@ -39,9 +39,97 @@
 
 ### 👏 해당 기술을 사용하며 이룬 성과
 
-- RxDataSource와 SkeletonUI를 활용해 사용자 경험 향상
+- Input / Output ViewModel Protocol로 구조화
+~~~swift
+protocol InputOutputViewModelProtocol {
+    associatedtype Input
+    associatedtype Output
+
+    var disposeBag: DisposeBag { get }
+
+    func transform(input: Input) -> Output
+}
+
+~~~
+
+- RxDataSource와 SkeletonUI를 활용해 자연스러운 애니메이션으로 사용자 경험 향상
+~~~swift
+let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
+
+    if data[indexPath.section].row == .empty {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier, for: indexPath) as? EmptyTableViewCell else { fatalError() }
+        tableView.visibleCells.forEach { $0.hideSkeleton() }
+        tableView.separatorStyle = .none
+        return cell
+    }
+
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyTableViewCell.identifier, for: indexPath) as? PartyTableViewCell else { fatalError() }
+
+    if data[indexPath.section].row == .data {
+        cell.configureUI(item)
+        cell.bookmarkButton.rx.tap.map { item }
+            .bind(to: inputBookMarkCellButton)
+            .disposed(by: cell.disposeBag)
+    } else {
+        cell.configureSkeleton()
+    }
+
+    return cell
+}
+
+~~~
+
 - Moya와 Router Pattern을 이용한 Alamofire 추상화
-- Moya Interceptor를 이용한 AccessToken 관리
+~~~swift
+import Moya
+
+enum PayRouter {
+    case payValidation(query: PayValidationModel)
+    case isUserBought
+}
+
+extension PayRouter: TargetType {
+    var baseURL: URL {
+        return URL(string: APIKey.baseURL.rawValue)!
+    }
+
+    var path: String {
+        switch self {
+        case .payValidation:
+            return "v1/payments/validation"
+        case .isUserBought:
+            return "v1/payments/me"
+        }
+    }
+
+    var method: Moya.Method {
+        switch self {
+        case .payValidation:
+            return .post
+        case .isUserBought:
+            return .get
+        }
+    }
+
+    var task: Moya.Task {
+        switch self {
+        case .payValidation(let query):
+            return .requestJSONEncodable(query)
+        case .isUserBought:
+            return .requestParameters(parameters: [:], encoding: URLEncoding.queryString)
+        }
+    }
+
+    var headers: [String : String]? {
+        return [
+            HTTPHeader.authorization.rawValue: UserDefaults.standard[.accessToken],
+            HTTPHeader.sesackey.rawValue: APIKey.sesacKey.rawValue
+        ]
+    }
+}
+
+~~~
+
 - Iamport를 이용한 결제, 결제 검증 및 에러 핸들링
 
 ### 🌠 Trouble Shooting
@@ -160,33 +248,6 @@ private var iamportPayView: some View {
             icon: { Image(systemName: "person.fill").foregroundStyle(.cyan) }
         )
     }
-}
-~~~
-
-### 4. 자연스러운 애니메이션과 사용자 경험 향상을 위하여 SkeletionView와 RxDataSource를 사용였음.
-
-~~~swift
-let dataSource = RxTableViewSectionedAnimatedDataSource<DetailViewSectionModel>(animationConfiguration: AnimationConfiguration(insertAnimation: .fade)) { data, tableView, indexPath, item in
-
-    if data[indexPath.section].row == .empty {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier, for: indexPath) as? EmptyTableViewCell else { fatalError() }
-        tableView.visibleCells.forEach { $0.hideSkeleton() }
-        tableView.separatorStyle = .none
-        return cell
-    }
-
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: PartyTableViewCell.identifier, for: indexPath) as? PartyTableViewCell else { fatalError() }
-
-    if data[indexPath.section].row == .data {
-        cell.configureUI(item)
-        cell.bookmarkButton.rx.tap.map { item }
-            .bind(to: inputBookMarkCellButton)
-            .disposed(by: cell.disposeBag)
-    } else {
-        cell.configureSkeleton()
-    }
-
-    return cell
 }
 ~~~
 
