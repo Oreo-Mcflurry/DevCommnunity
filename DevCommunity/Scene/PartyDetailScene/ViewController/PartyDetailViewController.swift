@@ -14,7 +14,17 @@ final class PartyDetailViewController: BaseViewController {
 	private let partyDetailView = PartyDetailView()
 	private let partyDetailViewModel = PartyDetailViewModel()
 	private let tableHeaderView = PartyDetailHeaderView()
-	var partyPost = PartyPost()
+	private let inputpartyPost: BehaviorRelay<PartyPost>
+
+	init(_ partyPost: PartyPost) {
+		self.inputpartyPost.accept(partyPost)
+		super.init(nibName: nil, bundle: nil)
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
 
 	override func loadView() {
 		self.view = partyDetailView
@@ -50,8 +60,7 @@ final class PartyDetailViewController: BaseViewController {
 
 		output.outputJoinButton
 			.drive(with: self) { owner, _ in
-				let vc = PartyJoinViewController()
-				vc.partyPost = owner.partyPost
+				let vc = PartyJoinViewController(<#T##partyPost: PartyPost##PartyPost#>)
 				owner.navigationController?.pushViewController(vc, animated: true)
 			}.disposed(by: disposeBag)
 

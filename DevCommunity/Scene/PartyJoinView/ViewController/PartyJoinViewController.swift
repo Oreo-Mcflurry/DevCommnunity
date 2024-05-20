@@ -11,22 +11,31 @@ import RxCocoa
 
 final class PartyJoinViewController: BaseEndEditingViewController {
 	private let partyJoinView = PartyJoinView()
-	private let viewModel = PartyJoinViewModel()
-	var partyPost = PartyPost()
+	private let viewModel: PartyJoinViewModel
+	private let inputpartyPost: BehaviorRelay<PartyPost>
 
+	init(_ partyPost: PartyPost) {
+		self.inputpartyPost.accept(partyPost)
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
 	override func loadView() {
 		self.view = partyJoinView
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		partyJoinView.configureUI(partyPost)
 	}
 
 	override func configureBinding() {
-		let inputNextButton = partyJoinView.nextButton.rx.tap.map { (self.partyPost, self.partyJoinView.getJoinRequestModel()) }
+		let inputNextButton = partyJoinView.nextButton.rx.tap.map { self.partyJoinView.getJoinRequestModel() }
 
-		let input = PartyJoinViewModel.Input(inputIntroduceText: partyJoinView.introduceTextField.rx.text,
+		let input = PartyJoinViewModel.Input(inputpartyPost: inputpartyPost,
+														 inputIntroduceText: partyJoinView.introduceTextField.rx.text,
 														 inputNextButton: inputNextButton)
 
 		let output = viewModel.transform(input: input)
@@ -45,6 +54,11 @@ final class PartyJoinViewController: BaseEndEditingViewController {
 				} else {
 					owner.showToast(.serverError)
 				}
+			}.disposed(by: disposeBag)
+
+		output.outputpartyPost
+			.drive(with: self) { owner, value in
+				owner.partyJoinView.configureUI(value)
 			}.disposed(by: disposeBag)
 	}
 }

@@ -18,3 +18,6 @@ struct NavigationLazyView<T: View>: View {
 		build()
 	}
 }
+
+
+
