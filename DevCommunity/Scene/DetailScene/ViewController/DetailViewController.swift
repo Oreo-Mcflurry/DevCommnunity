@@ -117,9 +117,7 @@ final class DetailViewController: BaseViewController {
 
 		output.outputDidSelect
 			.drive(with: self) { owner, value in
-				print(value)
-				let vc = PartyDetailViewController()
-				vc.partyPost = value
+				let vc = PartyDetailViewController(value)
 				owner.navigationController?.pushViewController(vc, animated: true)
 			}.disposed(by: disposeBag)
 

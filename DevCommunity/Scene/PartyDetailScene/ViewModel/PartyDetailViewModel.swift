@@ -11,16 +11,18 @@ import RxCocoa
 
 final class PartyDetailViewModel: InputOutputViewModelProtocol {
 	private let requestManager = PostRequestManager()
+	private var partyPost = PartyPost()
 
 	struct Input {
-		let inputBookMarkButton: Observable<PartyPost>
+		let inputBookMarkButton: ControlEvent<Void>
 		let inputJoinButton: ControlEvent<Void>
-		let inputviewDidAppear: Observable<PartyPost>
+		let inputpartyPost: BehaviorRelay<PartyPost>
 	}
 
 	struct Output {
+		let outputpartyPost: Driver<PartyPost>
 		let outputBookMarkButton: Driver<Bool>
-		let outputJoinButton: Driver<Void>
+		let outputJoinButton: Driver<PartyPost>
 		let outputIsJoined: Driver<Bool>
 		let outputJoinButtonText: Driver<String>
 		let outputApplied: Driver<[AppliedPostSectionModel]>
@@ -33,8 +35,21 @@ final class PartyDetailViewModel: InputOutputViewModelProtocol {
 		let outputIsJoined = BehaviorRelay(value: false)
 		let outputJoinButtonText = BehaviorRelay(value: "")
 		let outputApplied: BehaviorRelay<[AppliedPostSectionModel]> = BehaviorRelay(value: [])
+		let outputpartyPost = BehaviorRelay(value: partyPost)
+		let outputJoinButton = BehaviorRelay(value: partyPost)
 
-		input.inputviewDidAppear
+		input.inputpartyPost
+			.bind(with: self) { owner, value in
+				owner.partyPost = value
+				outputpartyPost.accept(value)
+			}.disposed(by: disposeBag)
+
+		input.inputJoinButton
+			.bind(with: self) { owner, _ in
+				outputJoinButton.accept(owner.partyPost)
+			}.disposed(by: disposeBag)
+
+		input.inputpartyPost
 			.flatMap { self.requestManager.getOnePost(postID: $0.postID) }
 			.bind(with: self) { owner, value in
 				switch value {
@@ -57,8 +72,8 @@ final class PartyDetailViewModel: InputOutputViewModelProtocol {
 
 		input.inputBookMarkButton
 			.flatMap {
-				let query = LikeRequestModel(like_status: !$0.isBookmarked)
-				return self.requestManager.likePost(postID: $0.postID, query: query)
+				let query = LikeRequestModel(like_status: self.partyPost.isBookmarked)
+				return self.requestManager.likePost(postID: self.partyPost.postID, query: query)
 			}
 			.map {
 				switch $0 {
@@ -71,8 +86,9 @@ final class PartyDetailViewModel: InputOutputViewModelProtocol {
 			.bind(to: outputBookMarkButton)
 			.disposed(by: disposeBag)
 
-		return Output(outputBookMarkButton: outputBookMarkButton.asDriver(),
-						  outputJoinButton: input.inputJoinButton.asDriver(),
+		return Output(outputpartyPost: outputpartyPost.asDriver(),
+						  outputBookMarkButton: outputBookMarkButton.asDriver(),
+						  outputJoinButton: outputJoinButton.asDriver(),
 						  outputIsJoined: outputIsJoined.asDriver(),
 						  outputJoinButtonText: outputJoinButtonText.asDriver(), 
 						  outputApplied: outputApplied.asDriver())

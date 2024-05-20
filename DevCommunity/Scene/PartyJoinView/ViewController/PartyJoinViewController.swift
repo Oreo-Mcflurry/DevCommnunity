@@ -10,12 +10,14 @@ import RxSwift
 import RxCocoa
 
 final class PartyJoinViewController: BaseEndEditingViewController {
-	private let partyJoinView = PartyJoinView()
+	private let partyJoinView: PartyJoinView
 	private let viewModel: PartyJoinViewModel
 	private let inputpartyPost: BehaviorRelay<PartyPost>
 
 	init(_ partyPost: PartyPost) {
-		self.inputpartyPost.accept(partyPost)
+		self.partyJoinView = PartyJoinView()
+		self.viewModel = PartyJoinViewModel()
+		self.inputpartyPost = BehaviorRelay(value: partyPost)
 		super.init(nibName: nil, bundle: nil)
 	}
 	

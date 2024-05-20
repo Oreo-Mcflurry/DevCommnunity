@@ -16,15 +16,15 @@ final class PartyDetailViewController: BaseViewController {
 	private let tableHeaderView = PartyDetailHeaderView()
 	private let inputpartyPost: BehaviorRelay<PartyPost>
 
-	init(_ partyPost: PartyPost) {
-		self.inputpartyPost.accept(partyPost)
+ 	init(_ partyPost: PartyPost) {
+		self.inputpartyPost = BehaviorRelay(value: partyPost)
 		super.init(nibName: nil, bundle: nil)
+
 	}
 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-
 
 	override func loadView() {
 		self.view = partyDetailView
@@ -50,17 +50,16 @@ final class PartyDetailViewController: BaseViewController {
 			}
 		}
 
-		let inputBookMarkButton = partyDetailView.bookmarkButton.rx.tap.map { self.partyPost }
-		let inputviewDidAppear = self.rx.viewDidAppear.map { self.partyPost }
+		let inputBookMarkButton = partyDetailView.bookmarkButton.rx.tap
 		let input = PartyDetailViewModel.Input(inputBookMarkButton: inputBookMarkButton,
 															inputJoinButton: partyDetailView.joinButton.rx.tap,
-															inputviewDidAppear: inputviewDidAppear)
+															inputpartyPost: inputpartyPost)
 
 		let output = partyDetailViewModel.transform(input: input)
 
 		output.outputJoinButton
-			.drive(with: self) { owner, _ in
-				let vc = PartyJoinViewController(<#T##partyPost: PartyPost##PartyPost#>)
+			.drive(with: self) { owner, value in
+				let vc = PartyJoinViewController(value)
 				owner.navigationController?.pushViewController(vc, animated: true)
 			}.disposed(by: disposeBag)
 
@@ -84,12 +83,16 @@ final class PartyDetailViewController: BaseViewController {
 		output.outputApplied
 			.drive(self.partyDetailView.partyTableView.rx.items(dataSource: dataSource))
 			.disposed(by: disposeBag)
+
+		output.outputpartyPost
+			.drive(with: self) { owner, value in
+				owner.tableHeaderView.configureUI(value)
+			}.disposed(by: disposeBag)
 	}
 }
 
 extension PartyDetailViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		tableHeaderView.configureUI(partyPost)
 		return tableHeaderView
 	}
 }
