@@ -10,7 +10,12 @@ import Moya
 import RxSwift
 
 final class ProfileRequestManager: BaseRequestManager {
-	var provider = MoyaProvider<ProfileRouter>(session: Session(interceptor: Interceptor.shared), plugins: [MoyaLogger(), MoyaCacheablePlugin()])
+	private var provider: MoyaProvider<ProfileRouter>
+
+	override init() {
+		let container = DIContainer.shared
+		self.provider = MoyaProvider<ProfileRouter>(session: Session(interceptor: container.interceptor), plugins: [container.moyaLogger, container.moyaCacheablePlugin])
+	}
 
 	func putProfileEdit(query: ProfileEditModel) -> Single<Result<ProfileEditModel, Error>> {
 		return Single<Result<ProfileEditModel, Error>>.create { single in

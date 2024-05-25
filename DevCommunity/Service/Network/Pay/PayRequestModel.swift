@@ -11,7 +11,12 @@ import RxSwift
 
 final class PayRequestManager: BaseRequestManager {
 
-	private var provider = MoyaProvider<PayRouter>(session: Session(interceptor: Interceptor.shared), plugins: [MoyaLogger(), MoyaCacheablePlugin()])
+	private var provider: MoyaProvider<PayRouter>
+
+	override init() {
+		let container = DIContainer.shared
+		self.provider = MoyaProvider<PayRouter>(session: Session(interceptor: container.interceptor), plugins: [container.moyaLogger, container.moyaCacheablePlugin])
+	}
 
 	func getPayValidation(query: PayValidationModel) -> Single<Int> {
 		return Single<Int>.create { single in

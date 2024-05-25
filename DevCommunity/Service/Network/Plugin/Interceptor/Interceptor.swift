@@ -12,9 +12,8 @@ import Moya
 
 final class Interceptor {
 	private let disposeBag: DisposeBag
-	static let shared = Interceptor()
 
-	private init() {
+	init() {
 		disposeBag = DisposeBag()
 	}
 }

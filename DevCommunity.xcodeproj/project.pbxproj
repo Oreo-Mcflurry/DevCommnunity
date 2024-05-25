@@ -26,6 +26,7 @@
 		0B019DC42BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019DC32BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift */; };
 		0B019DC62BC6CCED00E89BB4 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019DC52BC6CCED00E89BB4 /* UserDefaults+Extension.swift */; };
 		0B019DC82BC6CD0000E89BB4 /* KeyChain+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019DC72BC6CD0000E89BB4 /* KeyChain+Extension.swift */; };
+		0B2EF6D42C01705F0047236A /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2EF6D32C01705F0047236A /* DIContainer.swift */; };
 		0B469D472BD3E72000691995 /* KingFisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D462BD3E72000691995 /* KingFisher+Extension.swift */; };
 		0B469D4C2BD649E300691995 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 0B469D4B2BD649E300691995 /* SkeletonView */; };
 		0B469D522BD64CA200691995 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B469D512BD64CA200691995 /* DetailViewController.swift */; };
@@ -161,6 +162,7 @@
 		0B019DC32BC6CCEA00E89BB4 /* DeleteBackButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DeleteBackButton+Extension.swift"; sourceTree = "<group>"; };
 		0B019DC52BC6CCED00E89BB4 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		0B019DC72BC6CD0000E89BB4 /* KeyChain+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+Extension.swift"; sourceTree = "<group>"; };
+		0B2EF6D32C01705F0047236A /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		0B469D462BD3E72000691995 /* KingFisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KingFisher+Extension.swift"; sourceTree = "<group>"; };
 		0B469D512BD64CA200691995 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0B469D532BD64CB400691995 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -412,6 +414,14 @@
 				0BDE9FF02BC8269900289075 /* View */,
 			);
 			path = SignUpScene;
+			sourceTree = "<group>";
+		};
+		0B2EF6D22C01704A0047236A /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				0B2EF6D32C01705F0047236A /* DIContainer.swift */,
+			);
+			path = DIContainer;
 			sourceTree = "<group>";
 		};
 		0B469D4D2BD64C8300691995 /* DetailScene */ = {
@@ -667,6 +677,7 @@
 		0B60E20F2BE116FD00779038 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0B2EF6D22C01704A0047236A /* DIContainer */,
 				0B6880042BED8A3300458F56 /* Profile */,
 				0BFED8392BE9134F00970D8C /* Pay */,
 				0BFED82A2BE79AAC00970D8C /* Plugin */,
@@ -1312,6 +1323,7 @@
 				0BFED7FD2BE4D08400970D8C /* PostRouter.swift in Sources */,
 				0BFED8202BE760DA00970D8C /* BaseRequestManager.swift in Sources */,
 				0B68800A2BED8ABB00458F56 /* ProfileEditRequestModel.swift in Sources */,
+				0B2EF6D42C01705F0047236A /* DIContainer.swift in Sources */,
 				0B6880082BED8A6100458F56 /* ProfileRequestManager.swift in Sources */,
 				0BFED8262BE7801300970D8C /* MoyaLogger.swift in Sources */,
 				0B60E19C2BDF6A2600779038 /* LikeRequestModel.swift in Sources */,

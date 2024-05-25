@@ -11,7 +11,12 @@ import RxSwift
 
 final class PostRequestManager: BaseRequestManager {
 
-	private var provider = MoyaProvider<PostRouter>(session: Session(interceptor: Interceptor.shared), plugins: [MoyaLogger(), MoyaCacheablePlugin()])
+	private var provider: MoyaProvider<PostRouter>
+
+	override init() {
+		let container = DIContainer.shared
+		self.provider = MoyaProvider<PostRouter>(session: Session(interceptor: container.interceptor), plugins: [container.moyaLogger, container.moyaCacheablePlugin])
+	}
 
 	func getEventPosts() -> Single<Result<EventPostsResultModel, Error>> {
 		let query = PostsRequestModel(next: "", product_id: "DevCommunity")

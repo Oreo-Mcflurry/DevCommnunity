@@ -99,7 +99,7 @@ final class PartyDetailHeaderView: BaseTableHeaderView {
 			cell.configureUI($0)
 
 			cell.snp.makeConstraints {
-				$0.width.lessThanOrEqualTo(140)
+				$0.size.lessThanOrEqualTo(100)
 			}
 			recruitmentImageStackView.addArrangedSubview(cell)
 		}
