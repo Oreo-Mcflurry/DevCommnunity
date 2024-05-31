@@ -25,6 +25,12 @@ extension Interceptor: RequestInterceptor {
 	}
 
 	func retry(_ request: Request, for session: Session, dueTo error: any Error, completion: @escaping (RetryResult) -> Void) {
+
+		guard request.retryCount < 3 else {
+			completion(.doNotRetry)
+			return
+		}
+
 		let requestManager = AuthRequestManager()
 
 		guard let response = request.response else {
