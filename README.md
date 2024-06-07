@@ -19,11 +19,10 @@
 
 ### 🥕 기능
 
-- 로그인 / 회원가입
-- 개발자 행사 정보 받아오기   
-- 같이 할 팀원 구하기
-- 참가 신청
-- 결제 기능
+- 로그인 / 회원가입 / 자동 로그인 기능
+- 관심 있는 행사, 팀원 구인 글 북마크 기능
+- 팀원 구인 글, 참가 신청 글 작성
+- 광고 제거 결제 기능
 
 ### 🔨 기술 스택 및 사용한 라이브러리
 
@@ -134,7 +133,7 @@ extension PayRouter: TargetType {
 
 ### 🌠 Trouble Shooting
 
-### 1.  Access Token이 만료 되었을 때, 기존에는 각 Requst 메서드마다 실패시 토큰을 다시 발급받도록 하였는데, Moya의 Interceptor를 적용하여 효율적으로 리프레시 토큰을 관리.
+### 1.  AccessToken 갱신 로직이 각 요청마다 중복되는 이슈, Alamofire의 Interceptor Retry메서드로 Access Token을 재발급 받는 로직을 구현하여중복되는 코드를 줄임
 #### 이전 코드
 ~~~swift
 func getPosts(query: PostsKind) -> Observable<EventPostsResultModel> {
@@ -212,7 +211,7 @@ output.outputLoginResult
 
 ~~~
 
-### 3. NavigationLink에서 Destination을 미리 초기화 해서 갖고 있어 뷰에 들어올때마다 실행되어야하는 메서드들이 실행이 안되었고, NavigationLazyView라는 뷰를 만들어 Lazy한 Navigation을 구현
+### 3. NavigationLink의 Destination View 초기화 이슈, 광고 제거하기 뷰의 초기화 시점에 결제 검증 로직 동작을 의도 하였으나, NavigationLink는 Destination View를 항상 미리 초기화하는 문제 발생, NavigationLazyView를 구현하여Destination View를 초기화 하지 못하게 해결 및 불필요한 메모리 최적화 달성 
 #### 이전 코드
 ~~~swift
 private var iamportPayView: some View {
